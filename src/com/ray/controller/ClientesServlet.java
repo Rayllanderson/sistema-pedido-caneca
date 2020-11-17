@@ -8,21 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ray.model.dao.CanecaRepository;
 import com.ray.model.dao.ClienteRepository;
 import com.ray.model.dao.RepositoryFactory;
-import com.ray.model.service.CanecaService;
 
 @WebServlet("/clientes")
 public class ClientesServlet extends HttpServlet{
 
     private static final long serialVersionUID = 1L;
     private ClienteRepository clienteRepository;
-    private CanecaService canecaService;
+    private CanecaRepository canecaRepository;
     
     @Override
     public void init() throws ServletException {
 	this.clienteRepository = RepositoryFactory.createClienteDao();
-	this.canecaService = new CanecaService();
+	this.canecaRepository = RepositoryFactory.createCanecaDao();
         super.init();
     }
 
@@ -32,7 +32,7 @@ public class ClientesServlet extends HttpServlet{
         if(action != null) {
             if(action.equals("select")) {
         	Long id = Long.valueOf(req.getParameter("id"));
-        	req.getSession().setAttribute("canecas", canecaService.findAll(id, false));
+        	req.getSession().setAttribute("canecas", canecaRepository.findAll(id));
                 req.getRequestDispatcher("canecas.jsp").forward(req, resp);
             }
         }else {

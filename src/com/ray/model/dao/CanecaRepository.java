@@ -14,8 +14,6 @@ public interface CanecaRepository {
 
     Caneca findById(Long id);
 
-    List<Caneca> findAll();
-    
     /**
      * 
      * @param clientId 
