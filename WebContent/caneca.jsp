@@ -103,17 +103,19 @@
 <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Arquivos</h1>
 
   <hr class="mt-2 mb-5">
-
-  <div class="row text-center text-lg-left">
+<data id="start">
+<div class="row text-center text-lg-left">
 
 	<c:forEach items="${arquivos}" var="arquivo">
-    <div class="col-lg-3 col-md-4 col-6">
-      <a href="aaa?id=${arquivo.id}" class="d-block mb-4 h-100">
+    	<div class="col-lg-3 col-md-4 col-6">
+    	 <a href="aaa?id=${arquivo.id}" class="d-block mb-4 h-100">
             <img class="img-fluid img-thumbnail" src="${arquivo.miniatura}">
-          </a>
+      	 </a>
     </div>
     </c:forEach>
-   </div>
+    </div>
+</data>
+</div>
 
   <hr class="mt-2 mb-5">
    <main>
@@ -129,7 +131,6 @@
   </section>
   </main>
   <div class="mt-5 mb-3"></div>
-</div>
 </div>
 
 
@@ -166,8 +167,8 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 <script src="src/js/dropzone.min.js"></script>
-
 <script src="src/js/alert.js"></script>
+
 <script type="text/javascript">
 $('.alert').hide();
 </script>
@@ -205,13 +206,31 @@ function setEtapa(etapa){
 	}
 	$('#etapa').val(n);
 }
-
+Dropzone.autoDiscover = false;
 var myDropzone = new Dropzone("#upload", { url: "upload"});
 myDropzone.on("complete", function(file) {
+	  loadMiniature();
 	  setTimeout(function () {
 		  myDropzone.removeFile(file);
 	}, 2000);
+	  
 	});
+	
+	
+function loadMiniature(){
+	$.ajax({
+     url: 'upload?action=load-miniature',
+     type: 'GET',
+     success:function(){
+			$.get("upload", function(response) {  
+				$("#start").html($(response).find("data").html());
+			});
+		console.log('Success')
+     },
+     error: function(){
+     }
+   });
+}
 </script>
 </body>
 
