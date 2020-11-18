@@ -135,7 +135,6 @@ font-size: 0;
     </c:forEach>
     </div>
 </data>
-</div>
 
   <hr class="mt-2 mb-5">
    <main>
@@ -152,7 +151,7 @@ font-size: 0;
   </main>
   <div class="mt-5 mb-3"></div>
 </div>
-
+</div>
 
 	<!-- Modal confirmar remover caneca -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -189,69 +188,15 @@ font-size: 0;
 <script src="src/js/dropzone.min.js"></script>
 <script src="src/js/alert.js"></script>
 <script src="src/js/ajax/excluirImagem.js"></script>
+<script src="src/js/ajax/loadMiniature.js"></script>
+<script src="src/js/edit-caneca.js"></script>
 
-<script type="text/javascript">
-$('.alert').hide();
-</script>
 <script type="text/javascript">
 $('#text-area').val("${caneca.descricao}")
 var tema = "${caneca.tema.id}"
 var etapa= "${caneca.etapa}"
 $('#temas').val(tema);
-setEtapa(etapa)
-
-function setEtapa(etapa){
-	var n = null;
-	switch (etapa){
-		case 'PEDIDO_REALIZADO':
-			n = 1;
-			break;
-		case 'ESCOLHA':
-			n = 2;
-			break;
-		case 'ALTERACAO':
-			n = 3;
-			break;
-		case 'MODELO_ESCOLHIDO':
-			n = 4;
-			break;
-		case 'PRODUCAO':
-			n = 5;
-			break;
-		case 'PRONTO_ENTREGA':
-			n = 6;
-			break;
-		case 'FINALIZADO':
-			n = 7;
-			break;
-	}
-	$('#etapa').val(n);
-}
-Dropzone.autoDiscover = false;
-var myDropzone = new Dropzone("#upload", { url: "file?action=upload"});
-myDropzone.on("complete", function(file) {
-	  loadMiniature();
-	  setTimeout(function () {
-		  myDropzone.removeFile(file);
-	}, 2000);
-	  
-	});
-	
-	
-function loadMiniature(){
-	$.ajax({
-     url: 'file?action=load-miniature',
-     type: 'GET',
-     success:function(){
-			$.get("file", function(response) {  
-				$("#start").html($(response).find("data").html());
-			});
-		console.log('Success')
-     },
-     error: function(){
-     }
-   });
-}
+setEtapa(etapa)	
 </script>
 </body>
 

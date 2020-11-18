@@ -1,23 +1,28 @@
-$("#btn-submit").on('click', function () {
-	if($("#temas").val() == null){
-		 alertBootstrap("Você não selecionou nenhum tema", "alert alert-warning", "Ei!");
-		$('#temas').focus();
-	 }else{ 
-		$('#btn-submit').prop('disabled', true);
-		 $("#btn-submit").html('Enviando...');
-		 $("#order-form").submit();
-	 }
-});
 
-var target = document.querySelector("#preview");
-function setImage(image){
-	if (image){
-	hasChangedImage(false);
-	target.src = image;
-	$('#div-preview').show();
-	$('.text-preview').text('Preview da sua foto') 
-	target.style.width = '100%';
-	target.style.height = '100%';
-	target.style.borderRadius = '1em';//
+function setEtapa(etapa){
+	var n = null;
+	switch (etapa){
+		case 'PEDIDO_REALIZADO':
+			n = 1;
+			break;
+		case 'ESCOLHA':
+			n = 2;
+			break;
+		case 'ALTERACAO':
+			n = 3;
+			break;
+		case 'MODELO_ESCOLHIDO':
+			n = 4;
+			break;
+		case 'PRODUCAO':
+			n = 5;
+			break;
+		case 'PRONTO_ENTREGA':
+			n = 6;
+			break;
+		case 'FINALIZADO':
+			n = 7;
+			break;
 	}
+	$('#etapa').val(n);
 }

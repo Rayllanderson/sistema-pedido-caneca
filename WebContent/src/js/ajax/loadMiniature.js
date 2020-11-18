@@ -1,14 +1,24 @@
 $('.alert').hide();
 
-function loadMiniature(){
+
+Dropzone.autoDiscover = false;
+var myDropzone = new Dropzone("#upload", { url: "file?action=upload"});
+myDropzone.on("complete", function(file) {
+	  loadMiniature(file);
+	});
+
+function loadMiniature(file){
 	$.ajax({
-     url: 'carrinho?action=load-miniature',
+     url: 'file?action=load-miniature',
      type: 'GET',
      success:function(){
-        // $('#img').load('src/jsp/miniature.jsp').html;
-			$.get("carrinho", function(response) {  
+			$.get("file", function(response) {  
 				$("#start").html($(response).find("data").html());
 			});
+		setTimeout(function () {
+		  myDropzone.removeFile(file);
+		}, 2000);
+	  
 		console.log('Success')
      },
      error: function(){
@@ -16,5 +26,4 @@ function loadMiniature(){
    });
 }
 
-loadMiniature();
 
