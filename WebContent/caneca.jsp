@@ -37,6 +37,26 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    
+}
+
+#imgs{
+        position: relative;
+    display: inline-block;
+font-size: 0;
+}
+
+.close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 50%;
+    cursor: pointer;
+     color: red;
+}
+#img:hover .close {
+    opacity: 1;
+     color: red;
 }
 
 </style>
@@ -105,9 +125,9 @@
   <hr class="mt-2 mb-5">
 <data id="start">
 <div class="row text-center text-lg-left">
-
 	<c:forEach items="${arquivos}" var="arquivo">
-    	<div class="col-lg-3 col-md-4 col-6">
+    	<div class="col-lg-3 col-md-4 col-6" id="imgs">
+    	<a onclick="deleteImage('${arquivo.id}')"><span class="close" style="color:red">&times;</span></a>
     	 <a href="aaa?id=${arquivo.id}" class="d-block mb-4 h-100">
             <img class="img-fluid img-thumbnail" src="${arquivo.miniatura}">
       	 </a>
@@ -120,7 +140,7 @@
   <hr class="mt-2 mb-5">
    <main>
    <section>
-<form action="upload" method="post" class="dropzone" id="upload">
+<form action="file?action=upload" method="post" class="dropzone" id="upload">
 	  <div class="fallback">
 	  <div class="dz-message needsclick">
 	    <button type="button" class="dz-button">Drop fbgiles here or click to upload.</button><br>
@@ -168,6 +188,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 <script src="src/js/dropzone.min.js"></script>
 <script src="src/js/alert.js"></script>
+<script src="src/js/ajax/excluirImagem.js"></script>
 
 <script type="text/javascript">
 $('.alert').hide();
@@ -207,7 +228,7 @@ function setEtapa(etapa){
 	$('#etapa').val(n);
 }
 Dropzone.autoDiscover = false;
-var myDropzone = new Dropzone("#upload", { url: "upload"});
+var myDropzone = new Dropzone("#upload", { url: "file?action=upload"});
 myDropzone.on("complete", function(file) {
 	  loadMiniature();
 	  setTimeout(function () {
@@ -219,10 +240,10 @@ myDropzone.on("complete", function(file) {
 	
 function loadMiniature(){
 	$.ajax({
-     url: 'upload?action=load-miniature',
+     url: 'file?action=load-miniature',
      type: 'GET',
      success:function(){
-			$.get("upload", function(response) {  
+			$.get("file", function(response) {  
 				$("#start").html($(response).find("data").html());
 			});
 		console.log('Success')

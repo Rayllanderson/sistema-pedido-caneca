@@ -22,7 +22,7 @@ import com.ray.model.service.ImageService;
 import com.ray.model.validacoes.ImageValidation;
 import com.ray.util.ThreadMiniature;
 
-@WebServlet("/upload")
+@WebServlet("/file")
 @MultipartConfig
 public class FileServlet extends HttpServlet {
 
@@ -41,23 +41,28 @@ public class FileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	System.out.println("hi..");
-	List<Part> fileParts = request.getParts().stream()
-		.filter(part -> "file".equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
-	this.caneca = (Caneca) request.getSession().getAttribute("caneca");
-	List<Arquivo> imagens = new ArrayList<>();
-	for (Part filePart : fileParts) {
-	    if (ImageValidation.fileTypeIsValid(request, filePart)) {
-		InputStream fileContent = filePart.getInputStream();
-		imagens.add(new Arquivo(null, fileContent, "", "", filePart.getContentType(), caneca));
+	String action = (request.getParameter("action"));
+	if (action != null) {
+	    if (action.equals("upload")) {
+		List<Part> fileParts = request.getParts().stream()
+			.filter(part -> "file".equals(part.getName()) && part.getSize() > 0)
+			.collect(Collectors.toList());
+		this.caneca = (Caneca) request.getSession().getAttribute("caneca");
+		List<Arquivo> imagens = new ArrayList<>();
+		for (Part filePart : fileParts) {
+		    if (ImageValidation.fileTypeIsValid(request, filePart)) {
+			InputStream fileContent = filePart.getInputStream();
+			imagens.add(new Arquivo(null, fileContent, "", "", filePart.getContentType(), caneca));
+		    }
+		}
+		boolean hasFile = !imagens.isEmpty();
+		if (hasFile) {
+		    imagens.replaceAll(x -> arquivoService.save(x));
+		    imagens.forEach(x -> new ThreadMiniature(x));
+		}
+		response.setStatus(201);
 	    }
 	}
-	boolean hasFile = !imagens.isEmpty();
-	if (hasFile) {
-	    imagens.replaceAll(x -> arquivoService.save(x));
-	    imagens.forEach(x -> new ThreadMiniature(x));
-	}
-	response.setStatus(201);
     }
 
     @Override
@@ -71,6 +76,14 @@ public class FileServlet extends HttpServlet {
 		loadThumb(arquivos, true);
 		response.setStatus(200);
 		return;
+	    }else if(action.equals("delete")) {
+		Long id = Long.valueOf(request.getParameter("id"));
+		if (arquivoService.deleteById(id)) {
+		    response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+		}else {
+		    response.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
+		}
+		
 	    }
 	}
 	request.getSession().setAttribute("arquivos", arquivos);

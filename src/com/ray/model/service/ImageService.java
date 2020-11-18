@@ -20,12 +20,14 @@ public class ImageService {
 	return repository.update(arquivo, updateInputStream);
     }
 
-    public void deleteById(Long id) {
+    public boolean deleteById(Long id) {
 	Long withoutImage = 0L;
 	boolean hasImage = !id.equals(withoutImage);
 	if (hasImage) {
 	    repository.deleteById(id);
+	    return true;
 	}
+	return false;
     }
     
     /**
