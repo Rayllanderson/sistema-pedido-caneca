@@ -165,15 +165,7 @@
 $('.alert').hide();
 </script>
 <script type="text/javascript">
-function getCellValues() {
-    var refTab = document.getElementById("tabela")
-    var totalRowCount = refTab.rows.length;
-    for (var i = 0; i < totalRowCount; i++){
-    	refTab[i].innerText = (i + 1);
-    }
- }
- 
-getCellValues();
+
 
 </script>
 </body>

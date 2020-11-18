@@ -12,7 +12,6 @@
 
 <title>Pedidos</title>
 
-<link rel="stylesheet" href="src/css/alert.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Bootstrap core CSS -->
@@ -20,38 +19,25 @@
 <!-- Material Design Bootstrap -->
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> -->
 
+<link rel="stylesheet" href="src/css/alert.css">
+<link rel="stylesheet" href="src/css/dropzone.min.css">
 <style type="text/css">
 
+	body{
+		background-color: #f8f9fa;
+		}
 	.card{
 		 border-radius: 1em !important;
 	}
-	
- /*	.n-c{
-		background-color: #28a745  !important;
-	}
-	
-	 .f-p{
-		background-color: #007bff  !important;
-	}
-	*/
-	
-	* {
-  box-sizing: border-box;
+	.dropzone {
+    background: white;
+    border-radius: 5px;
+    border: 2px dashed rgb(0, 135, 247);
+    border-image: none;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.coluna {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-}
-
-/* Clearfix (clear floats) */
-.linha::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
 
 </style>
 
@@ -66,7 +52,7 @@
 				</div>
 			</div>
 <div class="container mt-5" >
-
+<div class="card p-2">
 <form >
 <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Caneca</h1>
 <hr class="mt-2 mb-5">
@@ -112,6 +98,7 @@
     <textarea class="form-control" id="text-area" rows="3"></textarea>
    </div>
    </div>
+</form> <!-- fim form caneca -->
 
 <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Arquivos</h1>
 
@@ -122,19 +109,28 @@
 	<c:forEach items="${arquivos}" var="arquivo">
     <div class="col-lg-3 col-md-4 col-6">
       <a href="aaa?id=${arquivo.id}" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="${arquivo.base64Html}">
+            <img class="img-fluid img-thumbnail" src="${arquivo.miniatura}">
           </a>
     </div>
     </c:forEach>
-    </div>
+   </div>
 
-
-  <button class="btn btn-primary" type="submit">Submit form</button>
-</form>
-		
-		
+  <hr class="mt-2 mb-5">
+   <main>
+   <section>
+<form action="upload" method="post" class="dropzone" id="upload">
+	  <div class="fallback">
+	  <div class="dz-message needsclick">
+	    <button type="button" class="dz-button">Drop fbgiles here or click to upload.</button><br>
+	  </div>
+	    <input name="file" type="file" multiple />
+	  </div>
+	  </form>
+  </section>
+  </main>
+  <div class="mt-5 mb-3"></div>
 </div>
-     
+</div>
 
 
 	<!-- Modal confirmar remover caneca -->
@@ -169,6 +165,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<script src="src/js/dropzone.min.js"></script>
+
 <script src="src/js/alert.js"></script>
 <script type="text/javascript">
 $('.alert').hide();
@@ -208,7 +206,12 @@ function setEtapa(etapa){
 	$('#etapa').val(n);
 }
 
-
+var myDropzone = new Dropzone("#upload", { url: "upload"});
+myDropzone.on("complete", function(file) {
+	  setTimeout(function () {
+		  myDropzone.removeFile(file);
+	}, 2000);
+	});
 </script>
 </body>
 
