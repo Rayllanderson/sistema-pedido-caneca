@@ -20,6 +20,7 @@ import com.ray.model.entities.Arquivo;
 import com.ray.model.entities.Caneca;
 import com.ray.model.service.ImageService;
 import com.ray.model.validacoes.ImageValidation;
+import com.ray.util.ArquivosUtil;
 import com.ray.util.ThreadMiniature;
 
 @WebServlet("/file")
@@ -83,7 +84,10 @@ public class FileServlet extends HttpServlet {
 		}else {
 		    response.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
 		}
-		
+	    }else if(action.equals("download")) {
+		Arquivo arquivo = arquivoRepository.findById(Long.valueOf(request.getParameter("id")));
+		ArquivosUtil.downloadFile(response, arquivo);
+		return;
 	    }
 	}
 	request.getSession().setAttribute("arquivos", arquivos);

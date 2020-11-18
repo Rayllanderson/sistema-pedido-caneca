@@ -21,45 +21,7 @@
 
 <link rel="stylesheet" href="src/css/alert.css">
 <link rel="stylesheet" href="src/css/dropzone.min.css">
-<style type="text/css">
-
-	body{
-		background-color: #f8f9fa;
-		}
-	.card{
-		 border-radius: 1em !important;
-	}
-	.dropzone {
-    background: white;
-    border-radius: 5px;
-    border: 2px dashed rgb(0, 135, 247);
-    border-image: none;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
-
-#imgs{
-        position: relative;
-    display: inline-block;
-font-size: 0;
-}
-
-.close {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    border-radius: 50%;
-    cursor: pointer;
-     color: red;
-}
-#img:hover .close {
-    opacity: 1;
-     color: red;
-}
-
-</style>
+<link rel="stylesheet" href="src/css/caneca.css">
 
 </head>
 <body>
@@ -128,7 +90,7 @@ font-size: 0;
 	<c:forEach items="${arquivos}" var="arquivo">
     	<div class="col-lg-3 col-md-4 col-6" id="imgs">
     	<a onclick="deleteImage('${arquivo.id}')"><span class="close" style="color:red">&times;</span></a>
-    	 <a href="aaa?id=${arquivo.id}" class="d-block mb-4 h-100">
+    	 <a href="file?action=download&id=${arquivo.id}" class="d-block mb-4 h-100">
             <img class="img-fluid img-thumbnail" src="${arquivo.miniatura}">
       	 </a>
     </div>

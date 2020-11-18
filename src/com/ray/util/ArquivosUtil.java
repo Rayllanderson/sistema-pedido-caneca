@@ -6,15 +6,21 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.regex.PatternSyntaxException;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.imgscalr.Scalr;
 
+import com.ray.beans.User;
+import com.ray.model.entities.Arquivo;
 import com.ray.model.exceptions.EntradaInvalidaException;
 
 public class ArquivosUtil implements Serializable{
@@ -90,5 +96,30 @@ public class ArquivosUtil implements Serializable{
     
     private static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws Exception {
 	    return Scalr.resize(originalImage, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC, targetWidth, targetHeight, Scalr.OP_ANTIALIAS);
+    }
+    
+    public static void downloadFile(HttpServletResponse response, Arquivo arquivo)
+	    throws IOException, PatternSyntaxException, NullPointerException {
+	if (arquivo != null) {
+	    // converte a base64 da img do BD para byte
+	    byte[] fileBytes = null;
+	    String[] contentType = null;
+	    fileBytes = Base64.decodeBase64(arquivo.getBase64());
+	    contentType = arquivo.getContentType().split("/");
+	    fileBytes = Base64.decodeBase64(arquivo.getBase64());
+	    String name = arquivo.getCaneca().getCliente().getNome();
+	    response.setHeader("Content-Disposition", "attachment;filename=" + name +"." + contentType[1]);
+	    // coloca os bytes em um objeto de entrada pra processar
+	    InputStream inputStream = arquivo.getInputStream();
+	    // inicio da resposta pro navegador
+	    int read = 0;
+	    byte[] bytes = new byte[1024];
+	    OutputStream outputStream = response.getOutputStream();
+	    while ((read = inputStream.read(bytes)) != -1) {
+		outputStream.write(bytes, 0, read);
+	    }
+	    outputStream.flush();
+	    outputStream.close();
+	}
     }
 }
