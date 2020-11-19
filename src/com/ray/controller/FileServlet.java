@@ -2,6 +2,7 @@ package com.ray.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,10 +52,11 @@ public class FileServlet extends HttpServlet {
 		this.caneca = (Caneca) request.getSession().getAttribute("caneca");
 		List<Arquivo> imagens = new ArrayList<>();
 		for (Part filePart : fileParts) {
-		    if (ImageValidation.fileTypeIsValid(request, filePart)) {
-			InputStream fileContent = filePart.getInputStream();
-			imagens.add(new Arquivo(null, fileContent, "", "", filePart.getContentType(), caneca));
-		    }
+		    InputStream fileContent = filePart.getInputStream();
+		    String name = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+		    Arquivo arquivo = new Arquivo(null, fileContent, "", "", filePart.getContentType(), caneca);
+		    arquivo.setNome(name);
+		    imagens.add(arquivo);
 		}
 		boolean hasFile = !imagens.isEmpty();
 		if (hasFile) {
@@ -77,14 +79,14 @@ public class FileServlet extends HttpServlet {
 		loadThumb(arquivos, true);
 		response.setStatus(200);
 		return;
-	    }else if(action.equals("delete")) {
+	    } else if (action.equals("delete")) {
 		Long id = Long.valueOf(request.getParameter("id"));
 		if (arquivoService.deleteById(id)) {
 		    response.setStatus(HttpServletResponse.SC_NO_CONTENT);
-		}else {
+		} else {
 		    response.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
 		}
-	    }else if(action.equals("download")) {
+	    } else if (action.equals("download")) {
 		Arquivo arquivo = arquivoRepository.findById(Long.valueOf(request.getParameter("id")));
 		ArquivosUtil.downloadFile(response, arquivo);
 		return;

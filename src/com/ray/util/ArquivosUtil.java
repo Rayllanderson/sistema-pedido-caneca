@@ -1,6 +1,5 @@
 package com.ray.util;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,14 +11,12 @@ import java.util.regex.PatternSyntaxException;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.imgscalr.Scalr;
 
-import com.ray.beans.User;
 import com.ray.model.entities.Arquivo;
 import com.ray.model.exceptions.EntradaInvalidaException;
 
@@ -49,10 +46,6 @@ public class ArquivosUtil implements Serializable{
 	/* Pega o tipo da imagem */
 	int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
 
-	final int WIDHT = 250;
-	final int HEIGHT = 250;
-	
-	/*
 	 /* Cria imagem em miniatura 
 	BufferedImage resizedImage = new BufferedImage(WIDHT, HEIGHT, type);
 	resizedImage.createGraphics().drawImage(croped, 0, 0, null); */
@@ -102,11 +95,8 @@ public class ArquivosUtil implements Serializable{
 	    throws IOException, PatternSyntaxException, NullPointerException {
 	if (arquivo != null) {
 	    // converte a base64 da img do BD para byte
-	    byte[] fileBytes = null;
 	    String[] contentType = null;
-	    fileBytes = Base64.decodeBase64(arquivo.getBase64());
 	    contentType = arquivo.getContentType().split("/");
-	    fileBytes = Base64.decodeBase64(arquivo.getBase64());
 	    String name = arquivo.getCaneca().getCliente().getNome();
 	    response.setHeader("Content-Disposition", "attachment;filename=" + name +"." + contentType[1]);
 	    // coloca os bytes em um objeto de entrada pra processar
@@ -121,5 +111,9 @@ public class ArquivosUtil implements Serializable{
 	    outputStream.flush();
 	    outputStream.close();
 	}
+    }
+    
+    public static String getContentType(String nameOfFile) {
+	return nameOfFile.substring(nameOfFile.lastIndexOf('.') + 1);
     }
 }

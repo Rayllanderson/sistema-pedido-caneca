@@ -13,6 +13,7 @@ public class Arquivo implements Serializable {
     private String miniatura;
     private String contentType;
     private Caneca caneca;
+    private String nome; //pra pegar o contentType caso necessário 
 
     public Arquivo(Long id, InputStream inputStream, String base64, String miniatura, String contentType,
 	    Caneca caneca) {
@@ -108,6 +109,14 @@ public class Arquivo implements Serializable {
     @Override
     public String toString() {
 	return "Arquivo [id=" + id + "base64=" + getBase64Html();
+    }
+
+    public String getNome() {
+	return nome;
+    }
+
+    public void setNome(String nome) {
+	this.nome = nome;
     }
 
 }

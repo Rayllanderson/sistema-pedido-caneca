@@ -26,7 +26,8 @@ public class ThreadMiniature implements Runnable {
 	    boolean hasImage = foto.getId() != 0;
 	    boolean hasntMiniature = foto.getMiniatura() == null || foto.getMiniatura().isEmpty();
 	    boolean dontUpdateInpuStream = false;
-	    if (hasImage && hasntMiniature) {
+	    boolean isImage = foto.getContentType().contains("image");
+	    if (hasImage && hasntMiniature && isImage) {
 		System.out.println("Thread start");
 		foto.setBase64(ArquivosUtil.createBase64(foto.getInputStream()));
 		foto.setMiniatura(ArquivosUtil.createMiniatureBase64(foto.getBase64()));
