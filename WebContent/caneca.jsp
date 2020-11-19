@@ -109,7 +109,7 @@
 
                         <div class="caption">
                             <h3 class="mb-3">${arquivo.nome}</h3>
-                            <span class="mb-3">512 kb</span>
+                            <span class="mb-3">${arquivo.fileSize}</span>
                             <div class="d-flex justify-content-end">
                                 <div class="icon" title="Download">
                                      <a href="file?action=download&id=${arquivo.id}">

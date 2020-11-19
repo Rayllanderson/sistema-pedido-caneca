@@ -1,7 +1,10 @@
 package com.ray.model.entities;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+
+import com.ray.util.ArquivosUtil;
 
 public class Arquivo implements Serializable {
 
@@ -14,6 +17,7 @@ public class Arquivo implements Serializable {
     private String contentType;
     private Caneca caneca;
     private String nome; //pra pegar o contentType caso necessário 
+    private String fileSize;
 
     public Arquivo(Long id, InputStream inputStream, String base64, String miniatura, String contentType,
 	    Caneca caneca, String nome) {
@@ -118,6 +122,14 @@ public class Arquivo implements Serializable {
 
     public void setNome(String nome) {
 	this.nome = nome;
+    }
+
+    public String getFileSize() {
+	return this.fileSize;
+    }
+
+    public void setFileSize(String fileSize) {
+	this.fileSize = fileSize;
     }
 
 }

@@ -63,10 +63,11 @@ public class ImageService {
     public List<Arquivo> findAll(Long canecaId, boolean withInputStream) {
 	List<Arquivo> arquivos = repository.findAll(canecaId);
 	arquivos.forEach(x -> setMiniature(x));
+	arquivos.forEach(x -> x.setFileSize(ArquivosUtil.getReadableFileSize(x)));
 	if (withInputStream) {
 	    return arquivos;
 	}
-
+	
 	arquivos.forEach(x -> x.setInputStream(null));
 	return arquivos;
     }

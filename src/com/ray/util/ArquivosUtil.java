@@ -24,8 +24,7 @@ import com.ray.model.dao.ImageRepository;
 import com.ray.model.entities.Arquivo;
 import com.ray.model.exceptions.EntradaInvalidaException;
 
-public class ArquivosUtil implements Serializable{
-
+public class ArquivosUtil implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,24 +34,25 @@ public class ArquivosUtil implements Serializable{
      * 
      * @param request
      * @return imagem em forma de miniatura
-     * @throws Exception 
+     * @throws Exception
      * @throws ServletException
      * @throws EntradaInvalidaException tipo de arquivo inválido
      */
-    public static String createMiniatureBase64(String base64)
-	    throws Exception {
+    public static String createMiniatureBase64(String base64) throws Exception {
 
 	/* Transforma emum bufferedImage */
 	byte[] imageByteDecode = Base64.decodeBase64(base64);
 	BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imageByteDecode));
 	BufferedImage croped = resizeImage(bufferedImage, 320, 320);
-	
+
 	/* Pega o tipo da imagem */
 	int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
 
-	 /* Cria imagem em miniatura 
-	BufferedImage resizedImage = new BufferedImage(WIDHT, HEIGHT, type);
-	resizedImage.createGraphics().drawImage(croped, 0, 0, null); */
+	/*
+	 * Cria imagem em miniatura BufferedImage resizedImage = new
+	 * BufferedImage(WIDHT, HEIGHT, type);
+	 * resizedImage.createGraphics().drawImage(croped, 0, 0, null);
+	 */
 
 	/* Escrever imagem novamente */
 	ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -63,21 +63,20 @@ public class ArquivosUtil implements Serializable{
     /**
      * retorna a base 64 do arquivo
      * 
-     * @param 
+     * @param
      * @return "data:" + contentType + ";base64,"
      */
-    public static String createBase64(InputStream imagem, String contentType)
-	    throws IOException{
+    public static String createBase64(InputStream imagem, String contentType) throws IOException {
 	return "data:" + contentType + ";base64," + Base64.encodeBase64String(streamToByte(imagem));
     }
-    
+
     /**
      * 
      * @param imagem
      * @return apenas a base64, sem data e contentType
      * @throws IOException
      */
-    public static String createBase64(InputStream imagem) throws IOException{
+    public static String createBase64(InputStream imagem) throws IOException {
 	return Base64.encodeBase64String(streamToByte(imagem));
     }
 
@@ -90,11 +89,13 @@ public class ArquivosUtil implements Serializable{
 	}
 	return baos.toByteArray();
     }
-    
-    private static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws Exception {
-	    return Scalr.resize(originalImage, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC, targetWidth, targetHeight, Scalr.OP_ANTIALIAS);
+
+    private static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight)
+	    throws Exception {
+	return Scalr.resize(originalImage, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC, targetWidth, targetHeight,
+		Scalr.OP_ANTIALIAS);
     }
-    
+
     public static void downloadFile(HttpServletResponse response, Arquivo arquivo)
 	    throws IOException, PatternSyntaxException, NullPointerException {
 	if (arquivo != null) {
@@ -102,7 +103,7 @@ public class ArquivosUtil implements Serializable{
 	    String[] contentType = null;
 	    contentType = arquivo.getContentType().split("/");
 	    String name = arquivo.getCaneca().getCliente().getNome();
-	    response.setHeader("Content-Disposition", "attachment;filename=" + name +"." + contentType[1]);
+	    response.setHeader("Content-Disposition", "attachment;filename=" + name + "." + contentType[1]);
 	    // coloca os bytes em um objeto de entrada pra processar
 	    InputStream inputStream = arquivo.getInputStream();
 	    // inicio da resposta pro navegador
@@ -116,11 +117,11 @@ public class ArquivosUtil implements Serializable{
 	    outputStream.close();
 	}
     }
-    
+
     public static String getContentType(String nameOfFile) {
 	return nameOfFile.substring(nameOfFile.lastIndexOf('.') + 1);
     }
-    
+
     /**
      * Se alguma thumb estiver com valor vazio (ou seja, carregando), return true;
      * 
@@ -158,19 +159,40 @@ public class ArquivosUtil implements Serializable{
 	    }
 	}
     }
-    
-	public static String getReadableFileSize(int bytes) {
-	    long absB = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
-	    if (absB < 1024) {
-	        return bytes + " B";
-	    }
-	    long value = absB;
-	    CharacterIterator ci = new StringCharacterIterator("KM");
-	    for (int i = 40; i >= 0 && absB > 0xfffccccccccccccL >> i; i -= 10) {
-	        value >>= 10;
-	        ci.next();
-	    }
-	    value *= Long.signum(bytes);
-	    return String.format("%.1f %cB", value / 1024.0, ci.current());
+
+    /**
+     * 
+     * Faz a conversão do valor bytes para texto e retorna o tamanho do arquivo em formato mais legível (b, kb ou mb)
+     * @param bytes
+     * @return 1024 Bytes = 1KB<br> 7077888 bytes = 6.8 MB
+     */
+    public static String getReadableFileSize(int bytes) {
+	long absB = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
+	if (absB < 1024) {
+	    return bytes + " B";
 	}
+	long value = absB;
+	CharacterIterator ci = new StringCharacterIterator("KM");
+	for (int i = 40; i >= 0 && absB > 0xfffccccccccccccL >> i; i -= 10) {
+	    value >>= 10;
+	    ci.next();
+	}
+	value *= Long.signum(bytes);
+	return String.format("%.1f %cB", value / 1024.0, ci.current());
+    }
+    
+    /**
+     *	
+     * @param arquivo - para pegar o tamanho do arquivo sem try catch, aqui já trata o IOException
+     * @return o mesmo do método padrão, o tamanho do arquivo em formato mais legível (b, kb ou mb)
+     */
+    public static String getReadableFileSize(Arquivo arquivo) {
+	int bytes = 0;
+	try {
+	    bytes = arquivo.getInputStream().available();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+	return getReadableFileSize(bytes);
+    }
 }
