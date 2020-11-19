@@ -34,6 +34,7 @@ public class ClientesServlet extends HttpServlet{
         	Long id = Long.valueOf(req.getParameter("id"));
         	req.getSession().setAttribute("canecas", canecaRepository.findAll(id));
                 req.getRequestDispatcher("canecas.jsp").forward(req, resp);
+                req.getSession().setAttribute("cliente", clienteRepository.findById(id));
             }
         }else {
             req.getSession().setAttribute("clientes", clienteRepository.findAll());

@@ -45,9 +45,6 @@ public class ArquivosUtil implements Serializable {
 	BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imageByteDecode));
 	BufferedImage croped = resizeImage(bufferedImage, 320, 320);
 
-	/* Pega o tipo da imagem */
-	int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
-
 	/*
 	 * Cria imagem em miniatura BufferedImage resizedImage = new
 	 * BufferedImage(WIDHT, HEIGHT, type);
@@ -102,8 +99,8 @@ public class ArquivosUtil implements Serializable {
 	    // converte a base64 da img do BD para byte
 	    String[] contentType = null;
 	    contentType = arquivo.getContentType().split("/");
-	    String name = arquivo.getCaneca().getCliente().getNome();
-	    response.setHeader("Content-Disposition", "attachment;filename=" + name + "." + contentType[1]);
+	    response.setHeader("Content-Disposition",
+		    "attachment;filename=" + arquivo.getNome() + "." + contentType[1]);
 	    // coloca os bytes em um objeto de entrada pra processar
 	    InputStream inputStream = arquivo.getInputStream();
 	    // inicio da resposta pro navegador
@@ -162,9 +159,12 @@ public class ArquivosUtil implements Serializable {
 
     /**
      * 
-     * Faz a conversão do valor bytes para texto e retorna o tamanho do arquivo em formato mais legível (b, kb ou mb)
+     * Faz a conversão do valor bytes para texto e retorna o tamanho do arquivo em
+     * formato mais legível (b, kb ou mb)
+     * 
      * @param bytes
-     * @return 1024 Bytes = 1KB<br> 7077888 bytes = 6.8 MB
+     * @return 1024 Bytes = 1KB<br>
+     *         7077888 bytes = 6.8 MB
      */
     public static String getReadableFileSize(int bytes) {
 	long absB = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
@@ -180,11 +180,13 @@ public class ArquivosUtil implements Serializable {
 	value *= Long.signum(bytes);
 	return String.format("%.1f %cB", value / 1024.0, ci.current());
     }
-    
+
     /**
-     *	
-     * @param arquivo - para pegar o tamanho do arquivo sem try catch, aqui já trata o IOException
-     * @return o mesmo do método padrão, o tamanho do arquivo em formato mais legível (b, kb ou mb)
+     * 
+     * @param arquivo - para pegar o tamanho do arquivo sem try catch, aqui já trata
+     *                o IOException
+     * @return o mesmo do método padrão, o tamanho do arquivo em formato mais
+     *         legível (b, kb ou mb)
      */
     public static String getReadableFileSize(Arquivo arquivo) {
 	int bytes = 0;

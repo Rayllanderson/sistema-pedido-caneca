@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 
 <link rel="stylesheet" href="src/css/alert.css">
 <link rel="stylesheet" href="src/css/dropzone.min.css">
@@ -37,28 +36,26 @@
 			</div>
 <div class="container mt-5" >
 <div class="card p-2">
-<form >
+
 <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Caneca</h1>
+<input type="text" style="display: none" id="id" name="id" value="${caneca.id}">
 <hr class="mt-2 mb-5">
   <div class="form-row">
     <div class="col-md-4 mb-4 mr-4">
      <label for="validationCustom04">Tema</label>
-				      <select class="custom-select" id="temas" name="tema-id" required>
-				        <option selected disabled value="">Selecione o tema</option>
+				      <select class="custom-select" id="temas" name="tema-id" required disabled>
+				        <option selected value="">Selecione o tema</option>
 				       	<c:forEach items="${temas}" var="tema">
 							<option id="tema-id"  value="${tema.id}"> 
 								${tema.nome}
 							</option>
 				    	 </c:forEach>
 				      </select>
-				     <div class="invalid-feedback">
-				        Por favor, selecione uma opção
-				      </div>
     </div>
     
     <div class="col-md-4 mb-4 mr-4">
       <label for="validationDefault04">Etapa</label>
-      <select class="custom-select" id="etapa" required>
+      <select class="custom-select" id="etapa" required name="etapa-id">
         <option value="1">PEDIDO_REALIZADO</option>
         <option value="2">ESCOLHA</option>
         <option value="3">ALTERACAO</option>
@@ -71,61 +68,54 @@
     
      <div class="col-md-1 mb-4">
 	     <label for="numberExample">Quantidade</label>
-		<input type="number" id="qtd" class="form-control" style="width: 80px; text-align: center" min="1" max="9999" value="${caneca.quantidade}" name="quantidade" required>
+		<input type="number" id="qtd" class="form-control" style="width: 80px; text-align: center" min="1" max="9999" value="${caneca.quantidade}" name="quantidade" required disabled>
     </div>
     
    </div>
    
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
+  <div class="form-row mb-3 p-1">
     <label for="exampleFormControlTextarea1">Descrição</label>
-    <textarea class="form-control" id="text-area" rows="3"></textarea>
+    <textarea class="form-control" id="text-area" rows="3" name="descricao" disabled></textarea>
    </div>
+   
+   <!--  ----------------- botoes --------------- -->
+   <div class="mt-5">
+   		<button class="btn btn-primary btn-md mr-1" id="edit" type="button">Editar</button>
+   		<button class="btn btn-success btn-md" id="save">Salvar</button>
    </div>
-</form> <!-- fim form caneca -->
 
-<h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Arquivos</h1>
+  <hr class="mt-5 mb-2">
+<h1 class="font-weight-light text-center text-lg-left mt-0 mb-3">Arquivos</h1>
 
-  <hr class="mt-2 mb-5">
+
 <data id="start">
 <div class="row text-center text-lg-left">
 	<div class="tz-gallery">
 		<div class="row">
 
-	<c:forEach items="${arquivos}" var="arquivo">
-	<!-- 
-    	<div class="col-lg-3 col-md-4 col-6" id="imgs">
-    	<a ><span class="close" style="color:red">&times;</span></a>
-    	 <a href="file?action=download&id=${arquivo.id}" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="${arquivo.miniatura}">
-      	 </a>
-      	<p class="nome">${arquivo.nome}</p>
-    </div>  -->
-  
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                       
-                            <img src="${arquivo.miniatura}" class="img-fluid">
-
-                        <div class="caption">
-                            <h3 class="mb-3">${arquivo.nome}</h3>
-                            <span class="mb-3">${arquivo.fileSize}</span>
-                            <div class="d-flex justify-content-end">
-                                <div class="icon" title="Download">
-                                     <a href="file?action=download&id=${arquivo.id}">
-                                       <i class="fas fa-download fa-lg"></i>
-                                     </a>
-                                </div>
-                                        <div class="icon ml-2">
-                                   <a href="javascript:void(0)" onclick="deleteImage('${arquivo.id}')" class="text-danger" title="Excluir">
-                                       <i class="fas fa-times-circle fa-lg"></i>
-                                    </a>
-								</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    </c:forEach>
+ <c:forEach items="${arquivos}" var="arquivo">
+	  <div class="col-sm-6 col-md-4">
+	       <div class="thumbnail">
+	          <img src="${arquivo.miniatura}" class="img-fluid">
+				 <div class="caption">
+	                 <h3 class="mb-3">${arquivo.nome}</h3>
+	                  <span class="mb-3">${arquivo.fileSize}</span>
+	                  <div class="d-flex justify-content-end">
+	                     <div class="icon" title="Download">
+	                         <a href="file?action=download&id=${arquivo.id}">
+	                             <i class="fas fa-download fa-lg"></i>
+	                         </a>
+	                       </div>
+	                       <div class="icon ml-2">
+	                          <a href="javascript:void(0)" onclick="deleteImage('${arquivo.id}')" class="text-danger" title="Excluir">
+	                              <i class="fas fa-times-circle fa-lg"></i>
+	                          </a>
+							</div>
+	                   </div>
+	             </div>
+	        </div>
+       </div>
+  </c:forEach>
     			</div>
 		</div>
     </div>
@@ -184,18 +174,23 @@
 <script src="src/js/ajax/excluirImagem.js"></script>
 <script src="src/js/ajax/loadMiniature.js"></script>
 <script src="src/js/edit-caneca.js"></script>
+<script src="src/js/ajax/updateCaneca.js"></script>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-<script>
-     baguetteBox.run('.tz-gallery');
-</script>
 <script type="text/javascript">
 $('#text-area').val("${caneca.descricao}")
 var tema = "${caneca.tema.id}"
 var etapa= "${caneca.etapa}"
 $('#temas').val(tema);
 setEtapa(etapa)	
+
+
+$('#edit').on('click', function(){
+	$('#temas').prop( "disabled", false );
+	$('#etapa').prop( "disabled", false );
+	$('#qtd').prop( "disabled", false );
+	$('#text-area').prop( "disabled", false );
+})
+
 </script>
 </body>
 
