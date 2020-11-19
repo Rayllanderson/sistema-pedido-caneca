@@ -90,6 +90,7 @@ public class FileServlet extends HttpServlet {
 	    }
 	}
 	request.getSession().setAttribute("arquivos", arquivos);
+	request.getSession().setAttribute("size", arquivos.size());
 	request.getRequestDispatcher("caneca.jsp").forward(request, response);
     }
 

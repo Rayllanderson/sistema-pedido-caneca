@@ -16,11 +16,11 @@ public class Arquivo implements Serializable {
     private String miniatura;
     private String contentType;
     private Caneca caneca;
-    private String nome; //pra pegar o contentType caso necessário 
+    private String nome; // pra pegar o contentType caso necessário
     private String fileSize;
 
-    public Arquivo(Long id, InputStream inputStream, String base64, String miniatura, String contentType,
-	    Caneca caneca, String nome) {
+    public Arquivo(Long id, InputStream inputStream, String base64, String miniatura, String contentType, Caneca caneca,
+	    String nome) {
 	this.id = id;
 	this.inputStream = inputStream;
 	this.base64 = base64;
@@ -117,7 +117,17 @@ public class Arquivo implements Serializable {
     }
 
     public String getNome() {
-	return nome;
+	if (nome != null) {
+	    if(nome.length() > 16) {
+		String aux = "";
+		for (int i = 0; i < 14; i++) {
+		    aux += String.valueOf(nome.charAt(i));
+		}
+		nome = aux + "..." + contentType.split("/")[1];
+	    }
+	    return  nome;
+	}
+	return null;
     }
 
     public void setNome(String nome) {

@@ -4,6 +4,7 @@ body {
 }
 
 .card {
+	padding: 10px;
 	border-radius: 1em !important;
 		background-color: #f8f9fa;	
 }
@@ -18,21 +19,6 @@ body {
 	margin-right: auto;
 }
 
-#imgs {
-	position: relative;
-	display: inline-block;
-	font-size: 0;
-}
-
-.close {
-	position: absolute;
-	top: 0px;
-	right: 0px;
+a{
 	cursor: pointer;
-	color: red;
-}
-
-#img:hover .close {
-	opacity: 1;
-	color: red;
 }

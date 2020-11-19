@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ray.model.dao.CanecaRepository;
+import com.ray.model.dao.ImageRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.dao.TemaRepository;
 import com.ray.model.entities.Caneca;
@@ -35,6 +36,7 @@ public class SaveCanecaServlet extends HttpServlet {
     private CanecaService canecaService;
     private CanecaRepository canecaRepository;
     private ImageService imageService;
+    private ImageRepository imageRepository;
 
     @Override
     public void init() throws ServletException {
@@ -46,24 +48,12 @@ public class SaveCanecaServlet extends HttpServlet {
 	super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	String action = request.getParameter("action");
-	if (action != null) {
-	    if (action.equals("edit")) {
-		setCanecaToEdit(request, response);
-	    }
-	} else {
-	    request.getSession().setAttribute("temas", temaRepository.findAll());
-	    request.getRequestDispatcher("order.jsp").forward(request, response);
-	}
-    }
-
     private void startRepositories() {
 	temaRepository = RepositoryFactory.createTemaDao();
 	canecaRepository = RepositoryFactory.createCanecaDao();
 	canecaService = new CanecaService();
 	imageService = new ImageService();
+	imageRepository = RepositoryFactory.createImageDao();
     }
 
     /**
@@ -86,10 +76,12 @@ public class SaveCanecaServlet extends HttpServlet {
 	    Tema tema = temaRepository.findById(Long.valueOf(request.getParameter("tema-id")));
 	    ThemeValidation.validateTheme(tema);
 	    Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-	    String id = request.getParameter("id");
+	    String idCaneca = request.getParameter("id");
+	    Long idCanecaL = Long.valueOf(idCaneca);
+	    cliente = cliente == null ? canecaRepository.findById(idCanecaL).getCliente() : cliente;
 	    String etapaId = request.getParameter("etapa-id");
 	    Etapa etapa = Etapa.valueOf(Integer.valueOf(etapaId));
-	    Caneca caneca = new Caneca(Long.valueOf(id), Integer.valueOf(quantidade), tema, etapa, cliente, descricao);
+	    Caneca caneca = new Caneca(idCanecaL, Integer.valueOf(quantidade), tema, etapa, cliente, descricao);
 	    canecaService.update(caneca);
 	    return true;
 	} catch (Exception e) {
@@ -97,33 +89,5 @@ public class SaveCanecaServlet extends HttpServlet {
 	    return false;
 	}
     }
-
-    /**
-     * 
-     * @param request
-     * @param response
-     * @throws IOException
-     * @throws ServletException
-     */
-    private void setCanecaToEdit(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	try {
-	    Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-	    Long canecaId = Long.valueOf(request.getParameter("id"));
-	    if (ClientValidation.clientIsValid(cliente, canecaId)) {
-		Caneca caneca = canecaRepository.findByIdWihoutIS(canecaId);
-		caneca.getFotos().addAll(imageService.findAll(canecaId, false));
-		request.getSession().setAttribute("temas", temaRepository.findAll());
-		request.getSession().setAttribute("caneca", caneca);
-		response.setStatus(200);
-		return;
-	    } else {
-		response.setStatus(400);
-		return;
-	    }
-	} catch (NullPointerException e) {
-	    response.setStatus(400);
-	    return;
-	}
-    }
 }
+
