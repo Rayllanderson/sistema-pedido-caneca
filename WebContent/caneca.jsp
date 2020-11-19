@@ -16,12 +16,14 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- Material Design Bootstrap -->
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> -->
+
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
 
 <link rel="stylesheet" href="src/css/alert.css">
 <link rel="stylesheet" href="src/css/dropzone.min.css">
 <link rel="stylesheet" href="src/css/caneca.css">
+<link rel="stylesheet" href="src/css/thumbnail-gallery.css">
 
 </head>
 <body>
@@ -87,18 +89,48 @@
   <hr class="mt-2 mb-5">
 <data id="start">
 <div class="row text-center text-lg-left">
+	<div class="tz-gallery">
+		<div class="row">
+
 	<c:forEach items="${arquivos}" var="arquivo">
+	<!-- 
     	<div class="col-lg-3 col-md-4 col-6" id="imgs">
-    	<a onclick="deleteImage('${arquivo.id}')"><span class="close" style="color:red">&times;</span></a>
+    	<a ><span class="close" style="color:red">&times;</span></a>
     	 <a href="file?action=download&id=${arquivo.id}" class="d-block mb-4 h-100">
             <img class="img-fluid img-thumbnail" src="${arquivo.miniatura}">
       	 </a>
-    </div>
+      	<p class="nome">${arquivo.nome}</p>
+    </div>  -->
+  
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                       
+                            <img src="${arquivo.miniatura}" class="img-fluid">
+
+                        <div class="caption">
+                            <h3 class="mb-3">${arquivo.nome}</h3>
+                            <span class="mb-3">512 kb</span>
+                            <div class="d-flex justify-content-end">
+                                <div class="icon" title="Download">
+                                     <a href="file?action=download&id=${arquivo.id}">
+                                       <i class="fas fa-download fa-lg"></i>
+                                     </a>
+                                </div>
+                                        <div class="icon ml-2">
+                                   <a href="javascript:void(0)" onclick="deleteImage('${arquivo.id}')" class="text-danger" title="Excluir">
+                                       <i class="fas fa-times-circle fa-lg"></i>
+                                    </a>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
     </c:forEach>
+    			</div>
+		</div>
     </div>
 </data>
 
-  <hr class="mt-2 mb-5">
    <main>
    <section>
 <form action="file?action=upload" method="post" class="dropzone" id="upload">
@@ -153,6 +185,11 @@
 <script src="src/js/ajax/loadMiniature.js"></script>
 <script src="src/js/edit-caneca.js"></script>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script>
+     baguetteBox.run('.tz-gallery');
+</script>
 <script type="text/javascript">
 $('#text-area').val("${caneca.descricao}")
 var tema = "${caneca.tema.id}"

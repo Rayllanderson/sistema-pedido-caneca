@@ -1,9 +1,11 @@
 body {
-	background-color: #f8f9fa;
+
+	background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
 }
 
 .card {
 	border-radius: 1em !important;
+		background-color: #f8f9fa;	
 }
 
 .dropzone {
@@ -26,7 +28,6 @@ body {
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	border-radius: 50%;
 	cursor: pointer;
 	color: red;
 }

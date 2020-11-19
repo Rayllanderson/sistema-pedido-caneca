@@ -54,14 +54,11 @@ public class FileServlet extends HttpServlet {
 		for (Part filePart : fileParts) {
 		    InputStream fileContent = filePart.getInputStream();
 		    String name = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-		    Arquivo arquivo = new Arquivo(null, fileContent, "", "", filePart.getContentType(), caneca);
-		    arquivo.setNome(name);
-		    imagens.add(arquivo);
+		    imagens.add(new Arquivo(null, fileContent, "", "", filePart.getContentType(), caneca, name));
 		}
 		boolean hasFile = !imagens.isEmpty();
 		if (hasFile) {
-		    imagens.replaceAll(x -> arquivoService.save(x));
-		    imagens.forEach(x -> new ThreadMiniature(x));
+		    imagens.forEach(x -> arquivoService.save(x));
 		}
 		response.setStatus(201);
 	    }
@@ -75,8 +72,8 @@ public class FileServlet extends HttpServlet {
 	this.caneca = (Caneca) request.getSession().getAttribute("caneca");
 	List<Arquivo> arquivos = arquivoService.findAll(caneca.getId(), false);
 	if (action != null) {
-	    if (action.equals("load-miniature") && thumbIsLoading(arquivos)) {
-		loadThumb(arquivos, true);
+	    if (action.equals("load-miniature") && ArquivosUtil.thumbIsLoading(arquivos)) {
+		ArquivosUtil.loadThumb(arquivos, true, arquivoRepository);
 		response.setStatus(200);
 		return;
 	    } else if (action.equals("delete")) {
@@ -94,44 +91,6 @@ public class FileServlet extends HttpServlet {
 	}
 	request.getSession().setAttribute("arquivos", arquivos);
 	request.getRequestDispatcher("caneca.jsp").forward(request, response);
-    }
-
-    /**
-     * Se alguma thumb estiver com valor vazio (ou seja, carregando), return true;
-     * 
-     * @param arquivos
-     * @return
-     */
-    private boolean thumbIsLoading(List<Arquivo> arquivos) {
-	for (Arquivo i : arquivos) {
-	    if (i.getMiniatura().equals("")) {
-		return true;
-	    }
-	}
-	return false;
-    }
-
-    /**
-     * Enquanto a thread que cria miniatura não termina, ela irá buscar ela mesma no
-     * banco de dados pra verificar se a criação da miniatura já terminou.
-     * 
-     * @param loadAll - setar para true caso queira carregar todas as miniaturas.
-     *                False para carregar apenas a primeira
-     * @param imagens - lista de imagens de uma caneca
-     */
-    private void loadThumb(List<Arquivo> imagens, boolean loadAll) {
-	if (loadAll) {
-	    for (Arquivo i : imagens) {
-		while (i.getMiniatura().equals("")) {
-		    i = arquivoRepository.findById(i.getId());
-		}
-	    }
-	} else {
-	    Arquivo firstImage = imagens.get(0);
-	    while (firstImage.getMiniatura().equals("")) {
-		firstImage = arquivoRepository.findById(firstImage.getId());
-	    }
-	}
     }
 
 }

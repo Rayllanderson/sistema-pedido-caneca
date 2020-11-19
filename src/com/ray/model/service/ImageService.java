@@ -7,11 +7,19 @@ import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.entities.Arquivo;
 import com.ray.util.ArquivosUtil;
 import com.ray.util.Miniatura;
+import com.ray.util.ThreadMiniature;
 
 public class ImageService {
 
     private ImageRepository repository = RepositoryFactory.createImageDao();
 
+    /**
+     * Seta miniatura e base64  pra "";<br>
+     * checa o contentType do arquivo, se nao for uma imagem, seta o tipo de acordo com o contentType <br>
+     * inicia o trabalho de thread para criar miniatura.
+     * @param arquivo
+     * @return
+     */
     public Arquivo save(Arquivo arquivo) {
 	boolean isImage = arquivo.getContentType().contains("image");
 	boolean IsPdf = arquivo.getContentType().contains("pdf");
@@ -23,7 +31,9 @@ public class ImageService {
 	    arquivo.setMiniatura("null");
 	}
 	arquivo.setBase64("");
-	return repository.save(arquivo);
+	Arquivo fileToSave = repository.save(arquivo);
+	new ThreadMiniature(fileToSave);
+	return fileToSave;
     }
 
     public Arquivo update(Arquivo arquivo, boolean updateInputStream) {

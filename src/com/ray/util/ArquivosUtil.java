@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
+import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 import javax.imageio.ImageIO;
@@ -17,6 +20,7 @@ import javax.xml.bind.DatatypeConverter;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.imgscalr.Scalr;
 
+import com.ray.model.dao.ImageRepository;
 import com.ray.model.entities.Arquivo;
 import com.ray.model.exceptions.EntradaInvalidaException;
 
@@ -116,4 +120,57 @@ public class ArquivosUtil implements Serializable{
     public static String getContentType(String nameOfFile) {
 	return nameOfFile.substring(nameOfFile.lastIndexOf('.') + 1);
     }
+    
+    /**
+     * Se alguma thumb estiver com valor vazio (ou seja, carregando), return true;
+     * 
+     * @param arquivos
+     * @return
+     */
+    public static boolean thumbIsLoading(List<Arquivo> arquivos) {
+	for (Arquivo i : arquivos) {
+	    if (i.getMiniatura().equals("")) {
+		return true;
+	    }
+	}
+	return false;
+    }
+
+    /**
+     * Enquanto a thread que cria miniatura não termina, ela irá buscar ela mesma no
+     * banco de dados pra verificar se a criação da miniatura já terminou.
+     * 
+     * @param loadAll - setar para true caso queira carregar todas as miniaturas.
+     *                False para carregar apenas a primeira
+     * @param imagens - lista de imagens de uma caneca
+     */
+    public static void loadThumb(List<Arquivo> imagens, boolean loadAll, ImageRepository arquivoRepository) {
+	if (loadAll) {
+	    for (Arquivo i : imagens) {
+		while (i.getMiniatura().equals("")) {
+		    i = arquivoRepository.findById(i.getId());
+		}
+	    }
+	} else {
+	    Arquivo firstImage = imagens.get(0);
+	    while (firstImage.getMiniatura().equals("")) {
+		firstImage = arquivoRepository.findById(firstImage.getId());
+	    }
+	}
+    }
+    
+	public static String getReadableFileSize(int bytes) {
+	    long absB = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
+	    if (absB < 1024) {
+	        return bytes + " B";
+	    }
+	    long value = absB;
+	    CharacterIterator ci = new StringCharacterIterator("KM");
+	    for (int i = 40; i >= 0 && absB > 0xfffccccccccccccL >> i; i -= 10) {
+	        value >>= 10;
+	        ci.next();
+	    }
+	    value *= Long.signum(bytes);
+	    return String.format("%.1f %cB", value / 1024.0, ci.current());
+	}
 }

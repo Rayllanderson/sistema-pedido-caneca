@@ -34,7 +34,7 @@ public class ArquivoDaoJdbc implements ImageRepository {
     public Arquivo save(Arquivo arquivo) {
 	PreparedStatement st = null;
 	ResultSet rs = null;
-	String sql = "insert into " + tableName + " (image, base64, miniatura, content_type, id_caneca) values (?, ?, ?, ?, ?)";
+	String sql = "insert into " + tableName + " (image, base64, miniatura, content_type, id_caneca, nome) values (?, ?, ?, ?, ?, ?)";
 	try {
 	    st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 	    st.setBlob(1, arquivo.getInputStream());
@@ -42,6 +42,7 @@ public class ArquivoDaoJdbc implements ImageRepository {
 	    st.setString(3, arquivo.getMiniatura());
 	    st.setString(4, arquivo.getContentType());
 	    st.setLong(5, arquivo.getCaneca().getId());
+	    st.setString(6, arquivo.getNome());
 	    if (st.executeUpdate() > 0) {
 		rs = st.getGeneratedKeys();
 		if (rs.next()) {
@@ -57,6 +58,9 @@ public class ArquivoDaoJdbc implements ImageRepository {
 	return null;
     }
 
+    /**
+     * método desatualizado: Não atualiza nome;
+     */
     @Override
     public Arquivo update(Arquivo arquivo, boolean updateInputStream) {
 	PreparedStatement st = null;
@@ -124,7 +128,7 @@ public class ArquivoDaoJdbc implements ImageRepository {
     
     private Arquivo setNewImage(ResultSet rs) throws SQLException {
 	Caneca c = canecaRepository.findById(rs.getLong("id_caneca"));
-	return new Arquivo(rs.getLong("id"), rs.getBinaryStream("image"), rs.getString("base64"), rs.getString("miniatura"), rs.getString("content_type"), c);
+	return new Arquivo(rs.getLong("id"), rs.getBinaryStream("image"), rs.getString("base64"), rs.getString("miniatura"), rs.getString("content_type"), c, rs.getString("nome"));
     }
 
     @Override

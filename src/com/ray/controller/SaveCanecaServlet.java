@@ -247,7 +247,8 @@ public class SaveCanecaServlet extends HttpServlet {
 	for (Part part : parts) {
 	    if (part.getSize() > 0 && ImageValidation.fileTypeIsValid(request, part)) {
 		InputStream fileContent = part.getInputStream();
-		imagens.add(new Arquivo(null, fileContent, "", "", part.getContentType(), caneca));
+		String name = part.getSubmittedFileName().toString();
+		imagens.add(new Arquivo(null, fileContent, "", "", part.getContentType(), caneca, name));
 	    }
 	}
 	return imagens;
@@ -260,7 +261,8 @@ public class SaveCanecaServlet extends HttpServlet {
 	    Part part = request.getPart("file" + index);
 	    if (part.getSize() > 0 && ImageValidation.fileTypeIsValid(request, part)) {
 		InputStream fileContent = part.getInputStream();
-		return new Arquivo(null, fileContent, "", "", part.getContentType(), caneca);
+		String name = part.getSubmittedFileName().toString();
+		return new Arquivo(null, fileContent, "", "", part.getContentType(), caneca, name);
 	    }else {
 		return null;
 	    }
