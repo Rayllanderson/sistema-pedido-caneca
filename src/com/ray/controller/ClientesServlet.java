@@ -49,22 +49,36 @@ public class ClientesServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 	String action = request.getParameter("action");
 	if (action != null) {
-	    if (action.equals("edit")) {
-		Long id = Long.valueOf(request.getParameter("id"));
-		String nome = request.getParameter("nome");
-		String telefone = request.getParameter("telefone");
-		Cliente cliente = new Cliente(id, nome, telefone);
-		cliente = this.clienteService.update(cliente);
-		if (cliente != null) {
-		    response.setStatus(200);
-		    return;
-		}else {
-		    response.setStatus(400);
-		}
-		
+	    if (action.equals("save")) {
+		save(request, response);
+	    }
+	}
+    }
+
+    /**
+     * método salva ou edita
+     * @param request
+     * @param response
+     */
+    private void save(HttpServletRequest request, HttpServletResponse response) {
+	String nome = request.getParameter("nome");
+	String telefone = request.getParameter("telefone");
+	Cliente cliente = null;
+	try {
+	    Long id = Long.valueOf(request.getParameter("id"));
+	    cliente = this.clienteService.update(new Cliente(id, nome, telefone));
+	} catch (NumberFormatException e) {
+	    cliente = this.clienteService.save(new Cliente(null, nome, telefone));
+	} finally {
+	    if (cliente != null) {
+		response.setStatus(200);
+		return;
+	    } else {
+		response.setStatus(400);
 	    }
 	}
     }

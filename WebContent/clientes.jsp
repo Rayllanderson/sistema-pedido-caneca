@@ -256,15 +256,15 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
 <script src="src/js/alert.js"></script>
 <script src="src/js/util/mask.min.js"></script>
-<script type="text/javascript">
-$('.alert').hide();
-</script>
+<script src="src/js/ajax/edit.save.cliente.js"></script>
 
-<script src="src/js/ajax/editCliente.js"></script>
+
  <script type="text/javascript">
-                        
+ $('.alert').hide();
+ 
             var behavior = function (val) {
                    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
                 },

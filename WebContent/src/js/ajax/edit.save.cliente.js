@@ -29,7 +29,7 @@ $('#btn-edit-cliente').on('click', function() {
 
 	$.ajax({
 		method: "POST",
-		url: "clientes?action=edit",
+		url: "clientes?action=save",
 		data: {
 			'id': idCliente,
 			'nome': nome,

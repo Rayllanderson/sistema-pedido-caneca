@@ -50,6 +50,8 @@ public class CanecasServlet extends HttpServlet {
 		req.getSession().setAttribute("temas", temaRepository.findAll());
 		req.getRequestDispatcher("caneca.jsp").forward(req, resp);
 	    }
+	}else {
+	    //criar canecas.jsp setar atributo canecas com seu respectivo user
 	}
 
     }
