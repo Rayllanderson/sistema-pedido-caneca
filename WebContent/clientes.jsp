@@ -31,6 +31,22 @@
 		 transform: scale(1.05);
 	}
 	
+	body {
+
+	background-color: #e6e9f0;
+	}
+	
+	table{
+	 background-color: #f8f9fa;}
+	
+	#navbar {
+	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+#seccond-navbar {
+	height: 5%; 
+	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.08);
+}
 
 </style>
 
@@ -44,6 +60,75 @@
 				   <h4 id="titulo"></h4> <p id="alertMsg"></p>
 				</div>
 			</div>
+			
+			        <header>
+                                <nav class="navbar navbar-expand navbar-dark bg-primary" id="navbar">
+                                    <a class="navbar-brand" href="home.jsp"><i class="fas fa-arrow-left fa-md"></i></a>
+
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+                                    <div class="collapse navbar-collapse" id="navbarsExample02">
+                                        <ul class="navbar-nav mr-auto">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="#"><i class="fas fa-user fa-md"></i> Clientes </a>
+                                            </li>
+                                            <li class="nav-item ">
+                                                <a class="nav-link" href="canecas"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                           
+                                        <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- botao user -->
+										    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										 	 <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+											  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+										 	 <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+											</svg>
+								  </button>
+
+
+                                    <div class="dropdown-menu dropdown-menu-right" style="border-radius: 1em;">
+                                        <a class="dropdown-item" href="my-account?action=view"> <i class="fas fa-user-circle"></i> Minha Conta </a>
+                                        <a class="dropdown-item" href="estatisticas"> <i class="fas fa-chart-pie"></i> Estatísticas</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                                    </div>
+                                </nav>
+
+
+                            </header>
+
+                            <!-- ALERT -->
+                            <div class="fixed-top">
+                                <div class="alert alert-success" id="success-alert">
+                                    <button type="button" class="close" onclick="$('.alert').hide();">x</button>
+                                    <h4 id="titulo"></h4>
+                                    <p id="alertMsg"></p>
+                                </div>
+                            </div>
+
+
+                            <!-- 2navbar -->
+
+                            <div class="navbar navbar-expand navbar-dark justify-content-end" id="seccond-navbar">
+                                <ul class="nav justify-content-end">
+
+
+                                    <li class="nav-item">
+                                        <div class="container" style="height: 50px;">
+
+                                            <button type="submit" id="btn-novo-cliente" data-toggle="modal" data-title="Cadastrar" class="btn btn-success" data-target="#edit-modal"> <i class="fas fa-user-plus"></i> Cadastrar Cliente </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
 
 <div class="container mt-5">
 
