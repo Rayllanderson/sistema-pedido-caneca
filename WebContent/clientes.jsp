@@ -154,8 +154,8 @@
                                             <label for="message-text" class="control-label">Telefone:</label>
                                             <input name="telefone" type="text" class="form-control" id="telefone" style="width: 50%" inputmode="numeric" maxlength="12" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}">
                                         </div>
-                                        <input name="id" type="hidden" class="form-control" id="id">
-                                        <button type="button" id="save1" class="btn btn-success">&nbsp; Salvar &nbsp;</button>
+                                        <input name="id" class="form-control" id="id-edit" style="display: none">
+                                        <button type="button" id="btn-edit-cliente" class="btn btn-success">&nbsp; Salvar &nbsp;</button>
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
@@ -177,22 +177,7 @@
 $('.alert').hide();
 </script>
 
- <script type="text/javascript">
-                        $('#edit-modal').on('show.bs.modal', function(event) {
-                            var button = $(event.relatedTarget) // Button that triggered the modal
-                            var title = button.data('title')
-                            var id = button.data('id') // Extract info from data-* attributes
-                            var recipientnome = button.data('nome')
-                            var telefone = button.data('telefone')
-                                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-                            var modal = $(this)
-                            modal.find('.modal-title').text(title)
-                            modal.find('#id').val(id)
-                            modal.find('#nome').val(recipientnome)
-                            modal.find('#telefone').val(telefone)
-                        })
-                        </script>
+<script src="src/js/ajax/editCliente.js"></script>
  <script type="text/javascript">
                         
             var behavior = function (val) {
