@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ray.model.dao.CanecaRepository;
+import com.ray.model.dao.ClienteRepository;
 import com.ray.model.dao.ImageRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.dao.TemaRepository;
@@ -35,8 +36,7 @@ public class SaveCanecaServlet extends HttpServlet {
     private TemaRepository temaRepository;
     private CanecaService canecaService;
     private CanecaRepository canecaRepository;
-    private ImageService imageService;
-    private ImageRepository imageRepository;
+    private ClienteRepository clienteRepository;
 
     @Override
     public void init() throws ServletException {
@@ -52,8 +52,7 @@ public class SaveCanecaServlet extends HttpServlet {
 	temaRepository = RepositoryFactory.createTemaDao();
 	canecaRepository = RepositoryFactory.createCanecaDao();
 	canecaService = new CanecaService();
-	imageService = new ImageService();
-	imageRepository = RepositoryFactory.createImageDao();
+	this.clienteRepository = RepositoryFactory.createClienteDao();
     }
 
     /**
@@ -76,18 +75,40 @@ public class SaveCanecaServlet extends HttpServlet {
 	    Tema tema = temaRepository.findById(Long.valueOf(request.getParameter("tema-id")));
 	    ThemeValidation.validateTheme(tema);
 	    Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-	    String idCaneca = request.getParameter("id");
-	    Long idCanecaL = Long.valueOf(idCaneca);
-	    cliente = cliente == null ? canecaRepository.findById(idCanecaL).getCliente() : cliente;
+	    String idCaneca = request.getParameter("idCaneca");
+	    cliente = recoverClientIfNull(idCaneca, cliente, request);
 	    String etapaId = request.getParameter("etapa-id");
 	    Etapa etapa = Etapa.valueOf(Integer.valueOf(etapaId));
-	    Caneca caneca = new Caneca(idCanecaL, Integer.valueOf(quantidade), tema, etapa, cliente, descricao);
-	    canecaService.update(caneca);
+	    Caneca caneca = new Caneca(null, Integer.valueOf(quantidade), tema, etapa, cliente, descricao);
+	    saveOrUpdate(idCaneca, caneca);
 	    return true;
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    return false;
 	}
     }
-}
 
+    private Cliente recoverClientIfNull(String idCaneca, Cliente cliente, HttpServletRequest request) {
+	try {
+	    cliente = cliente == null ? canecaRepository.findById(Long.valueOf(idCaneca)).getCliente() : cliente;
+	    return cliente;
+	} catch (NumberFormatException e) {
+	    try {
+		return clienteRepository.findById(Long.valueOf(request.getParameter("clienteId")));
+	    } catch (NumberFormatException e1) {
+		return null;
+	    }
+	}
+
+    }
+
+    private void saveOrUpdate(String canecaId, Caneca caneca) {
+	try {
+	    Long id = Long.valueOf(canecaId);
+	    caneca.setId(id);
+	    canecaService.update(caneca);
+	} catch (NumberFormatException e) {
+	    canecaService.save(caneca);
+	}
+    }
+}

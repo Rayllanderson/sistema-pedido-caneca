@@ -24,13 +24,6 @@
 		 border-radius: 1em !important;
 	}
 
-	#img{
-		 transition: transform .2s}
-	
-	#img:hover{
-		 transform: scale(1.05);
-	}
-	
 	body {
 
 	background-color: #e6e9f0;
@@ -103,7 +96,7 @@
                                     <li class="nav-item">
                                         <div class="container" style="height: 50px;">
 
-                                            <button type="submit" id="btn-novo-cliente" data-toggle="modal" data-title="Cadastrar" class="btn btn-success" data-target="#edit-modal"> <i class="fas fa-user-plus"></i> Cadastrar Cliente </button>
+                                            <button type="submit" id="btn-novo-cliente" data-toggle="modal" data-title="Cadastrar" class="btn btn-success" data-target="#edit-modal"> <i class="fas fa-user-plus"></i> Novo Cliente </button>
                                         </div>
                                     </li>
                                 </ul>
@@ -123,7 +116,7 @@
         
  <data id="start">
                             <!--  INICIO TABELA  -->
-                            <div class="table-responsive" id="tabela-produtos">
+                            <div class="table-responsive">
                                 <table class="table" id="tabela" style="
                                  border: 0;
 								  border-radius: 1rem;
@@ -142,7 +135,7 @@
                                         <c:forEach items="${clientes}" var="cliente">
                                             <tr>
                                                 <td data-label="Nome">
-													<a class="btn btn-light" href="clientes?action=select&id=${cliente.id}"
+													<a class="btn btn-light" href="canecas?action=select&clientId=${cliente.id}"
 													style="width: 100%; color: dodgerblue; border-radius: 1rem;">${cliente.nome}</a>
 												</td>
                                                 <td data-label="Telefone">${cliente.telefone}</td>

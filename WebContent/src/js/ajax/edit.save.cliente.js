@@ -25,7 +25,6 @@ $('#edit-modal').on('show.bs.modal', function(event) {
 
 $('#btn-edit-cliente').on('click', function() {
 	let acao = title
-	console.log(acao)
 	acao = acao == "Editar" ? 'Editado' : 'Cadastrado'
 	idCliente = $('#id-edit').val();
 	nome = $('#nome').val();
@@ -46,7 +45,7 @@ $('#btn-edit-cliente').on('click', function() {
 				$.get("clientes", function(responseXml) {
 					$("#start").html($(responseXml).find("data").html());
 				});
-				alertBootstrap("Cliente " + acao + " com sucesso!", 'alert alert-success', "Sucesso")
+				alertBootstrap("Cliente " + acao , 'alert alert-success', "Sucesso")
 			}, error: function() {
 				$('#edit-modal').modal('hide')
 				alertBootstrap("Ocorreu um erro", 'alert alert-danger', "Ops..")

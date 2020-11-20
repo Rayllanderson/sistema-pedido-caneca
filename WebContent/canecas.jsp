@@ -25,27 +25,90 @@
 	.card{
 		 border-radius: 1em !important;
 	}
-	
- /*	.n-c{
-		background-color: #28a745  !important;
+
+	body {
+
+	background-color: #e6e9f0;
 	}
 	
-	 .f-p{
-		background-color: #007bff  !important;
-	}
-	*/
-	#img{
-		 transition: transform .2s}
+	table{
+	 background-color: #f8f9fa;}
 	
-	#img:hover{
-		 transform: scale(1.05);
-	}
+	#navbar {
+	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+#seccond-navbar {
+	height: 5%; 
+	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.08);
+}
+	
 	
 
 </style>
 
 </head>
 <body>
+
+
+			        <header>
+                                <nav class="navbar navbar-expand navbar-dark bg-primary" id="navbar">
+                                    <a class="navbar-brand" href="home.jsp"><i class="fas fa-arrow-left fa-md"></i></a>
+
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+                                    <div class="collapse navbar-collapse" id="navbarsExample02">
+                                        <ul class="navbar-nav mr-auto">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
+                                            </li>
+                                            <li class="nav-item ">
+                                                <a class="nav-link active" href="$"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                           
+                                        <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- botao user -->
+										    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										 	 <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+											  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+										 	 <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+											</svg>
+								  </button>
+
+
+                                    <div class="dropdown-menu dropdown-menu-right" style="border-radius: 1em;">
+                                        <a class="dropdown-item" href="my-account?action=view"> <i class="fas fa-user-circle"></i> Minha Conta </a>
+                                        <a class="dropdown-item" href="estatisticas"> <i class="fas fa-chart-pie"></i> Estatísticas</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                                    </div>
+                                </nav>
+
+
+                            </header>
+
+                            <!-- 2navbar -->
+
+                            <div class="navbar navbar-expand navbar-dark justify-content-end" id="seccond-navbar">
+                                <ul class="nav justify-content-end">
+
+
+                                    <li class="nav-item">
+                                        <div class="container" style="height: 50px;">
+
+                                            <button type="submit" id="nova-caneca" data-toggle="modal" data-title="Cadastrar nova caneca" class="btn btn-success" data-target="#edit-modal"> <i class="fas fa-mug-hot"></i> Nova Caneca </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+
 
 <!-- ALERT -->
 			<div class="fixed-top">
@@ -60,7 +123,7 @@
         
  <data id="start">
                             <!--  INICIO TABELA  -->
-                            <div class="table-responsive" id="tabela-produtos">
+                            <div class="table-responsive-sm" id="tabela-produtos">
                                 <table class="table" id="tabela" style="
                                  border: 0;
 								  border-radius: 1rem;
@@ -69,8 +132,6 @@
                                     <thead>
                                         <tr class="text-primary">
                                             <th scope="col" class="text-center">Nome</th>
-                                            <th scope="col">Tema</th>
-                                            <th scope="col">Quantidade</th>
                                          	<th scope="col">Etapa</th>
                                             <th scope="col">Editar</th>
                                             <th scope="col">Excluir</th>
@@ -81,21 +142,21 @@
                                         <c:forEach items="${canecas}" var="caneca">
                                             <tr>
                                                 <td data-label="Nome">
-													<a class="btn btn-light" href="canecas?action=select&id=${caneca.id}"
+													<a class="btn btn-light" href="caneca?action=select&id=${caneca.id}"
 													style="width: 100%; color: dodgerblue; border-radius: 1rem;">Caneca</a>
 												</td>
-												<td data-label="Tema">${caneca.tema}</td>
-                                                <td data-label="Quantidade">${caneca.quantidade}</td>
                                                 <td data-label="Etapa">${caneca.etapa}</td>
 
-                                                <td data-label="Editar"><button class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal" data-title="Editar">
+                                                <td data-label="Editar"><button class="btn btn-outline-info" data-toggle="modal" id="edit-caneca" data-target="#edit-modal" data-title="Editar"
+                                                data-id="${caneca.id}" data-tema="${caneca.tema.id}"
+                                                 data-etapa="${caneca.etapa}" data-qtd="${caneca.quantidade}" 
+                                                 data-desc="${caneca.descricao}" data-cliente-id="${caneca.cliente.id}">
 
                                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 													 <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
 													</svg>
                                                     </button>
                                                 </td>
-
 
                                                 <td data-label="Excluir"><button class="btn btn-outline-danger" 
                                                 data-toggle="modal" data-target="#exampleModalCenter" 
@@ -140,16 +201,70 @@
 </div>
 
 
-	<!-- Modal confirmar remover caneca -->
-<div class="modal" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    	<p class="p-2 mt-1">Redirecionando...</p>
-       	<button id="btn-edit" style="display: none"></button>
-     </div>
-  </div>
 
-</div>
+ <!-- Tela Modal EDITAR/SALVAR-->
+
+                        <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    
+                                      <div class="alert alert-success" id="alertE">
+				   				 <button type="button" class="close" onclick="$('#alertE').hide();">x</button>
+				   					<h4 id="titulo"></h4> <p id="alertMsgE"></p>
+				  				 </div>
+				  				 
+                                    <div class="modal-body">
+                                    
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="control-label">Tema</label>
+                                            <select class="custom-select" id="temas" name="tema-id" required disabled>
+												<option selected value="">Selecione o tema</option>
+												<c:forEach items="${temas}" var="tema">
+													<option id="tema-id" value="${tema.id}"> 
+														${tema.nome}
+													</option>
+												</c:forEach>
+											</select>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="message-text" class="control-label">Etapa</label>
+                                             <select class="custom-select" id="etapa" required name="etapa-id">
+										        <option value="1">PEDIDO_REALIZADO</option>
+										        <option value="2">ESCOLHA</option>
+										        <option value="3">ALTERACAO</option>
+										        <option value="4">MODELO_ESCOLHIDO</option>
+										        <option value="5">PRODUCAO</option>
+										        <option value="6">PRONTO_ENTREGA</option>
+										        <option value="7">FINALIZADO</option>
+										      </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="message-text" class="control-label">Quantidade</label>
+                                            <input type="number" id="qtd" class="form-control" style="width: 80px; text-align: center" min="1" max="9999" name="quantidade" required disabled>
+                                        </div>
+                                         <div class="form-group">
+                                            <label for="message-text" class="control-label">Descrição</label>
+                                            <textarea class="form-control input-group" id="text-area" rows="3" name="descricao" disabled></textarea>
+                                        </div>
+                                         <div class="mt-3 mb-3 ml-1">
+			                                        <div class="custom-control custom-switch d-flex justify-content-between">
+			                                        	 <input type="checkbox" class="custom-control-input" id="customSwitch1">
+			  											 <label class="custom-control-label" for="customSwitch1" id="text-switch">Habilitar Edição</label>
+			  										</div>
+		  										</div>
+                                        <input name="id" class="form-control" id="id-edit" style="display: none">
+		                                        <button type="button" id="btn-edit-caneca" class="btn btn-success mr-1">&nbsp; Salvar &nbsp;</button>      
+		                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+	  										</div>
+  										</div>
+                                    </div>
+                                </div> <!-- fim modal -->
 
 
 <!-- JQuery -->
@@ -160,7 +275,11 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+<script src="src/js/caneca-util.js"></script>
 <script src="src/js/alert.js"></script>
+<script src="src/js/ajax/edit.save.caneca.js"></script>
+
 <script type="text/javascript">
 $('.alert').hide();
 </script>

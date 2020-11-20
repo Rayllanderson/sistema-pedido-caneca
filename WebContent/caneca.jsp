@@ -58,7 +58,7 @@
 					</option>
 				</c:forEach>
 				</select>
-              </div>
+             	 </div>
     
       <div class="col-md-5 mb-3">
       <label for="validationDefault04">Etapa</label>

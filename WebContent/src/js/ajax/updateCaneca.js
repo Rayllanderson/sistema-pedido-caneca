@@ -23,5 +23,4 @@ $('#save').on('click', function() {
 			alertBootstrap("Ocorreu um erro", 'alert alert-danger', "Ops..")
 		}
 	});
-
 })

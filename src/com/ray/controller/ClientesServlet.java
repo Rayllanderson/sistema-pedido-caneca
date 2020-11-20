@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ray.model.dao.CanecaRepository;
 import com.ray.model.dao.ClienteRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.entities.Cliente;
@@ -19,13 +18,13 @@ public class ClientesServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private ClienteRepository clienteRepository;
-    private CanecaRepository canecaRepository;
+//    private CanecaRepository canecaRepository;
     private ClienteService clienteService;
 
     @Override
     public void init() throws ServletException {
 	this.clienteRepository = RepositoryFactory.createClienteDao();
-	this.canecaRepository = RepositoryFactory.createCanecaDao();
+//	this.canecaRepository = RepositoryFactory.createCanecaDao();
 	this.clienteService = new ClienteService();
 	super.init();
     }
@@ -34,12 +33,7 @@ public class ClientesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String action = request.getParameter("action");
 	if (action != null) {
-	    if (action.equals("select")) {
-		Long id = Long.valueOf(request.getParameter("id"));
-		request.getSession().setAttribute("canecas", canecaRepository.findAll(id));
-		request.getRequestDispatcher("canecas.jsp").forward(request, response);
-		request.getSession().setAttribute("cliente", clienteRepository.findById(id));
-	    } else if (action.equals("delete")) {
+	    if (action.equals("delete")) {
 		delete(request, response);
 	    }
 	} else {
