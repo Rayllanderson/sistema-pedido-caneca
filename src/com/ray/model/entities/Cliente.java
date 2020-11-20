@@ -82,4 +82,8 @@ public class Cliente implements Serializable{
     public List <Caneca> getCanecas() {
 	return canecas;
     }
+    
+    public String getTelefoneSemSimbolo() {
+	return telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "");
+    }
 }

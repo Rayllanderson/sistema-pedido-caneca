@@ -24,7 +24,6 @@
 <link rel="stylesheet" href="src/css/dropzone.min.css">
 <link rel="stylesheet" href="src/css/caneca.css">
 <link rel="stylesheet" href="src/css/thumbnail-gallery.css">
-<script src="src/js/caneca-util.js"></script>
 </head>
 <body>
 
@@ -100,7 +99,7 @@
 
 
 
-
+<script src="src/js/caneca-util.js"></script>
 <data id="start">
 <div class="testee"></div>
 <hr class="mt-5 mb-2">
