@@ -159,7 +159,7 @@
                                                 </td>
 
                                                 <td data-label="Excluir"><button class="btn btn-outline-danger" 
-                                                data-toggle="modal" data-target="#exampleModalCenter" 
+                                                data-toggle="modal" data-target="#exampleModalCenter" data-clienteId="${caneca.cliente.id}" data-caneca-id="${caneca.id}" 
 					 							>
 						
 											<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -279,6 +279,7 @@
 <script src="src/js/caneca-util.js"></script>
 <script src="src/js/alert.js"></script>
 <script src="src/js/ajax/edit.save.caneca.js"></script>
+<script src="src/js/ajax/excluirCaneca.js"></script>
 
 <script type="text/javascript">
 $('.alert').hide();
