@@ -10,10 +10,10 @@ $('#btn-delete-cliente').on('click', function() {
 	$.ajax({
 		method: "GET",
 		url: "clientes?action=delete",
-		data: { id1: id1 },
+		data: { 'id': id1 },
 		success: function() {
 			$('#exampleModalCenter').modal('hide')
-			alertBootstrap("Cliente Excluído com Sucesso!", 'alert alert-success', "Sucesso")
+			alertBootstrap("Cliente Excluído", 'alert alert-success', "Sucesso")
 			$.get("clientes", function(responseXml) {        
 				$("#start").html($(responseXml).find("data").html()); 
 			});

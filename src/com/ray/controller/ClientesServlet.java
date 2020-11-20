@@ -31,20 +31,29 @@ public class ClientesServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	String action = req.getParameter("action");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	String action = request.getParameter("action");
 	if (action != null) {
 	    if (action.equals("select")) {
-		Long id = Long.valueOf(req.getParameter("id"));
-		req.getSession().setAttribute("canecas", canecaRepository.findAll(id));
-		req.getRequestDispatcher("canecas.jsp").forward(req, resp);
-		req.getSession().setAttribute("cliente", clienteRepository.findById(id));
+		Long id = Long.valueOf(request.getParameter("id"));
+		request.getSession().setAttribute("canecas", canecaRepository.findAll(id));
+		request.getRequestDispatcher("canecas.jsp").forward(request, response);
+		request.getSession().setAttribute("cliente", clienteRepository.findById(id));
 	    } else if (action.equals("delete")) {
-
+		delete(request, response);
 	    }
 	} else {
-	    req.getSession().setAttribute("clientes", clienteRepository.findAll());
-	    req.getRequestDispatcher("clientes.jsp").forward(req, resp);
+	    request.getSession().setAttribute("clientes", clienteRepository.findAll());
+	    request.getRequestDispatcher("clientes.jsp").forward(request, response);
+	}
+    }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+	Long id = Long.valueOf(request.getParameter("id"));
+	if (clienteService.deleteById(id)) {
+	    response.setStatus(204);
+	}else {
+	    response.setStatus(500);
 	}
     }
 

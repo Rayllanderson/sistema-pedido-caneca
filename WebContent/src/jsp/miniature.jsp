@@ -1,1 +1,0 @@
-<img class="img-fluid w-100" id="img" src="${caneca.image.miniatura }" />

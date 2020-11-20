@@ -52,15 +52,6 @@
 
 </head>
 <body>
-
-<!-- ALERT -->
-			<div class="fixed-top">
-				<div class="alert alert-success" id="success-alert">
-				   <button type="button" class="close" onclick="$('.alert').hide();">x</button>
-				   <h4 id="titulo"></h4> <p id="alertMsg"></p>
-				</div>
-			</div>
-			
 			        <header>
                                 <nav class="navbar navbar-expand navbar-dark bg-primary" id="navbar">
                                     <a class="navbar-brand" href="home.jsp"><i class="fas fa-arrow-left fa-md"></i></a>
@@ -103,16 +94,6 @@
 
                             </header>
 
-                            <!-- ALERT -->
-                            <div class="fixed-top">
-                                <div class="alert alert-success" id="success-alert">
-                                    <button type="button" class="close" onclick="$('.alert').hide();">x</button>
-                                    <h4 id="titulo"></h4>
-                                    <p id="alertMsg"></p>
-                                </div>
-                            </div>
-
-
                             <!-- 2navbar -->
 
                             <div class="navbar navbar-expand navbar-dark justify-content-end" id="seccond-navbar">
@@ -129,7 +110,14 @@
                             </div>
                             
                             
-
+<!-- ALERT -->
+			<div class="fixed-top">
+				<div class="alert alert-success" id="success-alert">
+				   <button type="button" class="close" onclick="$('.alert').hide();">x</button>
+				   <h4 id="titulo"></h4> <p id="alertMsg"></p>
+				</div>
+			</div>
+			
 <div class="container mt-5">
 
         
@@ -174,10 +162,10 @@
 							</button> </td>
                                                 </td>
 
-                                                <td data-label="Excluir"><button class="btn btn-outline-danger" 
-                                                data-toggle="modal" data-target="#exampleModalCenter" data-id="${cliente.id}" 
-												data-nome="${cliente.nome}"
-					 							>
+                                                <td data-label="Excluir">
+                                                <button class="btn btn-outline-danger" 
+                                                 data-toggle="modal" data-target="#exampleModalCenter"
+                                                 data-id="${cliente.id}">
 						
 											<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 											  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
@@ -212,7 +200,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" id="btn-delete">Excluir</button>
+        <button type="button" class="btn btn-danger" id="btn-delete-cliente">Excluir</button>
       </div>
     </div>
   </div>
@@ -230,6 +218,12 @@
                                         <h5 class="modal-title" id="exampleModalLabel"></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
+                                    
+                                      <div class="alert alert-success" id="alertE">
+				   				 <button type="button" class="close" onclick="$('#alertE').hide();">x</button>
+				   					<h4 id="titulo"></h4> <p id="alertMsgE"></p>
+				  				 </div>
+				  				 
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="recipient-name" class="control-label">Nome:</label>
@@ -260,11 +254,14 @@
 <script src="src/js/alert.js"></script>
 <script src="src/js/util/mask.min.js"></script>
 <script src="src/js/ajax/edit.save.cliente.js"></script>
+<script src="src/js/ajax/excluirCliente.js"></script>
+
+<script type="text/javascript">
+$('.alert').hide();
+</script>
 
 
  <script type="text/javascript">
- $('.alert').hide();
- 
             var behavior = function (val) {
                    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
                 },

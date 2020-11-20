@@ -1,11 +1,13 @@
+$('.alert').hide();
 
 var idCliente = null;
 var nome = null;
 var telefone = null;
-
+var title = null;
 $('#edit-modal').on('show.bs.modal', function(event) {
+	$('#alertE').hide();
 	var button = $(event.relatedTarget) // Button that triggered the modal
-	var title = button.data('title')
+	 title = button.data('title')
 	let id = button.data('id') // Extract info from data-* attributes
 	let nomeModal = button.data('nome')
 	let telefoneModal = button.data('telefone')
@@ -22,29 +24,33 @@ $('#edit-modal').on('show.bs.modal', function(event) {
 
 
 $('#btn-edit-cliente').on('click', function() {
+	let acao = title
+	console.log(acao)
+	acao = acao == "Editar" ? 'Editado' : 'Cadastrado'
 	idCliente = $('#id-edit').val();
 	nome = $('#nome').val();
 	telefone = $('#telefone').val();
-
-
-	$.ajax({
-		method: "POST",
-		url: "clientes?action=save",
-		data: {
-			'id': idCliente,
-			'nome': nome,
-			'telefone': telefone
-		},
-		success: function() {
-			$('#edit-modal').modal('hide')
-			alertBootstrap("Cliente Editado com Sucesso!", 'alert alert-success', "Sucesso")
-			$.get("clientes", function(responseXml) {
-				$("#start").html($(responseXml).find("data").html());
-			});
-		}, error: function() {
-			$('#edit-modal').modal('hide')
-			alertBootstrap("Ocorreu um erro ao deletar", 'alert alert-danger', "Ops..")
-		}
-	});
-
+	if (!nome) {
+		alertError("Campo nome não pode ser vazio", 'alert alert-danger');
+	} else {
+		$.ajax({
+			method: "POST",
+			url: "clientes?action=save",
+			data: {
+				'id': idCliente,
+				'nome': nome,
+				'telefone': telefone
+			},
+			success: function() {
+				$('#edit-modal').modal('hide')
+				$.get("clientes", function(responseXml) {
+					$("#start").html($(responseXml).find("data").html());
+				});
+				alertBootstrap("Cliente " + acao + " com sucesso!", 'alert alert-success', "Sucesso")
+			}, error: function() {
+				$('#edit-modal').modal('hide')
+				alertBootstrap("Ocorreu um erro", 'alert alert-danger', "Ops..")
+			}
+		});
+	}
 })
