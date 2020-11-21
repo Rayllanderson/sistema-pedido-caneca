@@ -20,11 +20,13 @@
 
 <link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="src/css/main.css">
 
 <style type="text/css">
 
 	.card{
-		 border-radius: 1em !important;
+		 border-radius: 0.5em !important;
+		 padding: 5px;
 	}
 
 	body {
@@ -53,66 +55,7 @@
 </head>
 <body>
 
-
-			        <header>
-                                <nav class="navbar navbar-expand navbar-dark bg-primary" id="navbar">
-                                    <a class="navbar-brand" href="clientes"><i class="fas fa-arrow-left fa-md"></i></a>
-
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-                                    <div class="collapse navbar-collapse" id="navbarsExample02">
-                                        <ul class="navbar-nav mr-auto">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
-                                            </li>
-                                            <li class="nav-item ">
-                                                <a class="nav-link active" href="#"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                           
-                                        <button type="button" class="btn btn-outline-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <!-- botao user -->
-										    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-										 	 <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-											  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-										 	 <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-											</svg>
-								  </button>
-
-
-                                    <div class="dropdown-menu dropdown-menu-right" style="border-radius: 1em;">
-                                        <a class="dropdown-item" href="my-account?action=view"> <i class="fas fa-user-circle"></i> Minha Conta </a>
-                                        <a class="dropdown-item" href="estatisticas"> <i class="fas fa-chart-pie"></i> Estatísticas</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
-                                    </div>
-                                </nav>
-
-
-                            </header>
-
-                            <!-- 2navbar -->
-
-                            <div class="navbar navbar-expand navbar-dark justify-content-end" id="seccond-navbar">
-                                <ul class="nav justify-content-end">
-
-
-                                    <li class="nav-item">
-                                        <div class="container" style="height: 50px;">
-
-                                            <button type="submit" id="nova-caneca" data-toggle="modal" data-title="Cadastrar nova caneca" class="btn btn-success" data-target="#edit-modal"> <i class="fas fa-mug-hot"></i> Nova Caneca </button>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-
-
+                          
 <!-- ALERT -->
 			<div class="fixed-top">
 				<div class="alert alert-success" id="success-alert">
@@ -120,10 +63,171 @@
 				   <h4 id="titulo"></h4> <p id="alertMsg"></p>
 				</div>
 			</div>
+			
 
-<div class="container mt-5">
+<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Bootstrap Sidebar</h3>
+            </div>
 
-        <div id="toolbar">
+            <ul class="list-unstyled components">
+                <p>SideBar</p>
+                <li>
+                     <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
+                </li>
+
+                <li>
+                     <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
+                </li>
+                <li>
+                   <a class="nav-link active" href="$"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+            </ul>
+        </nav>
+
+
+
+
+        <div id="content">
+            <!-- Main content -->
+
+
+            <nav class="navbar navbar-dark" id="navbar2" style="  background-color: #34495e; color:white">
+
+                <a class="navbar-brand" href="#">
+                     <?xml version="1.0" encoding="iso-8859-1"?>
+                        <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 482.754 482.754" style="enable-background:new 0 0 482.754 482.754;" xml:space="preserve" width="36px" height="36px" >
+                        <g>
+                            <g>
+                                <g>
+                                    <path d="M416.941,216.222H338.24v-36.324v-1.768H47.651v1.768v242.157v12.108h0.702c6.441,53.953,57.875,48.431,120.376,48.431
+                                        h48.431c62.525,0,113.959,5.521,120.376-48.431h0.702v-12.108V347.64h78.701c10.05,0,18.162-7.87,18.162-17.629v-96.185
+                                        C435.102,224.092,426.99,216.222,416.941,216.222z M410.887,310.203c0,7.313-6.756,13.222-15.135,13.222H338.24v-82.987h57.512
+                                        c8.379,0,15.135,5.909,15.135,13.222V310.203z" style="fill: white;"/>
+                                </g>
+                                <g>
+                                    <path d="M155.266,153.915l-7.555-9.468c8.136-6.514,27.993-26.686,22.327-41.554c-2.373-6.296-6.345-10.485-10.534-14.917
+                                        c-5.158-5.449-10.994-11.599-13.851-21.939C138.46,40.004,167.713,4.02,171.055,0l9.299,7.749
+                                        c-7.991,9.589-27.703,38.14-23.029,55.066c2.034,7.434,6.175,11.769,10.97,16.83c4.601,4.843,9.807,10.364,13.076,18.937
+                                        C191.299,124.759,156.743,152.728,155.266,153.915z" style="fill: white;"/>
+                                </g>
+                                <g>
+                                    <path d="M215.49,141.807l-7.555-9.468c4.746-3.802,17.605-16.66,14.263-25.402c-1.453-3.85-3.85-6.393-6.611-9.299
+                                        c-3.584-3.802-7.676-8.112-9.71-15.474c-5.061-18.38,15.038-43.104,17.338-45.865l9.299,7.749
+                                        c-7.144,8.572-17.508,25.62-14.965,34.871c1.235,4.456,3.705,7.047,6.829,10.364c3.196,3.39,6.829,7.216,9.154,13.319
+                                        C240.554,121.103,218.081,139.749,215.49,141.807z" style="fill: white;"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g></g><g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+<g>
+</g>
+<g>
+ </g>
+ <g></g></svg></a> </span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
+                            </li>
+                            <li class="nav-item active">
+                               <a class="nav-link" href="#"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                            </li>
+                        </ul>
+                    </div>
+            </nav>
+
+
+            <div class="main-content" id="panel">
+
+                <nav class="navbar navbar-top navbar-expand navbar-dark border-bottom" style="background-color: #34495e;">
+                    <div class="container-fluid">
+                        <div class="navbar-brand">
+                            <button type="button" id="sidebarCollapse" class="btn btn-neutral">
+                                <i class="fas fa-align-left"></i>
+                             </button>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <!-- Header -->
+                <div class="header pb-6" style="background-color:  #34495e;">
+                    <div class="container-fluid">
+                        <div class="header-body">
+                            <div class="row align-items-center py-4">
+                                <div class="col-lg-6 col-7">
+
+                                </div>
+                                <div class="col-lg-6 col-5 text-right">
+                                    <a href="#" class="btn btn-light"id="nova-caneca" data-toggle="modal" data-title="Cadastrar nova caneca" class="btn btn-success" data-target="#edit-modal"> <i class="fas fa-mug-hot"></i> &nbsp;Nova Caneca </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Page content -->
+                <div class="container mt--6">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col">
+                            <div class="card">
+                                <!-- Card header -->
+
+                                <div class="card-header border-0 mb-3">
+                                <div class="d-flex bd-highlight">
+                                    <h3  class="p-2 flex-grow-1 bd-highlight" style="display: inline;">${cliente.nome}</h3>
+                                    <h4 style="display: inline;"class="p-2 bd-highlight"><a href="javascript:void(0)" 
+                                    data-toggle="modal"
+                                    data-target="#messageModal" 
+                                    data-telefone="${cliente.telefone}"
+                                    data-nome="${cliente.nome}"><i class="fas fa-phone"></i>  ${cliente.telefone }</a></h4>
+                                    </div>
+                                </div>
+
+
+        <div id="toolbar mt-3">
              <select class="form-control custom-select mr-1" id="filter-etapa">
              	<option value="0">Escolha um filtro</option>
 				<option value="1">PEDIDO_REALIZADO</option>
@@ -154,8 +258,8 @@
   								 data-filter-control="true"
                                  
                                  style="
+                                 padding: 0;
                                  border: 0;
-								 border-radius: 1rem;
 								 box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);" >
 
                                     <thead>
@@ -171,7 +275,7 @@
                                         <c:forEach items="${canecas}" var="caneca" varStatus="loop">
                                             <tr>
                                                 <td data-label="Nome">
-													<a class="btn" href="caneca?action=select&id=${caneca.id}"
+													<a id="btn-select" class="btn" href="caneca?action=select&id=${caneca.id}"
 													style="width: 100%; color: dodgerblue; border-radius: 1rem;">Caneca</a>
 												</td>
 												
@@ -203,13 +307,45 @@
                                         </c:forEach>
                                     </tbody>
                                 </table>
-                            </div>
+                                                       </div> <!-- fim table responsive -->
           </data> 
+		</div> <!-- fim card -->
 
+   </div> <!-- fim col -->
+</div> <!-- fim row -->
+
+
+ 
+                    <!-- Footer -->
+                    <footer class="footer pt-0">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="col-lg-6">
+                                <div class="copyright text-center  text-lg-left  text-muted">
+                                    &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
         </div>
-     
-
-
+</div>
 
 	<!-- Modal confirmar remover caneca -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -299,6 +435,37 @@
                                 </div> <!-- fim modal -->
 
 
+
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nova mensagem</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Destinatário:</label>
+            <input type="text" class="form-control" id="telefoneMensagem">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mensagem:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="sendMsg">Enviar messagem</button>
+      </div>
+    </div>
+  </div>
+</div> <!-- fim modal mensagem -->
+
+
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
@@ -307,6 +474,12 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!--sort JavaScript -->
 <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Jquery custom scrollbar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
 
 <script src="src/js/caneca-util.js"></script>
 <script src="src/js/alert.js"></script>
@@ -367,6 +540,32 @@ function filter(){
   	$("td").show();
 	}
 }*/
+
+function sendMessage(telefone, nome, mensagem){
+	telefone = telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "");
+	location.href = "https://wa.me/55" + telefone + "?text=" + mensagem.replace(" ", "%20");
+}
+var telefone = null;
+var nome = null;
+var mensagem = null;
+$('#messageModal').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  telefone = button.data('telefone') 
+	  nome = button.data('nome');
+	  nome = nome.substring(0, 1).toUpperCase().concat(nome.substring(1));
+	  
+	  var modal = $(this)
+	  modal.find('.modal-title').text('Nova mensagem para @' + nome)
+	  modal.find('#telefoneMensagem').val(telefone);
+	  modal.find('#message-text').text('Olá, ' + nome + ', ');
+	  
+	  
+	})
+	
+	$('#sendMsg').on('click', function(){
+		mensagem = $('#message-text').val();
+		sendMessage(telefone, nome, mensagem);
+	})
 </script>
 </body>
 
