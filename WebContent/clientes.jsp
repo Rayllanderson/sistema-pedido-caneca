@@ -17,16 +17,11 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- Sort table  CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="extensions/filter-control/bootstrap-table-filter-control.css">
-<script src="extensions/filter-control/bootstrap-table-filter-control.js"></script>
+
+
 <style type="text/css">
 
 	.card{
@@ -34,12 +29,11 @@
 	}
 
 	body {
-
 	background-color: #e6e9f0;
 	}
 	
 	table{
-	 background-color: #f8f9fa;}
+	 background-color: #fff;}
 	
 	#navbar {
 	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
@@ -134,21 +128,32 @@ html, body{
 		
 <div class="container mt-5">
 	
-      <div class="card p-1">
-      <h2 class="card-title text-center mt-1">Clientes</h2>
-      <div class="mt-5"></div>
-      <button id="editar" class="btn btn-primary">Editar</button>
+      <div class="card">
+      <h2 class="card-title text-center mt-3 mb-4">Clientes</h2>
  <data id="start">
                             <!--  INICIO TABELA  -->
                             <div class="table-responsive">
-                                <table class="display" id="table" data-show-toggle="true">
+                                <table class="table" id="table"
+                                 data-toggle="table" 
+                                 data-show-toggle="true"
+                                 data-search="true"
+                                 data-pagination="true"
+                                 data-show-columns="true"
+                                 data-toolbar="#toolbar"
+                                 data-search-accent-neutralise="true"
+                                 data-pagination="true"
+                                 data-pagination-h-align="left"
+  								 data-pagination-detail-h-align="right"
+                                 style=" border: 0;
+								 border-radius: 1rem;
+								 box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);">
 
-                                    <thead>
+                                    <thead class="thead-light">
                                         <tr class="text-primary">
-                                            <th scope="col" class="text-center">Nome</th>
-                                            <th scope="col">Telefone</th>
-                                            <th scope="col">Editar</th>
-                                            <th scope="col">Excluir</th>
+                                            <th scope="col" class="text-center" data-sortable="true" >Nome</th>
+                                            <th scope="col" data-sortable="true" >Telefone</th>
+                                            <th scope="col" data-visible="false" >Editar</th>
+                                            <th scope="col" data-visible="false" >Excluir</th>
                                         </tr>
                                     </thead>
 
@@ -163,13 +168,13 @@ html, body{
                                                 <td data-label="Telefone">${cliente.telefone}</td>
 
                                                 <td data-label="Editar"><button
-							class="btn btn-outline-info"
-							data-toggle="modal" data-target="#edit-modal" 
-							data-title="Editar"
-							data-id="${cliente.id}" 
-							data-nome="${cliente.nome}"
-							data-telefone="${cliente.telefone}" style="
-							box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);">
+												class="btn btn-outline-info"
+												data-toggle="modal" data-target="#edit-modal" 
+												data-title="Editar"
+												data-id="${cliente.id}" 
+												data-nome="${cliente.nome}"
+												data-telefone="${cliente.telefone}" style="
+												box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);">
 												
 						 	<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							  <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
@@ -257,13 +262,14 @@ html, body{
                         
 
 
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-
-<!-- SortTable Script -->
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<!-- SortTable Script -->
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!--sort JavaScript -->
+<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 
 <script src="src/js/alert.js"></script>
 <script src="src/js/util/mask.min.js"></script>
@@ -287,39 +293,11 @@ $('.alert').hide();
                         };
 
                         $('#telefone').mask(behavior, options);
-                        
-                        var hideColumn = true;
-                        disableEditColumn();
-                        
-                    	function disableEditColumn(){
-                    		if(hideColumn){
-                        		$('td:nth-child(3),th:nth-child(3)').hide();
-                            	$('td:nth-child(4),th:nth-child(4)').hide();
-                            	hideColumn = false;
-                        	}else{
-                        		$('td:nth-child(3),th:nth-child(3)').show();
-                            	$('td:nth-child(4),th:nth-child(4)').show();
-                            	hideColumn = true;
-                        	}
-                    	}
-                    	
-                        $('#editar').on('click', function(){
-                        	disableEditColumn();
-                        });
                         </script>
-                        <script>                        
-                        $(document).ready(function() {
-                            $('#table').dataTable( {
-                            	  "columnDefs": [
-                            	    { "orderable": false, "targets": 2 },
-                            	    { "orderable": false, "targets": 3 }
-                            	  ],
-                            	  "oLanguage" : { "sUrl": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"},
-                            	  "info": false
-                            	});
-                        });</script>
+                       
+<script type="text/javascript">
 
-
+</script>
 
 </body>
 
