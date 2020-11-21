@@ -28,7 +28,7 @@ import com.ray.model.validacoes.ThemeValidation;
  * mudar o nome também
  */
 @MultipartConfig
-@WebServlet("/save")
+@WebServlet("/caneca-save")
 public class SaveCanecaServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

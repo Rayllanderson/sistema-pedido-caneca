@@ -11,8 +11,8 @@ $('#save').on('click', function() {
 	
 	$.ajax({
 		method: "POST",
-		url: "save",
-		data: { id: id,
+		url: "caneca-save",
+		data: { 'idCaneca': id,
 			'tema-id': temaId,
 			'etapa-id' : etapaId,
 			'quantidade' : qtd,

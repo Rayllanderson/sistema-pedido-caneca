@@ -102,7 +102,7 @@
 
             <nav class="navbar navbar-dark" id="navbar2" style="  background-color: #34495e; color:white">
 
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="clientes">
                      <?xml version="1.0" encoding="iso-8859-1"?>
                         <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -218,11 +218,11 @@
                                 <div class="card-header border-0 mb-3">
                                 <div class="d-flex bd-highlight">
                                     <h3  class="p-2 flex-grow-1 bd-highlight" style="display: inline;">${cliente.nome}</h3>
-                                    <h4 style="display: inline;"class="p-2 bd-highlight"><a href="javascript:void(0)" 
+                                    <h5 style="display: inline;"class="p-2 bd-highlight"><a href="javascript:void(0)" 
                                     data-toggle="modal"
                                     data-target="#messageModal" 
                                     data-telefone="${cliente.telefone}"
-                                    data-nome="${cliente.nome}"><i class="fas fa-phone"></i>  ${cliente.telefone }</a></h4>
+                                    data-nome="${cliente.nome}"><i class="fas fa-phone"></i>  ${cliente.telefone }</a></h5>
                                     </div>
                                 </div>
 
@@ -468,14 +468,12 @@
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
+<!-- Popper.JS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!--sort JavaScript -->
 <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
-<!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <!-- Jquery custom scrollbar -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
@@ -485,6 +483,7 @@
 <script src="src/js/alert.js"></script>
 <script src="src/js/ajax/edit.save.caneca.js"></script>
 <script src="src/js/ajax/excluirCaneca.js"></script>
+<script src="src/js/sendMenssage.js"></script>
 
 <script type="text/javascript">
 $('.alert').hide();
@@ -521,51 +520,7 @@ $('.alert').hide();
 		      })
 	 		}
   });
-
   
-  /*
-$(document).on("change", '#etapa', function(){
-  filter();
-});
-
-function filter(){
-	console.log('reached');
-	var a = $("#etapa option:selected").text()
-	console.log(a)
-	 $("td").hide();
-  if(a!=''){
-    $("td[data-etapa='"+a+"']").show();
-	}
-  else{
-  	$("td").show();
-	}
-}*/
-
-function sendMessage(telefone, nome, mensagem){
-	telefone = telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "");
-	location.href = "https://wa.me/55" + telefone + "?text=" + mensagem.replace(" ", "%20");
-}
-var telefone = null;
-var nome = null;
-var mensagem = null;
-$('#messageModal').on('show.bs.modal', function (event) {
-	  var button = $(event.relatedTarget) // Button that triggered the modal
-	  telefone = button.data('telefone') 
-	  nome = button.data('nome');
-	  nome = nome.substring(0, 1).toUpperCase().concat(nome.substring(1));
-	  
-	  var modal = $(this)
-	  modal.find('.modal-title').text('Nova mensagem para @' + nome)
-	  modal.find('#telefoneMensagem').val(telefone);
-	  modal.find('#message-text').text('Olá, ' + nome + ', ');
-	  
-	  
-	})
-	
-	$('#sendMsg').on('click', function(){
-		mensagem = $('#message-text').val();
-		sendMessage(telefone, nome, mensagem);
-	})
 </script>
 </body>
 

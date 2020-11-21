@@ -5,8 +5,8 @@ body {
 
 .card {
 	padding: 10px;
-	border-radius: 1em !important;
-		background-color: #f8f9fa;	
+	border-radius: 0.5em !important;
+	background-color: #f8f9fa;	
 }
 
 .dropzone {

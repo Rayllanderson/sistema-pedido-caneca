@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="src/css/dropzone.min.css">
 <link rel="stylesheet" href="src/css/caneca.css">
 <link rel="stylesheet" href="src/css/thumbnail-gallery.css">
+<link rel="stylesheet" href="src/css/main.css">
 </head>
 <body>
 
@@ -35,15 +36,173 @@
 				</div>
 			</div>
 			
-			
-<div class="container mt-5" >
-<div class="card p-2">
+<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Bootstrap Sidebar</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>SideBar</p>
+                <li>
+                     <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
+                </li>
+
+                <li>
+                     <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
+                </li>
+                <li>
+                   <a class="nav-link" href="canecas"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+            </ul>
+        </nav>
+
+
+
+
+        <div id="content">
+            <!-- Main content -->
+
+
+            <nav class="navbar navbar-dark" id="navbar2" style="  background-color: #34495e; color:white">
+
+                <a class="navbar-brand" href="canecas">
+                     <?xml version="1.0" encoding="iso-8859-1"?>
+                        <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 482.754 482.754" style="enable-background:new 0 0 482.754 482.754;" xml:space="preserve" width="36px" height="36px" >
+                        <g>
+                            <g>
+                                <g>
+                                    <path d="M416.941,216.222H338.24v-36.324v-1.768H47.651v1.768v242.157v12.108h0.702c6.441,53.953,57.875,48.431,120.376,48.431
+                                        h48.431c62.525,0,113.959,5.521,120.376-48.431h0.702v-12.108V347.64h78.701c10.05,0,18.162-7.87,18.162-17.629v-96.185
+                                        C435.102,224.092,426.99,216.222,416.941,216.222z M410.887,310.203c0,7.313-6.756,13.222-15.135,13.222H338.24v-82.987h57.512
+                                        c8.379,0,15.135,5.909,15.135,13.222V310.203z" style="fill: white;"/>
+                                </g>
+                                <g>
+                                    <path d="M155.266,153.915l-7.555-9.468c8.136-6.514,27.993-26.686,22.327-41.554c-2.373-6.296-6.345-10.485-10.534-14.917
+                                        c-5.158-5.449-10.994-11.599-13.851-21.939C138.46,40.004,167.713,4.02,171.055,0l9.299,7.749
+                                        c-7.991,9.589-27.703,38.14-23.029,55.066c2.034,7.434,6.175,11.769,10.97,16.83c4.601,4.843,9.807,10.364,13.076,18.937
+                                        C191.299,124.759,156.743,152.728,155.266,153.915z" style="fill: white;"/>
+                                </g>
+                                <g>
+                                    <path d="M215.49,141.807l-7.555-9.468c4.746-3.802,17.605-16.66,14.263-25.402c-1.453-3.85-3.85-6.393-6.611-9.299
+                                        c-3.584-3.802-7.676-8.112-9.71-15.474c-5.061-18.38,15.038-43.104,17.338-45.865l9.299,7.749
+                                        c-7.144,8.572-17.508,25.62-14.965,34.871c1.235,4.456,3.705,7.047,6.829,10.364c3.196,3.39,6.829,7.216,9.154,13.319
+                                        C240.554,121.103,218.081,139.749,215.49,141.807z" style="fill: white;"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g></g><g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+                        <g>
+                        </g>
+<g>
+</g>
+<g>
+ </g>
+ <g></g></svg></a> </span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
+                            </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="canecas"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                            </li>
+                        </ul>
+                    </div>
+            </nav>
+
+
+            <div class="main-content" id="panel">
+
+                <nav class="navbar navbar-top navbar-expand navbar-dark border-bottom" style="background-color: #34495e;">
+                    <div class="container-fluid">
+                        <div class="navbar-brand">
+                            <button type="button" id="sidebarCollapse" class="btn btn-neutral">
+                                <i class="fas fa-align-left"></i>
+                             </button>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <!-- Header -->
+                <div class="header pb-6" style="background-color:  #34495e;">
+                    <div class="container-fluid">
+                        <div class="header-body">
+                            <div class="row align-items-center py-4">
+                                <div class="col-lg-6 col-7">
+
+                                </div>
+                                <div class="col-lg-6 col-5 text-right">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Page content -->
+                <div class="container mt--6">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-9">
+                            <div class="card">
+                                <!-- Card header -->
+
+                                <div class="card-header border-0 mb-3">
+                                <div class="d-flex bd-highlight">
+                                    <h3  class="p-2 flex-grow-1 bd-highlight" style="display: inline;">${cliente.nome}</h3>
+                                    <h4 style="display: inline;"class="p-2 bd-highlight"><a href="javascript:void(0)" 
+                                    data-toggle="modal"
+                                    data-target="#messageModal" 
+                                    data-telefone="${cliente.telefone}"
+                                    data-nome="${cliente.nome}"><i class="fas fa-phone"></i>  ${cliente.telefone }</a></h4>
+                                    </div>
+                                </div>
+
+<!-- AQ É COMO SE FOSSE A TABLE -->
+	
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-10">
+		<div class="col-md-12">
 
 			
-			<h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Caneca</h1>
+			<h3 class="font-weight-light text-center text-lg-left mt-4 mb-0">Caneca</h3>
 			<input type="text" style="display: none" id="id" name="id" value="${caneca.id}">
 			<hr class="mt-2 mb-5">
 
@@ -103,7 +262,7 @@
 <data id="start">
 <div class="testee"></div>
 <hr class="mt-5 mb-2">
-<h1 class="font-weight-light text-center text-lg-left mt-0 mb-1">Arquivos ${size}</h1>
+<h3 class="font-weight-light text-center text-lg-left mt-0 mb-1">Arquivos ${size}</h3>
 <div class="row">
 <div class="row text-center text-lg-left">
 	<div class="tz-gallery">
@@ -156,6 +315,41 @@
 </div> <!-- fim row --> 
 </div>
 </div>
+</div> <!-- fim card -->
+
+
+
+ 
+                    <!-- Footer -->
+                    <footer class="footer pt-0">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="col-lg-6">
+                                <div class="copyright text-center  text-lg-left  text-muted">
+                                    &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+</div>
 
 
 	<!-- Modal confirmar remover caneca -->
@@ -181,21 +375,51 @@
 
 
 
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nova mensagem</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Destinatário:</label>
+            <input type="text" class="form-control" id="telefoneMensagem">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Mensagem:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="sendMsg">Enviar messagem</button>
+      </div>
+    </div>
+  </div>
+</div> <!-- fim modal mensagem -->
 
 
-<!-- Bootstrap tooltips -->
+<!-- Bootstrap POPPER -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<!-- Jquery custom scrollbar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+
 <script src="src/js/dropzone.min.js"></script>
 <script src="src/js/alert.js"></script>
 <script src="src/js/ajax/excluirImagem.js"></script>
 <script src="src/js/ajax/loadMiniature.js"></script>
-<script src="src/js/edit-caneca.js"></script>
 <script src="src/js/ajax/updateCaneca.js"></script>
-
+<script src="src/js/sendMenssage.js"></script>
 
 <script type="text/javascript">
 $('#text-area').val("${caneca.descricao}")
@@ -204,6 +428,19 @@ var etapa = "${caneca.etapa}"
 $('#temas').val(tema);
 setEtapa(etapa)	
 checkSelectValue();
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
+    $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
 </script>
 </body>
 </html>

@@ -69,7 +69,7 @@ $('#btn-edit-caneca').on('click', function() {
 	} else {
 		$.ajax({
 			method: "POST",
-			url: "save",
+			url: "caneca-save",
 			data: {
 				'idCaneca': id,
 				'tema-id': temaId,
