@@ -14,9 +14,11 @@ $('#btn-delete-cliente').on('click', function() {
 		success: function() {
 			$('#exampleModalCenter').modal('hide')
 			alertBootstrap("Cliente Excluído", 'alert alert-success', "Sucesso")
-			$.get("clientes", function(responseXml) {        
-				$("#start").html($(responseXml).find("data").html()); 
+			$.get("clientes", function(responseXml) {
+				$("#start").html($(responseXml).find("data").html());
 			});
+			$('#table').DataTable();
+
 		}, error: function() {
 			$('#exampleModalCenter').modal('hide')
 			alertBootstrap("Ocorreu um erro ao deletar", 'alert alert-danger', "Ops..")
@@ -24,3 +26,4 @@ $('#btn-delete-cliente').on('click', function() {
 	});
 
 })
+

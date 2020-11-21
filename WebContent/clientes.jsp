@@ -8,7 +8,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=0.9">
 
 <title>Clientes</title>
 
@@ -17,7 +17,16 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Sort table  CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="extensions/filter-control/bootstrap-table-filter-control.css">
+<script src="extensions/filter-control/bootstrap-table-filter-control.js"></script>
 <style type="text/css">
 
 	.card{
@@ -41,10 +50,21 @@
 	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.08);
 }
 
+html, body{
+    height: 100%;
+							
+}
+						
+.content{
+	min-height: 100%;
+	position: relative;
+}
+
 </style>
 
 </head>
 <body>
+		<div class="content">	
 			        <header>
                                 <nav class="navbar navbar-expand navbar-dark bg-primary" id="navbar">
                                     <a class="navbar-brand" href="home.jsp"><i class="fas fa-arrow-left fa-md"></i></a>
@@ -111,16 +131,17 @@
 				</div>
 			</div>
 			
+		
 <div class="container mt-5">
-
-        
+	
+      <div class="card p-1">
+      <h2 class="card-title text-center mt-1">Clientes</h2>
+      <div class="mt-5"></div>
+      <button id="editar" class="btn btn-primary">Editar</button>
  <data id="start">
                             <!--  INICIO TABELA  -->
                             <div class="table-responsive">
-                                <table class="table" id="tabela" style="
-                                 border: 0;
-								  border-radius: 1rem;
-								  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);" >
+                                <table class="display" id="table" data-show-toggle="true">
 
                                     <thead>
                                         <tr class="text-primary">
@@ -135,8 +156,9 @@
                                         <c:forEach items="${clientes}" var="cliente">
                                             <tr>
                                                 <td data-label="Nome">
-													<a class="btn btn-light" href="canecas?action=select&clientId=${cliente.id}"
-													style="width: 100%; color: dodgerblue; border-radius: 1rem;">${cliente.nome}</a>
+                                                <input type="text" value="${cliente.id}" class="cliente-id" style="display: none;">
+												<a class="btn" href="javascript:void(0)" onclick="selectCliente(${cliente.id});"
+												style="width: 100%; color: dodgerblue; border-radius: 1rem;">${cliente.nome}</a>
 												</td>
                                                 <td data-label="Telefone">${cliente.telefone}</td>
 
@@ -153,7 +175,6 @@
 							  <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
 							</svg>
 							</button> </td>
-                                                </td>
 
                                                 <td data-label="Excluir">
                                                 <button class="btn btn-outline-danger" 
@@ -171,11 +192,11 @@
                                 </table>
                             </div>
           </data> 
-
+		<div class="mb-3"></div>
         </div>
-     
+     </div>  
 
-
+</div> <!-- fim content -->
 
 
 	<!-- Modal confirmar remover cliente -->
@@ -235,19 +256,20 @@
                         </div>
                         
 
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+<!-- SortTable Script -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<!-- SortTable Script -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
 <script src="src/js/alert.js"></script>
 <script src="src/js/util/mask.min.js"></script>
 <script src="src/js/ajax/edit.save.cliente.js"></script>
 <script src="src/js/ajax/excluirCliente.js"></script>
+<script src="src/js/ajax/selecionarClienteAjax.js"></script>
 
 <script type="text/javascript">
 $('.alert').hide();
@@ -265,7 +287,39 @@ $('.alert').hide();
                         };
 
                         $('#telefone').mask(behavior, options);
-</script>
+                        
+                        var hideColumn = true;
+                        disableEditColumn();
+                        
+                    	function disableEditColumn(){
+                    		if(hideColumn){
+                        		$('td:nth-child(3),th:nth-child(3)').hide();
+                            	$('td:nth-child(4),th:nth-child(4)').hide();
+                            	hideColumn = false;
+                        	}else{
+                        		$('td:nth-child(3),th:nth-child(3)').show();
+                            	$('td:nth-child(4),th:nth-child(4)').show();
+                            	hideColumn = true;
+                        	}
+                    	}
+                    	
+                        $('#editar').on('click', function(){
+                        	disableEditColumn();
+                        });
+                        </script>
+                        <script>                        
+                        $(document).ready(function() {
+                            $('#table').dataTable( {
+                            	  "columnDefs": [
+                            	    { "orderable": false, "targets": 2 },
+                            	    { "orderable": false, "targets": 3 }
+                            	  ],
+                            	  "oLanguage" : { "sUrl": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"},
+                            	  "info": false
+                            	});
+                        });</script>
+
+
 
 </body>
 

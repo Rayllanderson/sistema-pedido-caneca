@@ -40,33 +40,36 @@ public class CanecasServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	Long clientId = Long.valueOf(request.getParameter("clientId"));
+	request.getSession().setAttribute("cliente", clienteRepository.findById(clientId));
+	listarTudo(request, response);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 	String action = request.getParameter("action");
+	listarTudo(request, response);
 	if (action != null) {
-	    if (action.equals("select")) {
-		Long clientId = getClientId(request);
-		request.getSession().setAttribute("canecas", canecaRepository.findAll(clientId));
-		request.getRequestDispatcher("canecas.jsp").forward(request, response);
-		request.getSession().setAttribute("temas", temaRepository.findAll());
-		request.getSession().setAttribute("cliente", clienteRepository.findById(clientId));
-	    } else if(action.equals("delete")) {
+	    if (action.equals("delete")) {
 		if (canecaService.deleteById(Long.valueOf(request.getParameter("canecaId"))))
 		    response.setStatus(204);
 		else
 		    response.setStatus(500);
 	    }
-	}else {
-	    //criar canecas.jsp setar atributo canecas com seu respectivo user
+	} else {
+	    // criar canecas.jsp setar atributo canecas com seu respectivo user
 	}
 
     }
 
-    private Long getClientId(HttpServletRequest request) {
-	try{
-	    return Long.valueOf(request.getParameter("clientId"));
-	}catch (NumberFormatException e) {
-	    Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
-	    return cliente.getId();
-	}
+    private void listarTudo(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	Cliente cliente = (Cliente)request.getSession().getAttribute("cliente");
+	request.getSession().setAttribute("canecas", canecaRepository.findAll(cliente.getId()));
+	request.getSession().setAttribute("temas", temaRepository.findAll());
+	request.getRequestDispatcher("canecas.jsp").forward(request, response);
     }
 }

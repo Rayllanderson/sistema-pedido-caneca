@@ -8,7 +8,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=0.9">
 
 <title>Pedidos</title>
 
@@ -17,8 +17,9 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- Material Design Bootstrap -->
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> -->
+
+<link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
+
 
 <style type="text/css">
 
@@ -42,7 +43,9 @@
 	height: 5%; 
 	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.08);
 }
-	
+	select.form-control {
+  width: 200px;
+}
 	
 
 </style>
@@ -53,7 +56,7 @@
 
 			        <header>
                                 <nav class="navbar navbar-expand navbar-dark bg-primary" id="navbar">
-                                    <a class="navbar-brand" href="home.jsp"><i class="fas fa-arrow-left fa-md"></i></a>
+                                    <a class="navbar-brand" href="clientes"><i class="fas fa-arrow-left fa-md"></i></a>
 
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -68,7 +71,7 @@
                                                 <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
                                             </li>
                                             <li class="nav-item ">
-                                                <a class="nav-link active" href="$"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                                                <a class="nav-link active" href="#"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -120,42 +123,71 @@
 
 <div class="container mt-5">
 
+        <div id="toolbar">
+             <select class="form-control custom-select mr-1" id="filter-etapa">
+             	<option value="0">Escolha um filtro</option>
+				<option value="1">PEDIDO_REALIZADO</option>
+				<option value="2">ESCOLHA</option>
+				<option value="3">ALTERACAO</option>
+				<option value="4">MODELO_ESCOLHIDO</option>
+				<option value="5">PRODUCAO</option>
+				<option value="6">PRONTO_ENTREGA</option>
+				<option value="7">FINALIZADO</option>
+			</select>
+        </div>
         
  <data id="start">
                             <!--  INICIO TABELA  -->
                             <div class="table-responsive-sm" id="tabela-produtos">
-                                <table class="table" id="tabela" style="
+                                <table class="table" id="tabela"
+                                 data-toggle="table" 
+                                 data-search="true"
+                                 data-pagination="true"
+                                 data-show-columns="true"
+                                 data-toolbar="#toolbar"
+                                 data-custom-sort="customSort"
+                                 data-search-accent-neutralise="true"
+                                 data-search-align="left"
+                                 data-pagination="true"
+                                 data-pagination-h-align="left"
+  								 data-pagination-detail-h-align="right"
+  								 data-filter-control="true"
+                                 
+                                 style="
                                  border: 0;
-								  border-radius: 1rem;
-								  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);" >
+								 border-radius: 1rem;
+								 box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);" >
 
                                     <thead>
                                         <tr class="text-primary">
                                             <th scope="col" class="text-center">Nome</th>
-                                         	<th scope="col">Etapa</th>
-                                            <th scope="col">Editar</th>
-                                            <th scope="col">Excluir</th>
+                                         	<th scope="col" data-sortable="true" data-field="etapa">Etapa</th>
+                                            <th scope="col" data-visible="false">Editar</th>
+                                            <th scope="col" data-visible="false">Excluir</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <c:forEach items="${canecas}" var="caneca">
+                                        <c:forEach items="${canecas}" var="caneca" varStatus="loop">
                                             <tr>
                                                 <td data-label="Nome">
-													<a class="btn btn-light" href="caneca?action=select&id=${caneca.id}"
+													<a class="btn" href="caneca?action=select&id=${caneca.id}"
 													style="width: 100%; color: dodgerblue; border-radius: 1rem;">Caneca</a>
 												</td>
-                                                <td data-label="Etapa">${caneca.etapa}</td>
+												
+                                                <td data-label="Etapa" data-etapaid="${caneca.etapa.getCode()}" data-etapa="${caneca.etapa}">${caneca.etapa}</td>
 
-                                                <td data-label="Editar"><button class="btn btn-outline-info" data-toggle="modal" id="edit-caneca" data-target="#edit-modal" data-title="Editar"
+                                                <td data-label="Editar" ><button class="btn btn-outline-info" 
+                                                data-toggle="modal" id="edit-caneca" data-target="#edit-modal"
+                                                data-title="Editar"
                                                 data-id="${caneca.id}" data-tema="${caneca.tema.id}"
-                                                 data-etapa="${caneca.etapa}" data-qtd="${caneca.quantidade}" 
-                                                 data-desc="${caneca.descricao}" data-cliente-id="${caneca.cliente.id}">
+                                                data-etapa="${caneca.etapa}" data-qtd="${caneca.quantidade}" 
+                                                data-desc="${caneca.descricao}" data-cliente-id="${caneca.cliente.id}">
 
-                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-													 <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-													</svg>
-                                                    </button>
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+												</svg>
+                                                </button>
                                                 </td>
 
                                                 <td data-label="Excluir"><button class="btn btn-outline-danger" 
@@ -275,6 +307,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 
 <script src="src/js/caneca-util.js"></script>
 <script src="src/js/alert.js"></script>
@@ -284,9 +317,57 @@
 <script type="text/javascript">
 $('.alert').hide();
 </script>
-<script type="text/javascript">
+<script>
+  function customSort(sortName, sortOrder, data) {
+    var order = sortOrder === 'desc' ? -1 : 1
+    data.sort(function (a, b) {
+      var aa = +((a._etapa_data.etapaid + '').replace(/[^\d]/g, ''))
+      var bb = +((b._etapa_data.etapaid + '').replace(/[^\d]/g, ''))
+      if (aa < bb) {
+        return order * -1;
+      }
+      if (aa > bb) {
+        return order
+      }
+      return 0
+    })
+  }
+</script>
 
+<script>
+  var $table = $('#tabela')
+  var $button = $('#button')
+  
+  $(document).on("change", '#filter-etapa', function(){
+	 		if($('#filter-etapa').val() == '0'){
+	 			$table.bootstrapTable('filterBy', {});
+	 		}else{
+		    	var value = $("#filter-etapa option:selected").text()
+		    	 console.log(value)
+		      $table.bootstrapTable('filterBy', {
+		        etapa: value
+		      })
+	 		}
+  });
 
+  
+  /*
+$(document).on("change", '#etapa', function(){
+  filter();
+});
+
+function filter(){
+	console.log('reached');
+	var a = $("#etapa option:selected").text()
+	console.log(a)
+	 $("td").hide();
+  if(a!=''){
+    $("td[data-etapa='"+a+"']").show();
+	}
+  else{
+  	$("td").show();
+	}
+}*/
 </script>
 </body>
 

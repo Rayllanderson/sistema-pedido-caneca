@@ -27,7 +27,6 @@ function setEtapa(etapa){
 }
 
 
-
 function changeClassGalery(size) {
 	if (size > 0) {
 		console.log('metodo chamado..')

@@ -17,7 +17,7 @@ $('#btn-delete').on('click', function() {
 		success: function() {
 			$('#exampleModalCenter').modal('hide')
 			alertBootstrap("Caneca Excluída com Sucesso!", 'alert alert-success', "Sucesso")
-			$.get("canecas?action=select&id=" + clienteId, function(responseXml) {        
+			$.get("canecas", function(responseXml) {        
 				$("#start").html($(responseXml).find("data").html()); 
 			});
 		}, error: function() {

@@ -81,7 +81,7 @@ $('#btn-edit-caneca').on('click', function() {
 			success: function() {
 				alertBootstrap("Caneca " + acao, 'alert alert-success', "Sucesso")
 				$('#edit-modal').modal('hide')
-				$.get("canecas?action=select&id=" + clienteId, function(responseXml) {
+				$.get("canecas", function(responseXml) {
 					$("#start").html($(responseXml).find("data").html());
 				});
 				console.log('...?')
