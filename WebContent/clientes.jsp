@@ -24,6 +24,11 @@
 
 <link rel="stylesheet" href="src/css/main.css">
 
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--sort JavaScript -->
+<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+
 <style type="text/css">
 
 	.card{
@@ -37,14 +42,6 @@
 	table{
 	 background-color: #fff;}
 	
-	#navbar {
-	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
-
-#seccond-navbar {
-	height: 5%; 
-	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.08);
-}
 
 html, body{
     height: 100%;
@@ -231,6 +228,7 @@ html, body{
                                  data-show-columns="true"
                                  data-toolbar="#toolbar"
                                  data-search-accent-neutralise="true"
+                                 data-search-align="left"
                                  data-pagination="true"
                                  data-pagination-h-align="left"
   								 data-pagination-detail-h-align="right"
@@ -285,6 +283,7 @@ html, body{
                                     </tbody>
                                 </table>
                             </div> <!-- fim table responsive -->
+                            <script> $('#table').bootstrapTable();</script>
           </data> 
 		</div> <!-- fim card -->
 
@@ -384,14 +383,12 @@ html, body{
  </div> 
 
 
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!--sort JavaScript -->
-<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+
 <!-- Popper.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <!-- Jquery custom scrollbar -->
@@ -402,37 +399,12 @@ html, body{
 <script src="src/js/ajax/edit.save.cliente.js"></script>
 <script src="src/js/ajax/excluirCliente.js"></script>
 <script src="src/js/ajax/selecionarClienteAjax.js"></script>
+<script src="src/js/util/clientes.custom.table.js"></script>
+<script src="src/js/util/sidebar.js"></script>
+<script src="src/js/util/telefone.mask.js"></script>
 
 <script type="text/javascript">
 $('.alert').hide();
-</script>
-
-
- <script type="text/javascript">
-            var behavior = function (val) {
-                   return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-                },
-              options = {
-                            onKeyPress: function (val, e, field, options) {
-                                field.mask(behavior.apply({}, arguments), options);
-                            }
-                        };
-
-                        $('#telefone').mask(behavior, options);
-                        </script>
-                       
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#sidebar").mCustomScrollbar({
-        theme: "minimal"
-    });
-
-    $('#sidebarCollapse').on('click', function() {
-        $('#sidebar, #content').toggleClass('active');
-        $('.collapse.in').toggleClass('in');
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
-});
 </script>
 
 </body>

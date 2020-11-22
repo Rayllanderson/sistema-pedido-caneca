@@ -17,8 +17,6 @@ $('#btn-delete-cliente').on('click', function() {
 			$.get("clientes", function(responseXml) {
 				$("#start").html($(responseXml).find("data").html());
 			});
-			$('#table').DataTable();
-
 		}, error: function() {
 			$('#exampleModalCenter').modal('hide')
 			alertBootstrap("Ocorreu um erro ao deletar", 'alert alert-danger', "Ops..")

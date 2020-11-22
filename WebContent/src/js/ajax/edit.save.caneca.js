@@ -84,7 +84,6 @@ $('#btn-edit-caneca').on('click', function() {
 				$.get("canecas", function(responseXml) {
 					$("#start").html($(responseXml).find("data").html());
 				});
-				console.log('...?')
 			}, error: function() {
 				alertBootstrap("Ocorreu um erro", 'alert alert-danger', "Ops..")
 			}

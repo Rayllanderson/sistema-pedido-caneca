@@ -10,47 +10,20 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=0.9">
 
-<title>Pedidos</title>
+<title>Canecas</title>
 
 <link rel="stylesheet" href="src/css/alert.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
 <link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="src/css/main.css">
 
-<style type="text/css">
-
-	.card{
-		 border-radius: 0.5em !important;
-		 padding: 5px;
-	}
-
-	body {
-
-	background-color: #e6e9f0;
-	}
-	
-	table{
-	 background-color: #f8f9fa;}
-	
-	#navbar {
-	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
-
-#seccond-navbar {
-	height: 5%; 
-	box-shadow: 0.5rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.08);
-}
-	select.form-control {
-  width: 200px;
-}
-	
-
-</style>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--sort JavaScript -->
+<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 
 </head>
 <body>
@@ -226,9 +199,8 @@
                                     </div>
                                 </div>
 
-
-        <div id="toolbar mt-3">
-             <select class="form-control custom-select mr-1" id="filter-etapa">
+        <div id="toolbar mt-3" style="padding: 10px; margin-bottom: -8px">
+             <select class="form-control custom-select mr-1" id="filter-etapa" style="width: 200px;">
              	<option value="0">Escolha um filtro</option>
 				<option value="1">PEDIDO_REALIZADO</option>
 				<option value="2">ESCOLHA</option>
@@ -239,11 +211,10 @@
 				<option value="7">FINALIZADO</option>
 			</select>
         </div>
-        
  <data id="start">
                             <!--  INICIO TABELA  -->
                             <div class="table-responsive-sm" id="tabela-produtos">
-                                <table class="table" id="tabela"
+                                <table class="table" id="table"
                                  data-toggle="table" 
                                  data-search="true"
                                  data-pagination="true"
@@ -266,8 +237,8 @@
                                         <tr class="text-primary">
                                             <th scope="col" class="text-center">Nome</th>
                                          	<th scope="col" data-sortable="true" data-field="etapa">Etapa</th>
-                                            <th scope="col" data-visible="false">Editar</th>
-                                            <th scope="col" data-visible="false">Excluir</th>
+                                            <th scope="col" >Editar</th>
+                                            <th scope="col" >Excluir</th>
                                         </tr>
                                     </thead>
 
@@ -307,7 +278,8 @@
                                         </c:forEach>
                                     </tbody>
                                 </table>
-                                                       </div> <!-- fim table responsive -->
+              </div> <!-- fim table responsive -->
+               <script> $('#table').bootstrapTable();</script>
           </data> 
 		</div> <!-- fim card -->
 
@@ -466,14 +438,11 @@
 </div> <!-- fim modal mensagem -->
 
 
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Popper.JS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!--sort JavaScript -->
-<script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 <!-- Jquery custom scrollbar -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
@@ -483,44 +452,25 @@
 <script src="src/js/alert.js"></script>
 <script src="src/js/ajax/edit.save.caneca.js"></script>
 <script src="src/js/ajax/excluirCaneca.js"></script>
-<script src="src/js/sendMenssage.js"></script>
+<script src="src/js/util/sendMenssage.js"></script>
+<script src="src/js/util/canecas.custom.table.js"></script>
+<script src="src/js/util/sidebar.js"></script>
 
 <script type="text/javascript">
 $('.alert').hide();
 </script>
-<script>
-  function customSort(sortName, sortOrder, data) {
-    var order = sortOrder === 'desc' ? -1 : 1
-    data.sort(function (a, b) {
-      var aa = +((a._etapa_data.etapaid + '').replace(/[^\d]/g, ''))
-      var bb = +((b._etapa_data.etapaid + '').replace(/[^\d]/g, ''))
-      if (aa < bb) {
-        return order * -1;
-      }
-      if (aa > bb) {
-        return order
-      }
-      return 0
-    })
-  }
-</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
 
-<script>
-  var $table = $('#tabela')
-  var $button = $('#button')
-  
-  $(document).on("change", '#filter-etapa', function(){
-	 		if($('#filter-etapa').val() == '0'){
-	 			$table.bootstrapTable('filterBy', {});
-	 		}else{
-		    	var value = $("#filter-etapa option:selected").text()
-		    	 console.log(value)
-		      $table.bootstrapTable('filterBy', {
-		        etapa: value
-		      })
-	 		}
-  });
-  
+    $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
 </script>
 </body>
 

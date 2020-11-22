@@ -45,7 +45,6 @@ $('#btn-edit-cliente').on('click', function() {
 				$.get("clientes", function(responseXml) {
 					$("#start").html($(responseXml).find("data").html());
 				});
-				$('#table').DataTable();
 				alertBootstrap("Cliente " + acao , 'alert alert-success', "Sucesso")
 			}, error: function() {
 				$('#edit-modal').modal('hide')

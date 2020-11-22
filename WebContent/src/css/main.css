@@ -286,3 +286,22 @@ a.article:hover {
         display: none;
     }
 }
+
+
+/* GERAIS */
+	.card{
+		 border-radius: 0.5em !important;
+	}
+
+	body {
+	background-color: #e6e9f0;
+	}
+	
+	table{
+	 background-color: #fff;}
+	
+
+	html, body{
+	    height: 100%;
+								
+	}
