@@ -207,9 +207,9 @@
    										 <h4 class="card-title text-center">Clientes</h4>
                             		</div>
                             		 <ul class="list-group list-group-flush">
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%"> Todos </button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%"> Pedidos realizados </button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%"> Pedidos não realizados </button></li>
+    									<li class="list-group-item"> <a class="btn text-primary" href="clientes?action=all" style="width: 100%"> Todos </a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" href="clientes" style="width: 100%"> Pedidos realizados </a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" href="clientes?action=without-order" style="width: 100%"> Pedidos não realizados </a></li>
     								</ul>
                             	</div> <!-- fim card -->
                             	
@@ -219,9 +219,9 @@
    										 <h4 class="card-title text-center">Canecas</h4>
                             		</div>
                             		 <ul class="list-group list-group-flush">
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%">Todas </button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%">Canecas com pedido </button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%">Canecas sem pedido </button></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Todas </a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Canecas com pedido </a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Canecas sem pedido </a></li>
     								</ul>
                             	</div> <!-- fim card -->
                             	
@@ -231,9 +231,9 @@
    										 <h4 class="card-title text-center">Temas</h4>
                             		</div>
                             		 <ul class="list-group list-group-flush">
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%">Listar Temas </button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%"> Cadastrar tema</button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%"> Excluir Tema</button></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Listar Temas </a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Cadastrar tema</a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Excluir Tema</a></li>
     								</ul>
                             	</div> <!-- fim card -->	
                             	
@@ -243,9 +243,9 @@
    										 <h4 class="card-title text-center">Configurações</h4>
                             		</div>
                             		 <ul class="list-group list-group-flush">
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%">Configurações da conta</button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%"> Cadastrar novo login</button></li>
-    									<li class="list-group-item"> <button class="btn text-primary" style="width: 100%"> Informações Gerais </button></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Configurações da conta</a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Cadastrar novo login</a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Informações Gerais </a></li>
     								</ul>
                             	</div> <!-- fim card -->															
 						</div> <!--  row -->

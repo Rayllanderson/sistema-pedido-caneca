@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ray.model.dao.ClienteRepository;
+import com.ray.model.dao.PedidoRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.entities.Cliente;
 import com.ray.model.service.ClienteService;
+import com.ray.util.ClientesUtil;
 
 @WebServlet("/clientes")
 public class ClientesServlet extends HttpServlet {
@@ -20,35 +22,42 @@ public class ClientesServlet extends HttpServlet {
     private ClienteRepository clienteRepository;
 //    private CanecaRepository canecaRepository;
     private ClienteService clienteService;
+    private PedidoRepository pedidoRepository;
 
     @Override
     public void init() throws ServletException {
 	this.clienteRepository = RepositoryFactory.createClienteDao();
 //	this.canecaRepository = RepositoryFactory.createCanecaDao();
 	this.clienteService = new ClienteService();
+	this.pedidoRepository = RepositoryFactory.createPedidoDao();
 	super.init();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 	String action = request.getParameter("action");
 	if (action != null) {
 	    if (action.equals("delete")) {
 		delete(request, response);
+	    }else if(action.equals("all")) {
+		listAll(request);
+	    }else if(action.equals("without-order")) {
+		listClientWithoutOrder(request);
 	    }
+	    request.getRequestDispatcher("all-clientes.jsp").forward(request, response);
 	} else {
-	    request.getSession().setAttribute("clientes", clienteRepository.findAll());
+	    listClientWithOrder(request);
 	    request.getRequestDispatcher("clientes.jsp").forward(request, response);
 	}
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) {
 	Long id = Long.valueOf(request.getParameter("id"));
-	if (clienteService.deleteById(id)) {
+	if (clienteService.deleteById(id)) 
 	    response.setStatus(204);
-	}else {
+	 else 
 	    response.setStatus(500);
-	}
     }
 
     @Override
@@ -64,6 +73,7 @@ public class ClientesServlet extends HttpServlet {
 
     /**
      * método salva ou edita
+     * 
      * @param request
      * @param response
      */
@@ -84,6 +94,18 @@ public class ClientesServlet extends HttpServlet {
 		response.setStatus(400);
 	    }
 	}
+    }
+
+    private void listAll(HttpServletRequest request) {
+	request.getSession().setAttribute("clientes", ClientesUtil.getAll(clienteRepository));
+    }
+    
+    private void listClientWithOrder(HttpServletRequest request) {
+	request.getSession().setAttribute("pedidos", ClientesUtil.getAllPedidos(pedidoRepository));
+    }
+    
+    private void listClientWithoutOrder(HttpServletRequest request) {
+	request.getSession().setAttribute("clientes", ClientesUtil.getClientWithoutOrder(pedidoRepository, clienteRepository));
     }
 
 }

@@ -38,7 +38,10 @@ public class ClienteService {
      */
     public boolean deleteById(Long id) {
 	try {
-	    pedidoService.deleteByClientId(id);
+	    boolean hasOrder = pedidoRepository.findByClienteId(id) != null;
+	    if(hasOrder) {
+		pedidoService.deleteByClientId(id);
+	    }
 	    cRepository.findAll(id).forEach(x -> cService.deleteById(x.getId()));
 	    repository.deleteById(id);
 	    return true;

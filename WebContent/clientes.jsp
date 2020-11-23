@@ -239,28 +239,30 @@ html, body{
                                         <tr class="text-primary">
                                             <th scope="col" class="text-center" data-sortable="true" >Nome</th>
                                             <th scope="col" data-sortable="true" >Telefone</th>
+                                            <th scope="col" data-sortable="true" >Data</th>
                                             <th scope="col" data-visible="false" >Editar</th>
                                             <th scope="col" data-visible="false" >Excluir</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <c:forEach items="${clientes}" var="cliente">
+                                        <c:forEach items="${pedidos}" var="pedido">
                                             <tr>
                                                 <td data-label="Nome">
-                                                <input type="text" value="${cliente.id}" class="cliente-id" style="display: none;">
-												<a id="btn-select" class="btn" href="javascript:void(0)" onclick="selectCliente(${cliente.id});"
-												style="width: 100%; color: dodgerblue; border-radius: 1rem;">${cliente.nome}</a>
+                                                <input type="text" value="${pedido.cliente.id}" class="cliente-id" style="display: none;">
+												<a id="btn-select" class="btn" href="javascript:void(0)" onclick="selectCliente(${pedido.cliente.id});"
+												style="width: 100%; color: dodgerblue; border-radius: 1rem;">${pedido.cliente.nome}</a>
 												</td>
-                                                <td data-label="Telefone">${cliente.telefone}</td>
+                                                <td data-label="Telefone">${pedido.cliente.telefone}</td>
+                                                 <td data-label="Data">${pedido.getDataString()}</td>
 
                                                 <td data-label="Editar"><button
 												class="btn btn-outline-info"
 												data-toggle="modal" data-target="#edit-modal" 
 												data-title="Editar"
-												data-id="${cliente.id}" 
-												data-nome="${cliente.nome}"
-												data-telefone="${cliente.telefone}" style="
+												data-id="${pedido.cliente.id}" 
+												data-nome="${pedido.cliente.nome}"
+												data-telefone="${pedido.cliente.telefone}" style="
 												box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);">
 												
 						 	<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -271,7 +273,7 @@ html, body{
                                                 <td data-label="Excluir">
                                                 <button class="btn btn-outline-danger" 
                                                  data-toggle="modal" data-target="#exampleModalCenter"
-                                                 data-id="${cliente.id}">
+                                                 data-id="${pedido.cliente.id}">
 						
 											<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 											  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
