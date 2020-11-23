@@ -338,6 +338,7 @@
 <script src="src/js/ajax/loadMiniature.js"></script>
 <script src="src/js/ajax/updateCaneca.js"></script>
 <script src="src/js/util/sendMenssage.js"></script>
+<script src="src/js/util/sidebar.js"></script>
 
 <script type="text/javascript">
 $('#text-area').val("${caneca.descricao}")

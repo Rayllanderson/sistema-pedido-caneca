@@ -11,6 +11,7 @@ public class Cliente implements Serializable{
     private Long id;
     private String nome;
     private String telefone;
+    private Pedido pedido;
     
     private List <Caneca> canecas = new ArrayList<>();
     
@@ -85,5 +86,13 @@ public class Cliente implements Serializable{
     
     public String getTelefoneSemSimbolo() {
 	return telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "");
+    }
+
+    public Pedido getPedido() {
+	return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+	this.pedido = pedido;
     }
 }

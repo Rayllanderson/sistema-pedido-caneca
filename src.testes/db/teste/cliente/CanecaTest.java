@@ -18,23 +18,23 @@ public class CanecaTest {
     
     @Test
     public void salvar() {
-	
-	Caneca obj = new Caneca(null, 1, new Tema(1L, null ), Etapa.PEDIDO_REALIZADO, new Image(0L, null, null, null, null), new Cliente(22L, null, null), "Imagem com tuututu tatata");
-	
-	obj = repository.save(obj);
-	
-	System.out.println(obj);
+//	
+//	Caneca obj = new Caneca(null, 1, new Tema(1L, null ), Etapa.PEDIDO_REALIZADO, new Image(0L, null, null, null, null), new Cliente(22L, null, null), "Imagem com tuututu tatata");
+//	
+//	obj = repository.save(obj);
+//	
+//	System.out.println(obj);
     }
 
 
     @Test
     public void update() {
 	
-	Caneca obj = new Caneca(117L, 2, new Tema(1L, null ), Etapa.PEDIDO_REALIZADO, new Image(0L, null, null, null, null), new Cliente(22L, null, null), "");
-	
-	obj = repository.update(obj);
-	
-	System.out.println(obj);
+//	Caneca obj = new Caneca(117L, 2, new Tema(1L, null ), Etapa.PEDIDO_REALIZADO, new Image(0L, null, null, null, null), new Cliente(22L, null, null), "");
+//	
+//	obj = repository.update(obj);
+//	
+//	System.out.println(obj);
     }
 
     @Test
