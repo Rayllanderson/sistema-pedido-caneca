@@ -220,7 +220,7 @@
                             		</div>
                             		 <ul class="list-group list-group-flush">
     									<li class="list-group-item"> <a class="btn text-primary" href="canecas?action=all" style="width: 100%">Todas </a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Canecas com pedido </a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" href="canecas?action=today" style="width: 100%">Canecas Para Hoje </a></li>
     									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Canecas sem pedido </a></li>
     								</ul>
                             	</div> <!-- fim card -->

@@ -189,12 +189,7 @@
 
                                 <div class="card-header border-0 mb-3">
                                 <div class="d-flex bd-highlight">
-                                    <h3  class="p-2 flex-grow-1 bd-highlight" style="display: inline;">${cliente.nome}</h3>
-                                    <h5 style="display: inline;"class="p-2 bd-highlight"><a href="javascript:void(0)" 
-                                    data-toggle="modal"
-                                    data-target="#messageModal" 
-                                    data-telefone="${cliente.telefone}"
-                                    data-nome="${cliente.nome}"><i class="fas fa-phone"></i>  ${cliente.telefone }</a></h5>
+                                    <h3  class="p-2 flex-grow-1 bd-highlight" style="display: inline;">Todas as Canecas</h3>
                                     </div>
                                 </div>
 

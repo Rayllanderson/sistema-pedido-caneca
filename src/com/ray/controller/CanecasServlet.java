@@ -11,11 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ray.model.dao.CanecaRepository;
 import com.ray.model.dao.ClienteRepository;
+import com.ray.model.dao.PedidoRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.dao.TemaRepository;
 import com.ray.model.entities.Caneca;
 import com.ray.model.entities.Cliente;
+import com.ray.model.entities.Pedido;
 import com.ray.model.service.CanecaService;
+import com.ray.model.service.PedidoService;
+import com.ray.util.CanecaUtil;
+import com.ray.util.ClientesUtil;
 
 /**
  * Tela da tabela de canecas
@@ -31,6 +36,7 @@ public class CanecasServlet extends HttpServlet {
     private ClienteRepository clienteRepository;
     private TemaRepository temaRepository;
     private CanecaService canecaService;
+    private PedidoRepository pedidoRepository = RepositoryFactory.createPedidoDao();
 
     @Override
     public void init() throws ServletException {
@@ -61,6 +67,8 @@ public class CanecasServlet extends HttpServlet {
 		    response.setStatus(500);
 	    }else if(action.equals("all")){
 		listAll(request, response);
+	    }else if(action.equals("today")) {
+		listToday(request, response);
 	    }
 	} else {
 	    listAllOfCliente(request, response);
@@ -84,4 +92,14 @@ public class CanecasServlet extends HttpServlet {
 	request.getSession().setAttribute("temas", temaRepository.findAll());
 	request.getRequestDispatcher("all-canecas.jsp").forward(request, response);
     }
+    
+    private void listToday (HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	List<Caneca> canecas = CanecaUtil.getAllPedidosForToday(pedidoRepository, canecaRepository);
+	request.getSession().setAttribute("canecas", canecas);
+	request.getSession().setAttribute("temas", temaRepository.findAll());
+	request.getRequestDispatcher("all-canecas.jsp").forward(request, response);
+    }
+    
+    
 }

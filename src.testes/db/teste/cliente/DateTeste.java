@@ -46,7 +46,7 @@ public class DateTeste {
 	List <String> datas = new ArrayList<>();
 	SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
-	String sql = "select * from new_table";
+	String sql = "select * from pedidos";
 	try {
 	    st = conn.prepareStatement(sql);
 //	    st.setLong(1, canecaId);
@@ -54,6 +54,9 @@ public class DateTeste {
 	    while(rs.next()) {
 		Timestamp data =  rs.getTimestamp("order_time");
 		Date date = new Date(data.getTime());
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
 		System.out.println(date);
 		datas.add(sdf1.format(data));
 	    }
@@ -66,7 +69,7 @@ public class DateTeste {
     }
     
     public static void main(String[] args) {
-	save();
+//	save();
 	findAll().forEach(System.out::println);
     }
 }
