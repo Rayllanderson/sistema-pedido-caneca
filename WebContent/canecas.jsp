@@ -235,7 +235,7 @@
 
                                     <thead>
                                         <tr class="text-primary">
-                                            <th scope="col" class="text-center">Nome</th>
+                                            <th scope="col" class="text-center">Selecione</th>
                                          	<th scope="col" data-sortable="true" data-field="etapa">Etapa</th>
                                             <th scope="col" >Editar</th>
                                             <th scope="col" >Excluir</th>
@@ -280,6 +280,7 @@
                                 </table>
               </div> <!-- fim table responsive -->
                <script> $('#table').bootstrapTable();</script>
+               <script src="src/js/util/canecas.custom.table.js"></script>
           </data> 
 		</div> <!-- fim card -->
 
@@ -453,7 +454,6 @@
 <script src="src/js/ajax/edit.save.caneca.js"></script>
 <script src="src/js/ajax/excluirCaneca.js"></script>
 <script src="src/js/util/sendMenssage.js"></script>
-<script src="src/js/util/canecas.custom.table.js"></script>
 <script src="src/js/util/sidebar.js"></script>
 
 <script type="text/javascript">

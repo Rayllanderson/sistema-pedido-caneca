@@ -205,5 +205,28 @@ public class CanecaDaoJdbc implements CanecaRepository {
 	    DB.closeStatement(st);
 	}
     }
+    
+    @Override
+    public List<Caneca> findAll() {
+	PreparedStatement st = null;
+	ResultSet rs = null;
+	List<Caneca> canecas = new ArrayList<>();
+	String sql = "select canecas.*, temas.nome as tema_nome, "
+		+ "clientes.nome as cli_nome, clientes.telefone as cli_tel from canecas "
+		+ "inner join temas on id_tema = temas.id "
+		+ "inner join clientes on id_cliente = clientes.id ";
+	try {
+	    st = conn.prepareStatement(sql);
+	    rs = st.executeQuery();
+	    while (rs.next()) {
+		canecas.add(setNewCaneca(rs));
+	    }
+	    return canecas;
+	} catch (SQLException e) {
+	    throw new DbException(e.getMessage());
+	} finally {
+	    DB.closeStatement(st);
+	}
+    }
 
 }

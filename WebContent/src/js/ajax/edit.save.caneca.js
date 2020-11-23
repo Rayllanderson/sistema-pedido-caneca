@@ -55,8 +55,9 @@ $("#customSwitch1").on('change', function() {
 });
 
 
-
 $('#btn-edit-caneca').on('click', function() {
+	
+	const queryString = window.location.search;
 	var acao = title;
 	acao = acao == "Editar" ? 'Editada' : 'Cadastrada'
 	var id = $('#id-edit').val();
@@ -81,7 +82,7 @@ $('#btn-edit-caneca').on('click', function() {
 			success: function() {
 				alertBootstrap("Caneca " + acao, 'alert alert-success', "Sucesso")
 				$('#edit-modal').modal('hide')
-				$.get("canecas", function(responseXml) {
+				$.get("canecas" + queryString, function(responseXml) {
 					$("#start").html($(responseXml).find("data").html());
 				});
 			}, error: function() {

@@ -76,7 +76,7 @@ public class SaveCanecaServlet extends HttpServlet {
 	    ThemeValidation.validateTheme(tema);
 	    Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
 	    String idCaneca = request.getParameter("idCaneca");
-	    cliente = recoverClientIfNull(idCaneca, cliente, request);
+	    cliente = getClient(idCaneca, request);
 	    String etapaId = request.getParameter("etapa-id");
 	    Etapa etapa = Etapa.valueOf(Integer.valueOf(etapaId));
 	    Caneca caneca = new Caneca(null, Integer.valueOf(quantidade), tema, etapa, cliente, descricao);
@@ -88,18 +88,13 @@ public class SaveCanecaServlet extends HttpServlet {
 	}
     }
 
-    private Cliente recoverClientIfNull(String idCaneca, Cliente cliente, HttpServletRequest request) {
-	try {
-	    cliente = cliente == null ? canecaRepository.findById(Long.valueOf(idCaneca)).getCliente() : cliente;
-	    return cliente;
-	} catch (NumberFormatException e) {
-	    try {
-		return clienteRepository.findById(Long.valueOf(request.getParameter("clienteId")));
-	    } catch (NumberFormatException e1) {
-		return null;
-	    }
+    private Cliente getClient(String idCaneca, HttpServletRequest request) {
+	try{
+	    Caneca old = canecaRepository.findById(Long.valueOf(idCaneca));
+	    return old.getCliente();
+	}catch (NumberFormatException e) {
+	    return (Cliente) request.getSession().getAttribute("cliente");
 	}
-
     }
 
     private void saveOrUpdate(String canecaId, Caneca caneca) {

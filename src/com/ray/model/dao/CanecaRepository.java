@@ -20,6 +20,8 @@ public interface CanecaRepository {
      * @return uma lista contendo todas as canecas do cliente informado via ID
      */
     List<Caneca> findAll(Long clientId);
+    
+    List<Caneca> findAll();
 
     /**
      * Retornará a caneca sem InputStream, visto que InputStream não é serializável

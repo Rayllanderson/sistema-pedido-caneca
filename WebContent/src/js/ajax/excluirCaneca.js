@@ -9,7 +9,7 @@ $('#exampleModalCenter').on('show.bs.modal', function(event) {
 });
 
 $('#btn-delete').on('click', function() {
-
+	const queryString = window.location.search;
 	$.ajax({
 		method: "GET",
 		url: "canecas?action=delete",
@@ -17,7 +17,7 @@ $('#btn-delete').on('click', function() {
 		success: function() {
 			$('#exampleModalCenter').modal('hide')
 			alertBootstrap("Caneca Excluída com Sucesso!", 'alert alert-success', "Sucesso")
-			$.get("canecas", function(responseXml) {        
+			$.get("canecas" + queryString, function(responseXml) {        
 				$("#start").html($(responseXml).find("data").html()); 
 			});
 		}, error: function() {
