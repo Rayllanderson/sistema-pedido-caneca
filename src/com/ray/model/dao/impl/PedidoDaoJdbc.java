@@ -52,32 +52,15 @@ public class PedidoDaoJdbc implements PedidoRepository {
 	}
 	return false;
     }
-
-    @Override
-    public void deleteById(Long id) {
-	PreparedStatement st = null;
-	String sql = "delete from pedidos where id = ?";
-	try {
-	    st = conn.prepareStatement(sql);
-	    st.setLong(1, id);
-	    if (st.executeUpdate() == 0) {
-		throw new DbException("id não existe");
-	    };
-	} catch (SQLException e) {
-	    throw new DbException(e.getMessage());
-	} finally {
-	    DB.closeStatement(st);
-	}
-    }
     
     @Override
-    public Pedido findByClienteId(Long id) {
+    public Pedido findByClienteId(Long clienteId) {
 	PreparedStatement st = null;
 	ResultSet rs = null;
-	String sql = "select * from pedidos where id = ?";
+	String sql = "select * from pedidos where cliente_id = ?";
 	try {
 	    st = conn.prepareStatement(sql);
-	    st.setLong(1, id);
+	    st.setLong(1, clienteId);
 	    rs = st.executeQuery();
 	    if(rs.next()) {
 		return insertCliente(rs);
@@ -90,6 +73,63 @@ public class PedidoDaoJdbc implements PedidoRepository {
 	    DB.closeStatement(st);
 	}
     }
+  
+
+    @Override
+    public void deleteByClientId(Long clienteId) {
+	PreparedStatement st = null;
+	String sql = "delete from pedidos where cliente_id = ?";
+	try {
+	    st = conn.prepareStatement(sql);
+	    st.setLong(1, clienteId);
+	    if (st.executeUpdate() == 0) {
+		throw new DbException("id não existe");
+	    };
+	} catch (SQLException e) {
+	    throw new DbException(e.getMessage());
+	} finally {
+	    DB.closeStatement(st);
+	}
+    }
+    
+
+//    @Override
+//    public void deleteById(Long id) {
+//	PreparedStatement st = null;
+//	String sql = "delete from pedidos where id = ?";
+//	try {
+//	    st = conn.prepareStatement(sql);
+//	    st.setLong(1, id);
+//	    if (st.executeUpdate() == 0) {
+//		throw new DbException("id não existe");
+//	    };
+//	} catch (SQLException e) {
+//	    throw new DbException(e.getMessage());
+//	} finally {
+//	    DB.closeStatement(st);
+//	}
+//    }
+    
+//    @Override
+//    public Pedido findById(Long id) {
+//	PreparedStatement st = null;
+//	ResultSet rs = null;
+//	String sql = "select * from pedidos where id = ?";
+//	try {
+//	    st = conn.prepareStatement(sql);
+//	    st.setLong(1, id);
+//	    rs = st.executeQuery();
+//	    if(rs.next()) {
+//		return insertCliente(rs);
+//	    }else {
+//		return null;
+//	    }
+//	} catch (SQLException e) {
+//	    throw new DbException(e.getMessage());
+//	} finally {
+//	    DB.closeStatement(st);
+//	}
+//    }
 
     @Override
     public List<Pedido> findAll() {
@@ -114,7 +154,7 @@ public class PedidoDaoJdbc implements PedidoRepository {
     private Pedido insertCliente(ResultSet rs) throws SQLException {
 	Timestamp data =  rs.getTimestamp("order_time");
 	Date date = new Date(data.getTime());
-	Pedido p = new Pedido(cliRepository.findById(rs.getLong("cliente_id")), date);
+	Pedido p = new Pedido(Long.valueOf(rs.getString("id")), cliRepository.findById(rs.getLong("cliente_id")), date);
 	return p;
     }
 

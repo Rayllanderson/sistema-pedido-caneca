@@ -2,6 +2,7 @@ package com.ray.model.service;
 
 import com.ray.model.dao.CanecaRepository;
 import com.ray.model.dao.ClienteRepository;
+import com.ray.model.dao.PedidoRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.entities.Cliente;
 
@@ -10,11 +11,15 @@ public class ClienteService {
     private ClienteRepository repository;
     private CanecaService cService;
     private CanecaRepository cRepository;
+    private PedidoService pedidoService;
+    private PedidoRepository pedidoRepository;
 
     public ClienteService() {
-	this.repository = RepositoryFactory.createClienteDao();
-	this.cService = new CanecaService();
+	repository = RepositoryFactory.createClienteDao();
 	cRepository = RepositoryFactory.createCanecaDao();
+	pedidoRepository = RepositoryFactory.createPedidoDao();
+	cService = new CanecaService();
+	pedidoService = new PedidoService();
     }
 
     public Cliente save(Cliente cliente) {
@@ -33,6 +38,7 @@ public class ClienteService {
      */
     public boolean deleteById(Long id) {
 	try {
+	    pedidoService.deleteByClientId(id);
 	    cRepository.findAll(id).forEach(x -> cService.deleteById(x.getId()));
 	    repository.deleteById(id);
 	    return true;

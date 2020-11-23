@@ -8,7 +8,7 @@ public interface PedidoRepository {
 
     boolean save(Pedido pedido);
 
-    void deleteById(Long id);
+    void deleteByClientId(Long id);
 
     Pedido findByClienteId(Long id);
 
