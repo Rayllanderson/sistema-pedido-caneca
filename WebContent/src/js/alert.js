@@ -26,3 +26,23 @@ function alertError(msg, classe) {
 		$("#alertE").slideUp(500);
 	});
 }
+
+
+function alertBootstrap(msg, classe, titulo, tempo) {
+	$(".alert").show();
+	const title = document.getElementById('titulo');
+
+	if(titulo != undefined){	
+		if(title != null){
+		title.innerHTML = titulo
+		}
+	}else{
+		title.innerHTML = ''
+	}
+	document.getElementById('alertMsg').innerHTML = msg;
+	document.getElementById("success-alert").className = classe;
+	$(".alert").fadeTo(2500, tempo).slideUp(tempo, function() {
+		$(".alert").slideUp(tempo);
+	});
+}
+

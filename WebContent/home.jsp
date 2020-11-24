@@ -23,6 +23,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="src/css/main.css">
 
+
 <style type="text/css">
 
 	.card{
@@ -64,15 +65,44 @@
             <ul class="list-unstyled components">
                 <p>SideBar</p>
                 <li>
-                     <a class="nav-link active" href="#"> <i class="fas fa-home fa-sm"></i> Home</a>
-                </li>
-
+                     <a href="#" > <i class="fas fa-home fa-sm"></i> Home</a>
+				</li>
+				
                 <li>
-                     <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
+                     <a href="#clienteSubmenu" class="dropdown-toggle"  data-toggle="collapse"><i class="fas fa-user fa-md"></i> Clientes </a>
+                      <ul class="collapse list-unstyled" id="clienteSubmenu">
+                        <li>
+                            <a href="clientes?action=all">Todos</a>
+                        </li>
+                        <li>
+                            <a href="clientes">Pedidos Realizados</a>
+                        </li>
+                        <li>
+                            <a href="clientes?action=without-order">Pedidos não realizados</a>
+                        </li>
+                    </ul>
                 </li>
+                
+                
                 <li>
-                   <a class="nav-link" href="canecas"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                   <a href="#canecaSubmenu" class="dropdown-toggle"  data-toggle="collapse"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                   <ul class="collapse list-unstyled" id="canecaSubmenu">
+                        <li>
+                            <a href="canecas?action=all">Todas</a>
+                        </li>
+                        <li>
+                            <a href="canecas?action=today">Canecas para hoje</a>
+                        </li>
+                        <li>
+                            <a href="clientes?action=without-order">....</a>
+                        </li>
+                    </ul>
                 </li>
+                
+                <li>
+                   <a href="temas"><i class="fas fa-palette"></i> Temas </a>
+                </li>                
+                
             </ul>
 
             <ul class="list-unstyled CTAs">
@@ -194,19 +224,18 @@
                 </div>
 
 
-
-
                 <!-- Page content -->
                 <div class="container mt-5" >
-                    <div class="row row-cols-1 row-cols-md-1">
-                        <div class="col">
+                    <div class="row row-cols-1 row-cols-md-2">
+                  	    <div class="col-md-1"></div>
+                        <div class="col-md-10">
                         	<div class="card-deck">
                             	<div class="card" >
-                            	<img src="https://image.flaticon.com/icons/png/512/33/33308.png" class="card-img-top p-4" >
+                            	<img src="https://image.flaticon.com/icons/png/512/33/33308.png" class="card-img-top p-5 mb-n5" >
                             		<div class="card-body">
    										 <h4 class="card-title text-center">Clientes</h4>
                             		</div>
-                            		 <ul class="list-group list-group-flush">
+                            		 <ul class="list-group list-group-flush ">
     									<li class="list-group-item"> <a class="btn text-primary" href="clientes?action=all" style="width: 100%"> Todos </a></li>
     									<li class="list-group-item"> <a class="btn text-primary" href="clientes" style="width: 100%"> Pedidos realizados </a></li>
     									<li class="list-group-item"> <a class="btn text-primary" href="clientes?action=without-order" style="width: 100%"> Pedidos não realizados </a></li>
@@ -220,22 +249,10 @@
                             		</div>
                             		 <ul class="list-group list-group-flush">
     									<li class="list-group-item"> <a class="btn text-primary" href="canecas?action=all" style="width: 100%">Todas </a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" href="canecas?action=today" style="width: 100%">Canecas Para Hoje </a></li>
+    									<li class="list-group-item"> <a class="btn text-primary" href="canecas?action=today" style="width: 100%">Entregar Hoje </a></li>
     									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Canecas sem pedido </a></li>
     								</ul>
                             	</div> <!-- fim card -->
-                            	
-                            	<div class="card" >
-                            	<img src="https://www.flaticon.com/svg/static/icons/svg/96/96586.svg" class="card-img-top p-4" >
-                            		<div class="card-body">
-   										 <h4 class="card-title text-center">Temas</h4>
-                            		</div>
-                            		 <ul class="list-group list-group-flush">
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Listar Temas </a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Cadastrar tema</a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Excluir Tema</a></li>
-    								</ul>
-                            	</div> <!-- fim card -->	
                             	
                             	<div class="card" >
                             	<img src="https://www.flaticon.com/svg/static/icons/svg/64/64722.svg" class="card-img-top p-4" >
@@ -258,9 +275,8 @@
         </div>
         
         </div>
-        
-
 	<div class="mt-4 mb-4"></div>
+	
 
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
@@ -273,13 +289,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <script src="src/js/alert.js"></script>
-<script src="src/js/util/mask.min.js"></script>
-<script src="src/js/ajax/edit.save.cliente.js"></script>
-<script src="src/js/ajax/excluirCliente.js"></script>
-<script src="src/js/ajax/selecionarClienteAjax.js"></script>
-<script src="src/js/util/clientes.custom.table.js"></script>
 <script src="src/js/util/sidebar.js"></script>
-<script src="src/js/util/telefone.mask.js"></script>
 
 <script type="text/javascript">
 $('.alert').hide();
