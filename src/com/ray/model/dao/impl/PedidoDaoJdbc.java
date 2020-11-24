@@ -26,9 +26,6 @@ public class PedidoDaoJdbc implements PedidoRepository {
 	this.conn = conn;
     }
 
-    /**
-     * Retorna o cliente salvo do banco do de dados
-     */
     @Override
     public boolean save(Pedido pedido) {
 	PreparedStatement st = null;
