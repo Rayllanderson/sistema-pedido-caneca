@@ -26,8 +26,7 @@ public class AdminDaoJdbc implements AdminRepository {
     public Admin save(Admin admin) {
 	PreparedStatement st = null;
 	ResultSet rs = null;
-	String sql = "insert into " + tableName
-		+ " (username, password) values (?, ?)";
+	String sql = "insert into " + tableName + " (username, password) values (?, ?)";
 	try {
 	    st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 	    st.setString(1, admin.getUsername());
@@ -50,8 +49,7 @@ public class AdminDaoJdbc implements AdminRepository {
     @Override
     public Admin update(Admin admin) {
 	PreparedStatement st = null;
-	String sql = "update " + tableName
-		+ " set username = ?, password = ? where id = ?";
+	String sql = "update " + tableName + " set username = ?, password = ? where id = ?";
 	try {
 	    st = conn.prepareStatement(sql);
 	    st.setString(1, admin.getUsername());
@@ -104,7 +102,27 @@ public class AdminDaoJdbc implements AdminRepository {
 	    DB.closeStatement(st);
 	}
     }
-    
+
+    @Override
+    public Admin Login(Admin admin) {
+	PreparedStatement st = null;
+	ResultSet rs = null;
+	try {
+	    st = conn.prepareStatement("select * from admins where username = ? and password = ?");
+	    st.setString(1, admin.getUsername());
+	    st.setString(2, admin.getPassword());
+	    rs = st.executeQuery();
+	    if (rs.next())
+		return setNewAdmin(rs);
+	    else
+		return null;
+	} catch (SQLException e) {
+	    throw new DbException(e.getMessage());
+	} finally {
+	    DB.closeStatement(st);
+	}
+    }
+
     private Admin setNewAdmin(ResultSet rs) throws SQLException {
 	return new Admin(rs.getLong("id"), rs.getString("username"), rs.getString("password"));
     }
@@ -128,5 +146,5 @@ public class AdminDaoJdbc implements AdminRepository {
 	    DB.closeStatement(st);
 	}
     }
-    
+
 }

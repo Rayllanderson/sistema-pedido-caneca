@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ray.model.entities.Cliente;
+import com.ray.model.entities.Admin;
 
 
 
-@WebFilter(urlPatterns = { "/order.jsp", "/order/*", "/edit-order.jsp", "/carrinho.jsp", "/carrinho/*"})
+@WebFilter(urlPatterns = {"/caneca/*", "/canecas/*", "/clientes/*", "/file/*", "/caneca-save/*", "/save-client/*", "/temas/*",
+	"/all-canecas.jsp", "/all-clientes.jsp", "/canecas.jsp", "/caneca.jsp", "/clientes.jsp", "/home.jsp", "/temas.jsp"})
 public class Autenticacao implements Filter {
 
     private ServletContext context;
@@ -36,11 +37,11 @@ public class Autenticacao implements Filter {
 	    throws IOException, ServletException {
 	HttpServletRequest req = (HttpServletRequest) request;
 	HttpServletResponse res = (HttpServletResponse) response;
-	Cliente cliente = (Cliente) req.getSession().getAttribute("cliente");
+	Admin admin = (Admin) req.getSession().getAttribute("admin");
 	HttpSession session = req.getSession(false);
 	request.setCharacterEncoding("UTF-8");
 //	System.out.println("Ola eu sou o filter passando por aqui. session = " + session);
-	if (session == null || cliente == null) { // checking whether the session exists
+	if (session == null || admin == null) { // checking whether the session exists
 	    this.context.log("Unauthorized access request");
 	    res.sendRedirect(req.getContextPath() + "/index.jsp");
 	} else {

@@ -16,4 +16,6 @@ public interface AdminRepository {
 
     List<Admin> findAll();
 
+    Admin Login(Admin admin);
+
 }

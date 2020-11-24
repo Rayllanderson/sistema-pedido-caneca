@@ -3,7 +3,6 @@ package com.ray.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ray.model.dao.CanecaRepository;
 import com.ray.model.dao.ClienteRepository;
-import com.ray.model.dao.ImageRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.dao.TemaRepository;
 import com.ray.model.entities.Caneca;
@@ -20,14 +18,8 @@ import com.ray.model.entities.Tema;
 import com.ray.model.entities.enums.Etapa;
 import com.ray.model.exceptions.RequisicaoInvalidaException;
 import com.ray.model.service.CanecaService;
-import com.ray.model.service.ImageService;
-import com.ray.model.validacoes.ClientValidation;
 import com.ray.model.validacoes.ThemeValidation;
 
-/**
- * mudar o nome também
- */
-@MultipartConfig
 @WebServlet("/caneca-save")
 public class SaveCanecaServlet extends HttpServlet {
 
