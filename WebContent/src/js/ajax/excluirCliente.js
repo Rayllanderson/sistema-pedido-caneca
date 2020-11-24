@@ -25,3 +25,30 @@ $('#btn-delete-cliente').on('click', function() {
 
 })
 
+
+var queryString = window.location.search;
+if (queryString == "?action=without-order"){
+	$('#deleteAll').show();
+}else{
+	console.log('ta surdo js?')
+	$('#deleteAll').hide();
+}
+
+$('#btn-delete-all-cliente').on('click', function() {
+	$.ajax({
+		method: "GET",
+		url: "clientes?action=delete-all",
+		success: function() {
+			$('#exampleModalCenter2').modal('hide')
+			alertBootstrap("Todos os clientes foram excluídos", 'alert alert-success', "Sucesso", 1000)
+			$.get("clientes" + queryString, function(responseXml) {
+				$("#start").html($(responseXml).find("data").html());
+			});
+		}, error: function() {
+			$('#exampleModalCenter2').modal('hide')
+			alertBootstrap("Ocorreu um erro ao deletar", 'alert alert-danger', "Ops..")
+		}
+	});
+
+})
+

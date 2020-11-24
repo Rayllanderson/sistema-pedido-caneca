@@ -214,9 +214,11 @@ html, body{
                                 <!-- Card header -->
 
                                 <div class="card-header border-0">
-                                    <h3 class="mb-0">Clientes</h3>
+                                    <h3 id="titulo" class="mb-0">Clientes</h3>
                                 </div>
-
+                                <div class="p-3">
+<button type="button" class="btn btn-danger" id="deleteAll"  data-toggle="modal" data-target="#exampleModalCenter2">Apagar tudo</button>
+</div>
  <data id="start">
                             <!--  INICIO TABELA  -->
                             <div class="table-responsive">
@@ -339,6 +341,27 @@ html, body{
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-danger" id="btn-delete-cliente">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<!-- Modal confirmar remover cliente -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLongTitle">Atenção <i class="fas fa-exclamation-triangle"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       	Você tem certeza que deseja remover todos os cliente que não fizeram pedidos?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="btn-delete-all-cliente">Excluir</button>
       </div>
     </div>
   </div>

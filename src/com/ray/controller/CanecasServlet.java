@@ -16,11 +16,8 @@ import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.dao.TemaRepository;
 import com.ray.model.entities.Caneca;
 import com.ray.model.entities.Cliente;
-import com.ray.model.entities.Pedido;
 import com.ray.model.service.CanecaService;
-import com.ray.model.service.PedidoService;
 import com.ray.util.CanecaUtil;
-import com.ray.util.ClientesUtil;
 
 /**
  * Tela da tabela de canecas

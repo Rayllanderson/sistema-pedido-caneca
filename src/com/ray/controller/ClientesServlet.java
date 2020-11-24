@@ -40,9 +40,11 @@ public class ClientesServlet extends HttpServlet {
 	if (action != null) {
 	    if (action.equals("delete")) {
 		delete(request, response);
-	    }else if(action.equals("all")) {
+	    } else if (action.equals("delete-all")) {
+		deleteAll(request, response);
+	    } else if (action.equals("all")) {
 		listAll(request);
-	    }else if(action.equals("without-order")) {
+	    } else if (action.equals("without-order")) {
 		listClientWithoutOrder(request);
 	    }
 	    request.getRequestDispatcher("all-clientes.jsp").forward(request, response);
@@ -52,11 +54,23 @@ public class ClientesServlet extends HttpServlet {
 	}
     }
 
+    private void deleteAll(HttpServletRequest request, HttpServletResponse response) {
+	try{
+	    ClientesUtil.getClientWithoutOrder(pedidoRepository, clienteRepository).forEach(x -> clienteService.deleteById(x.getId()));
+	    response.setStatus(204);
+	    return;
+	}catch (Exception e) {
+	    e.printStackTrace();
+	    response.setStatus(500);
+	    return;
+	}
+    }
+
     private void delete(HttpServletRequest request, HttpServletResponse response) {
 	Long id = Long.valueOf(request.getParameter("id"));
-	if (clienteService.deleteById(id)) 
+	if (clienteService.deleteById(id))
 	    response.setStatus(204);
-	 else 
+	else
 	    response.setStatus(500);
     }
 
@@ -99,13 +113,14 @@ public class ClientesServlet extends HttpServlet {
     private void listAll(HttpServletRequest request) {
 	request.getSession().setAttribute("clientes", ClientesUtil.getAll(clienteRepository));
     }
-    
+
     private void listClientWithOrder(HttpServletRequest request) {
 	request.getSession().setAttribute("pedidos", ClientesUtil.getAllPedidos(pedidoRepository));
     }
-    
+
     private void listClientWithoutOrder(HttpServletRequest request) {
-	request.getSession().setAttribute("clientes", ClientesUtil.getClientWithoutOrder(pedidoRepository, clienteRepository));
+	request.getSession().setAttribute("clientes",
+		ClientesUtil.getClientWithoutOrder(pedidoRepository, clienteRepository));
     }
 
 }
