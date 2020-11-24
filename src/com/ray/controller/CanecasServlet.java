@@ -84,7 +84,7 @@ public class CanecasServlet extends HttpServlet {
     
     private void listAll (HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	List<Caneca> canecas = canecaRepository.findAll();
+	List<Caneca> canecas = CanecaUtil.getAllCanecasWithOrder(pedidoRepository, canecaRepository);
 	request.getSession().setAttribute("canecas", canecas);
 	request.getSession().setAttribute("temas", temaRepository.findAll());
 	request.getRequestDispatcher("all-canecas.jsp").forward(request, response);

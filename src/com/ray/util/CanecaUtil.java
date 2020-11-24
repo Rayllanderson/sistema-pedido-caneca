@@ -24,7 +24,7 @@ public class CanecaUtil {
      */
     public static List<Caneca> getAllPedidosForToday(PedidoRepository pedidoRepository, CanecaRepository canecaRepository) {
 	List<Pedido> pedidos = pedidoRepository.findAll();
-	List<Caneca> CanecasForToday = new ArrayList<>();
+	List<Caneca> canecasForToday = new ArrayList<>();
 	List<Cliente> clientes = new ArrayList<>();
 	pedidos.forEach(x -> clientes.add(x.getCliente())); //setando os clientes
 	clientes.forEach(x -> x.getCanecas().addAll(canecaRepository.findAll(x.getId()))); //setando canecas nos clientes
@@ -38,14 +38,24 @@ public class CanecaUtil {
 	       int today = LocalDate.now().getDayOfMonth();
 	       if (c.getTema().equals(new Tema(4L, ""))) {
 		   if (today == (orderDay + Prazo.PERSONALIZADO.getValue())) {
-		       CanecasForToday.add(c);
+		       canecasForToday.add(c);
 		   }else if (today == (orderDay + Prazo.NORMAL.getValue())) {
-		       CanecasForToday.add(c);
+		       canecasForToday.add(c);
 		   }
 	       }
 	   }
 	}
-	return CanecasForToday;
+	return canecasForToday;
+    }
+    
+    public static List<Caneca> getAllCanecasWithOrder(PedidoRepository pedidoRepository, CanecaRepository canecaRepository){
+	List<Pedido> pedidos = pedidoRepository.findAll();
+	List<Caneca> canecas = new ArrayList<>();
+	List<Cliente> clientes = new ArrayList<>();
+	pedidos.forEach(x -> clientes.add(x.getCliente())); //setando os clientes
+	clientes.forEach(x -> x.getCanecas().addAll(canecaRepository.findAll(x.getId()))); //setando canecas nos clientes
+	clientes.forEach(x -> canecas.addAll(x.getCanecas()));
+	return canecas;
     }
 
 }
