@@ -38,7 +38,7 @@ public class ThemeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	String action = req.getParameter("action");
+	try{String action = req.getParameter("action");
 	if (action != null) {
 	    if (action.equals("delete")) {
 		delete(req, resp);
@@ -46,6 +46,11 @@ public class ThemeServlet extends HttpServlet {
 	} else {
 	    req.getSession().setAttribute("temas", temaRepository.findAll());
 	    req.getRequestDispatcher("temas.jsp").forward(req, resp);
+	}
+	}catch (Exception e) {
+	    e.printStackTrace();
+	    resp.getWriter().write("Ocorreu um erro.");
+	    resp.setStatus(500);
 	}
     }
 

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ray.model.dao.CanecaRepository;
-import com.ray.model.dao.ClienteRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.dao.TemaRepository;
 import com.ray.model.entities.Caneca;
@@ -28,7 +27,6 @@ public class SaveCanecaServlet extends HttpServlet {
     private TemaRepository temaRepository;
     private CanecaService canecaService;
     private CanecaRepository canecaRepository;
-    private ClienteRepository clienteRepository;
 
     @Override
     public void init() throws ServletException {
@@ -44,7 +42,6 @@ public class SaveCanecaServlet extends HttpServlet {
 	temaRepository = RepositoryFactory.createTemaDao();
 	canecaRepository = RepositoryFactory.createCanecaDao();
 	canecaService = new CanecaService();
-	this.clienteRepository = RepositoryFactory.createClienteDao();
     }
 
     /**

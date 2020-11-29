@@ -36,30 +36,37 @@ public class ClientesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	String action = request.getParameter("action");
-	if (action != null) {
-	    if (action.equals("delete")) {
-		delete(request, response);
-	    } else if (action.equals("delete-all")) {
-		deleteAll(request, response);
-	    } else if (action.equals("all")) {
-		listAll(request);
-	    } else if (action.equals("without-order")) {
-		listClientWithoutOrder(request);
+	try {
+	    String action = request.getParameter("action");
+	    if (action != null) {
+		if (action.equals("delete")) {
+		    delete(request, response);
+		} else if (action.equals("delete-all")) {
+		    deleteAll(request, response);
+		} else if (action.equals("all")) {
+		    listAll(request);
+		} else if (action.equals("without-order")) {
+		    listClientWithoutOrder(request);
+		}
+		request.getRequestDispatcher("all-clientes.jsp").forward(request, response);
+	    } else {
+		listClientWithOrder(request);
+		request.getRequestDispatcher("clientes.jsp").forward(request, response);
 	    }
-	    request.getRequestDispatcher("all-clientes.jsp").forward(request, response);
-	} else {
-	    listClientWithOrder(request);
-	    request.getRequestDispatcher("clientes.jsp").forward(request, response);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    response.getWriter().write("Ocorreu um erro.");
+	    response.setStatus(500);
 	}
     }
 
     private void deleteAll(HttpServletRequest request, HttpServletResponse response) {
-	try{
-	    ClientesUtil.getClientWithoutOrder(pedidoRepository, clienteRepository).forEach(x -> clienteService.deleteById(x.getId()));
+	try {
+	    ClientesUtil.getClientWithoutOrder(pedidoRepository, clienteRepository)
+		    .forEach(x -> clienteService.deleteById(x.getId()));
 	    response.setStatus(204);
 	    return;
-	}catch (Exception e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    response.setStatus(500);
 	    return;

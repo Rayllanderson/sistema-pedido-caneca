@@ -40,20 +40,25 @@ public class CanecaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	String action = req.getParameter("action");
-	if (action != null) {
-	    if (action.equals("select")) {
-		Long id = Long.valueOf(req.getParameter("id"));
-		List <Arquivo> arquivos = arquivoService.findAll(id, false);
-		Caneca caneca = canecaRepository.findById(id);
-		req.getSession().setAttribute("caneca", caneca);
-		req.getSession().setAttribute("cliente", caneca.getCliente());
-		req.getSession().setAttribute("arquivos", arquivos);
-		req.getSession().setAttribute("size", arquivos.size());
-		req.getSession().setAttribute("temas", temaRepository.findAll());
-		req.getRequestDispatcher("caneca.jsp").forward(req, resp);
+	try {
+	    String action = req.getParameter("action");
+	    if (action != null) {
+		if (action.equals("select")) {
+		    Long id = Long.valueOf(req.getParameter("id"));
+		    List<Arquivo> arquivos = arquivoService.findAll(id, false);
+		    Caneca caneca = canecaRepository.findById(id);
+		    req.getSession().setAttribute("caneca", caneca);
+		    req.getSession().setAttribute("cliente", caneca.getCliente());
+		    req.getSession().setAttribute("arquivos", arquivos);
+		    req.getSession().setAttribute("size", arquivos.size());
+		    req.getSession().setAttribute("temas", temaRepository.findAll());
+		    req.getRequestDispatcher("caneca.jsp").forward(req, resp);
+		}
+	    } else {
 	    }
-	}else {
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    resp.getWriter().write("Ocorreu um erro.");
 	}
 
     }
