@@ -87,6 +87,8 @@ public class ImageService {
 		arquivo.setMiniatura(Miniatura.PSD);
 	    }else if(arquivo.getContentType().contains("eps")) {
 		arquivo.setMiniatura(Miniatura.EPS);
+	    }else if(arquivo.getContentType().contains("cdr")) {
+		arquivo.setMiniatura(Miniatura.CDR);
 	    }
 	}
     }

@@ -116,7 +116,7 @@ public class ArquivosUtil implements Serializable {
     }
 
     public static String getContentType(String nameOfFile) {
-	return nameOfFile.substring(nameOfFile.lastIndexOf('.') + 1);
+	return nameOfFile.contains("octet-stream") ? ".cdr" : nameOfFile.substring(nameOfFile.lastIndexOf('.') + 1);
     }
 
     /**
