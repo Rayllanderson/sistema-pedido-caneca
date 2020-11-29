@@ -30,7 +30,6 @@ var queryString = window.location.search;
 if (queryString == "?action=without-order"){
 	$('#deleteAll').show();
 }else{
-	console.log('ta surdo js?')
 	$('#deleteAll').hide();
 }
 

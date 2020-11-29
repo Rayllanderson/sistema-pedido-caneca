@@ -162,7 +162,7 @@ p {
     height: 100vh;
     z-index: 999;
     background: #34495e;
-    color: rgb(231, 231, 231);
+    color: var(--primary);
     transition: all 0.3s;
 }
 
@@ -172,7 +172,7 @@ p {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #34495e;
+    background: #ffff;
 }
 
 #sidebar ul.components {
@@ -181,7 +181,7 @@ p {
 }
 
 #sidebar ul p {
-    color: #fff;
+    color: var(--primary);
     padding: 10px;
 }
 
@@ -192,14 +192,14 @@ p {
 }
 
 #sidebar ul li a:hover {
-    color: #309ad8;
+    color: red;
     background: #fff;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #2c3d4e;
+    color: var(--primary);
+    background: #ffff;
 }
 
 a[data-toggle="collapse"] {
@@ -209,26 +209,13 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #273747;
+    background: #ffffff;
 }
 
 ul.CTAs {
     padding: 20px;
 }
 
-ul.CTAs a {
-	color: #309ad8;
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-a.download {
-    background: #fff;
-    color: #10162c;
-}
 
 #sidebar a,
 #sidebar a:hover,
@@ -245,7 +232,7 @@ a.article:hover {
 }
 
 #navbar2 {
-    background-color: #34495e;
+    background-color: var(--primary);
     display: none;
 }
 

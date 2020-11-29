@@ -14,23 +14,20 @@
 
 <link rel="stylesheet" href="src/css/alert.css">
 
-
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	
 <!-- JQuery -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 <link rel="stylesheet" href="src/css/main.css">
 
-<link
-	href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css"
-	rel="stylesheet">
-<script
-	src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
 
 <style type="text/css">
 .card {
@@ -43,29 +40,6 @@ body {
 
 html, body {
 	height: 100%;
-}
-
-@keyframes inputMove {
-    0% {
-        transform: translateX(5px);
-    }
-    25% {
-        transform: translateX(-5px);
-    }
-    50% {
-        transform: translateX(5px);
-    }
-    75% {
-        transform: translateX(-5px);
-    }
-    100% {
-        transform: translateX(0px);
-    }
-}
-
-.edit-animation{
- 	animation-name: inputMove;
-    animation-duration: .5s;
 }
 
 </style>
@@ -85,28 +59,53 @@ html, body {
 
 	<div class="wrapper">
 		<!-- Sidebar  -->
-		 <nav id="sidebar" class="bg-white">
-    <div class="sidebar-header">
-                <h3>Bootstrap Sidebar</h3>
-            </div>
+		<nav id="sidebar">
+			<div class="sidebar-header">
+				<h3>Bootstrap Sidebar</h3>
+			</div>
 
-            <ul class="list-unstyled components">
-                <p>SideBar</p>
-						<li class="nav-item"><a class="nav-link active" href="home.jsp">
-								<i class="fas fa-home fa-sm"></i> Home
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="clientes"><i
-								class="fas fa-user fa-md"></i> Clientes </a></li>
-						<li class="nav-item"><a class="nav-link" href="canecas"><i
-								class="fas fa-mug-hot fa-sm"></i> Canecas </a></li>
-                
-                <li>
-                   <a href="temas"><i class="fas fa-palette"></i> Temas </a>
-                </li>                
-                
-            </ul>
+			<ul class="list-unstyled components">
+				<p>SideBar</p>
+				<li><a href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home
+				</a></li>
 
-        </nav>
+				<li><a href="#clienteSubmenu" class="dropdown-toggle"
+					data-toggle="collapse"><i class="fas fa-user fa-md"></i>
+						Clientes </a>
+					<ul class="collapse list-unstyled" id="clienteSubmenu">
+						<li><a href="clientes?action=all">Todos</a></li>
+						<li><a href="clientes">Pedidos Realizados</a></li>
+						<li><a href="clientes?action=without-order">Pedidos não
+								realizados</a></li>
+					</ul></li>
+
+
+				<li><a href="#canecaSubmenu" class="dropdown-toggle"
+					data-toggle="collapse"><i class="fas fa-mug-hot fa-sm"></i>
+						Canecas </a>
+					<ul class="collapse list-unstyled" id="canecaSubmenu">
+						<li><a href="canecas?action=all">Todas</a></li>
+						<li><a href="canecas?action=today">Canecas para hoje</a></li>
+						<li><a href="clientes?action=without-order">....</a></li>
+					</ul></li>
+
+				<li><a href="#temasSubmenu" class="dropdown-toggle"
+					data-toggle="collapse"><i class="fas fa-palette"></i> Temas </a>
+					<ul class="collapse list-unstyled" id="temasSubmenu">
+						<li><a href="#">Listar Temas</a></li>
+						<li><a href="#">Cadastrar Tema</a></li>
+						<li><a href="#">Excluir tema</a></li>
+					</ul></li>
+
+			</ul>
+
+			<ul class="list-unstyled CTAs">
+				<li><a
+					href="https://bootstrapious.com/tutorial/files/sidebar.zip"
+					class="download">Download source</a></li>
+			</ul>
+		</nav>
+
 
 
 
@@ -114,7 +113,8 @@ html, body {
 			<!-- Main content -->
 
 
-			<nav class="navbar navbar-dark bg-primary" id="navbar2" style="color: white">
+			<nav class="navbar navbar-dark" id="navbar2"
+				style="background-color: #34495e; color: white">
 
 				<a class="navbar-brand" href="#"> <?xml version="1.0" encoding="iso-8859-1"?>
 					<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -203,8 +203,8 @@ html, body {
 			<div class="main-content" id="panel">
 
 				<nav
-					class="navbar navbar-top navbar-expand navbar-dark border-bottom bg-primary" 
-					>
+					class="navbar navbar-top navbar-expand navbar-dark border-bottom"
+					style="background-color: #34495e;">
 					<div class="container-fluid">
 						<div class="navbar-brand">
 							<button type="button" id="sidebarCollapse"
@@ -217,7 +217,7 @@ html, body {
 
 
 				<!-- Header -->
-				<div class="header bg-primary pb-6">
+				<div class="header pb-6" style="background-color: #34495e;">
 					<div class="container-fluid">
 						<div class="header-body">
 							<div class="row align-items-center py-4">
@@ -233,82 +233,41 @@ html, body {
 
 				<!-- Page content -->
 				<div class="container mt--6">
-					<div class="row d-flex justify-content-center">
-						<div class="col">
-							<div class="card">
-								<!-- Card header -->
-								<div class="col mt-1" >
-									<div class="form-group" >
-										<label for="themeName" class="col-form-label" >Adicionar Tema: </label>
-										 <input type="text" class="form-control" id="themeName" placeholder="Nome">
-										  <input type="text" class="form-control" id="themeId" style="display: none">
-									</div>
-									<button type="button" id="saveTheme" class="btn btn-primary mb-4">Savar
-									</button>
-								</div>
-								<data id="start"> <!--  INICIO TABELA  -->
-								<div class="table-responsive">
-									<table id="themeTable" data-toggle="table"
-										data-show-toggle="true" data-search="true"
-										data-show-columns="true"
-										data-toolbar="#toolbar" data-search-accent-neutralise="true"
-										data-search-align="left" data-pagination="true"
-										data-pagination-h-align="left"
-										data-pagination-detail-h-align="right">
-										<thead>
-											<tr>
-												<th data-field="name">Nome</th>
-												<th scope="col" >Editar</th>
-												<th scope="col" >Excluir</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${temas}" var="tema">
-												<tr>
-													<td>${tema.nome}</td>
+					
+					<div class="card">
+					
+						 <div id="cover-caption">
+			        <div class="container">
+			            <div class="row justify-content-center">
+			                <div class="col-sm-5">
+			                    <h1 class="mt-3">&nbsp;</h1>
+			 				<div class="info-form">
+			 				 <form action="login" id="form" class="form justify-content-center">
+								<div class="form-group">
+								    <label for="username">Username</label>
+								    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+								  </div>
+								  <div class="form-group">
+								    <label for="exampleInputPassword1">Password</label>
+								    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+								  </div>
+								  <div class="form-group form-check">
+								  </div>
+								  <button type="submit" class="btn btn-primary">Alterar</button>
+							</form>
+			               </div>
+			                <br>
 
-													<td data-label="Editar">
-														<button class="editar btn btn-outline-info"
-															data-id="${tema.id}"
-															data-nome="${tema.nome}"
-															style="box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);" onclick="editar(this)">
-															<svg width="1em" height="1em" viewBox="0 0 16 16"
-																class="bi bi-pen-fill" fill="currentColor"
-																xmlns="http://www.w3.org/2000/svg">
-							<path fill-rule="evenodd"
-																	d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z" />
-						</svg>
-														</button>
-													</td>
-
-													<td data-label="Excluir">
-														<button class="btn btn-outline-danger" data-toggle="modal"
-															data-target="#exampleModalCenter" data-id="${tema.id}">
-															<svg width="1em" height="1em" viewBox="0 0 16 16"
-																class="bi bi-x-circle-fill" fill="currentColor"
-																xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd"
-																	d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-					</svg>
-
-														</button>
-													</td>
-
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-								<script>$('.fixed-table-toolbar').css('padding', '10px')</script>
-								<script> $('#themeTable').bootstrapTable();</script>
-								</data>
-							</div>
-						</div>
+                    <div class="mt-2" role="button">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+						
 					</div>
+					
 				</div>
+				
 			</div>
-		</div>
-	</div>
 
 
         

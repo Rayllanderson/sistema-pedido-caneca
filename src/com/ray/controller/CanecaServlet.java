@@ -13,6 +13,7 @@ import com.ray.model.dao.CanecaRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.dao.TemaRepository;
 import com.ray.model.entities.Arquivo;
+import com.ray.model.entities.Caneca;
 import com.ray.model.service.ImageService;
 
 /**
@@ -44,7 +45,9 @@ public class CanecaServlet extends HttpServlet {
 	    if (action.equals("select")) {
 		Long id = Long.valueOf(req.getParameter("id"));
 		List <Arquivo> arquivos = arquivoService.findAll(id, false);
-		req.getSession().setAttribute("caneca", canecaRepository.findById(id));
+		Caneca caneca = canecaRepository.findById(id);
+		req.getSession().setAttribute("caneca", caneca);
+		req.getSession().setAttribute("cliente", caneca.getCliente());
 		req.getSession().setAttribute("arquivos", arquivos);
 		req.getSession().setAttribute("size", arquivos.size());
 		req.getSession().setAttribute("temas", temaRepository.findAll());

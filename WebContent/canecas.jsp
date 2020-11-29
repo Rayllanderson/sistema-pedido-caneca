@@ -40,30 +40,29 @@
 
 <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
+ <nav id="sidebar" class="bg-white">
+    <div class="sidebar-header">
                 <h3>Bootstrap Sidebar</h3>
             </div>
 
             <ul class="list-unstyled components">
                 <p>SideBar</p>
-                <li>
-                     <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
+                 <li class="nav-item">
+                                <a class="nav-link" href="home.jsp"> <i class="fas fa-home fa-sm"></i> Home</a>
                 </li>
-
-                <li>
+                   <li class="nav-item">
                      <a class="nav-link" href="clientes"><i class="fas fa-user fa-md"></i> Clientes </a>
                 </li>
+                            <li class="nav-item">
+                               <a class="nav-link" href="#"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
+                            </li>
+                
                 <li>
-                   <a class="nav-link active" href="#"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
-                </li>
+                   <a href="temas"><i class="fas fa-palette"></i> Temas </a>
+                </li>                
+                
             </ul>
 
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-            </ul>
         </nav>
 
 
@@ -73,7 +72,7 @@
             <!-- Main content -->
 
 
-            <nav class="navbar navbar-dark" id="navbar2" style="  background-color: #34495e; color:white">
+            <nav class="navbar navbar-dark bg-primary" id="navbar2" style="  background-color: color:white">
 
                 <a class="navbar-brand" href="clientes">
                      <?xml version="1.0" encoding="iso-8859-1"?>
@@ -151,7 +150,7 @@
 
             <div class="main-content" id="panel">
 
-                <nav class="navbar navbar-top navbar-expand navbar-dark border-bottom" style="background-color: #34495e;">
+                <nav class="navbar navbar-top navbar-expand navbar-dark border-bottom bg-primary" >
                     <div class="container-fluid">
                         <div class="navbar-brand">
                             <button type="button" id="sidebarCollapse" class="btn btn-neutral">
@@ -163,7 +162,7 @@
 
 
                 <!-- Header -->
-                <div class="header pb-6" style="background-color:  #34495e;">
+                <div class="header bg-primary pb-6">
                     <div class="container-fluid">
                         <div class="header-body">
                             <div class="row align-items-center py-4">

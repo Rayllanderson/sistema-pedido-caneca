@@ -15,14 +15,18 @@
 <link rel="stylesheet" href="src/css/alert.css">
 
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="src/css/main.css">
 
+
+
+<link rel="stylesheet" href="src/css//nucleo.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
 <style type="text/css">
 
@@ -39,8 +43,110 @@
 	    height: 100%;
 								
 	}
-						
+	
+	.icon {
+    width: 3rem;
+    height: 3rem;
+}
+	
+	.icon-shape {
+    display: inline-flex;
+    padding: 12px;
+    text-align: center;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+	
+		
+		.bg-gradient-light {
+    background: linear-gradient(87deg, #adb5bd 0, #adaebd 100%) !important;
+}
 
+.bg-gradient-dark {
+    background: linear-gradient(87deg, #212529 0, #212229 100%) !important;
+}
+
+.bg-gradient-default {
+    background: linear-gradient(87deg, #172b4d 0, #1a174d 100%) !important;
+}
+
+.bg-gradient-white {
+    background: linear-gradient(87deg, #fff 0, white 100%) !important;
+}
+
+.bg-gradient-neutral {
+    background: linear-gradient(87deg, #fff 0, white 100%) !important;
+}
+
+.bg-gradient-darker {
+    background: linear-gradient(87deg, black 0, black 100%) !important;
+}
+
+.bg-gradient-blue {
+    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+}
+
+.bg-gradient-indigo {
+    background: linear-gradient(87deg, #5603ad 0, #9d03ad 100%) !important;
+}
+
+.bg-gradient-purple {
+    background: linear-gradient(87deg, #8965e0 0, #bc65e0 100%) !important;
+}
+
+.bg-gradient-pink {
+    background: linear-gradient(87deg, #f3a4b5 0, #f3b4a4 100%) !important;
+}
+
+.bg-gradient-red {
+    background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important;
+}
+
+.bg-gradient-orange {
+    background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+}
+
+.bg-gradient-yellow {
+    background: linear-gradient(87deg, #ffd600 0, #beff00 100%) !important;
+}
+
+.bg-gradient-green {
+    background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%) !important;
+}
+
+.bg-gradient-teal {
+    background: linear-gradient(87deg, #11cdef 0, #1171ef 100%) !important;
+}
+
+.bg-gradient-cyan {
+    background: linear-gradient(87deg, #2bffc6 0, #2be0ff 100%) !important;
+}
+
+.bg-gradient-white {
+    background: linear-gradient(87deg, #fff 0, white 100%) !important;
+}
+
+.bg-gradient-gray {
+    background: linear-gradient(87deg, #8898aa 0, #888aaa 100%) !important;
+}
+
+.bg-gradient-gray-dark {
+    background: linear-gradient(87deg, #32325d 0, #44325d 100%) !important;
+}		
+
+.text-white {
+    color: #fff !important;
+}		
+
+.shadow {
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;
+}
+
+.rounded-circle,
+.avatar.rounded-circle img {
+    border-radius: 50% !important;
+}
 </style>
 
 </head>
@@ -57,8 +163,8 @@
 
 <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
+        <nav id="sidebar" class="bg-white">
+    <div class="sidebar-header">
                 <h3>Bootstrap Sidebar</h3>
             </div>
 
@@ -105,11 +211,6 @@
                 
             </ul>
 
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-            </ul>
         </nav>
 
 
@@ -119,7 +220,7 @@
             <!-- Main content -->
 
 
-            <nav class="navbar navbar-dark" id="navbar2" style="  background-color: #34495e; color:white">
+            <nav class="navbar navbar-dark bg-primary" id="navbar2" style="color:white">
 
                 <a class="navbar-brand" href="#">
                      <?xml version="1.0" encoding="iso-8859-1"?>
@@ -195,34 +296,110 @@
             </nav>
 
 
-            <div class="main-content" id="panel">
 
-                <nav class="navbar navbar-top navbar-expand navbar-dark border-bottom" style="background-color: #34495e;">
-                    <div class="container-fluid">
-                        <div class="navbar-brand">
+
+                  <!-- Header -->
+        <div class="header bg-primary pb-6">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4">
+                        <div class="col-lg-6 col-7">
                             <button type="button" id="sidebarCollapse" class="btn btn-neutral">
                                 <i class="fas fa-align-left"></i>
                              </button>
                         </div>
+
                     </div>
-                </nav>
-
-
-                <!-- Header -->
-                <div class="header pb-6" style="background-color:  #34495e;">
-                    <div class="container-fluid">
-                        <div class="header-body">
-                            <div class="row align-items-center py-4">
-                                <div class="col-lg-6 col-7">
-
+                    <!-- Card stats -->
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-stats">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
+                                            <span class="h2 font-weight-bold mb-0">350,897</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                                <i class="ni ni-active-40"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 mb-0 text-sm">
+                                    <span class="text-nowrap">Since last month</span>
+                                    </p>
                                 </div>
-                                <div class="col-lg-6 col-5 text-right">
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-stats">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                                <i class="ni ni-chart-pie-35"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 mb-0 text-sm">
+                                    <span class="text-nowrap">Since last month</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-stats">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                                            <span class="h2 font-weight-bold mb-0">924</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                                <i class="ni ni-money-coins"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 mb-0 text-sm">
+                                    <span class="text-nowrap">Since last month</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-stats">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                                            <span class="h2 font-weight-bold mb-0">49,65%</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                                <i class="ni ni-chart-bar-32"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 mb-0 text-sm">
+                                        <span class="text-nowrap">Since last month</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
+        </div>
 
                 <!-- Page content -->
                 <div class="container mt-5" >

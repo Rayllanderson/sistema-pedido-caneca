@@ -36,7 +36,7 @@ public class CanecaUtil {
 	       calendar.setTime(orderDate);
 	       int orderDay = calendar.get(Calendar.DAY_OF_MONTH);
 	       int today = LocalDate.now().getDayOfMonth();
-	       if (c.getTema().equals(new Tema(4L, ""))) {
+	       if (c.getTema().equals(new Tema(0L, ""))) { //id do tema personalizado
 		   if (today == (orderDay + Prazo.PERSONALIZADO.getValue())) {
 		       canecasForToday.add(c);
 		   }else if (today == (orderDay + Prazo.NORMAL.getValue())) {
