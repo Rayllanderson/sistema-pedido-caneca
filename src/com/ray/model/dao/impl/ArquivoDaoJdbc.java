@@ -151,5 +151,26 @@ public class ArquivoDaoJdbc implements ImageRepository {
 	    DB.closeStatement(st);
 	}
     }
+    
+    @Override
+    public List<Arquivo> findAllHalfElements(Long canecaId) {
+	PreparedStatement st = null;
+	ResultSet rs = null;
+	List <Arquivo> modelos = new ArrayList<>();
+	String sql = "select id, miniatura, content_type, id_caneca, nome from arquivos where id_caneca = " + canecaId;
+	try {
+	    st = conn.prepareStatement(sql);
+	    rs = st.executeQuery();
+	    Caneca c = canecaRepository.findById(canecaId);
+	    while(rs.next()) {
+		modelos.add(new Arquivo(rs.getLong(1), null, null, rs.getString("miniatura"), rs.getString("content_type"), c, rs.getString("nome")));
+	    }
+	    return modelos;
+	} catch (SQLException e) {
+	    throw new DbException(e.getMessage());
+	} finally {
+	    DB.closeStatement(st);
+	}
+    }
 
 }

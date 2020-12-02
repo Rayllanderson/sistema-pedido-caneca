@@ -71,6 +71,25 @@ public class ImageService {
 	arquivos.forEach(x -> x.setInputStream(null));
 	return arquivos;
     }
+    
+    /**
+     * 
+     * @param canecaId        - todas as imagens de acordo com o id da caneca
+     * @param withInputStream - <br>
+     *                        setar true para caso queira a lista completa, com
+     *                        todos os atributos. <br>
+     *                        Setar falso caso queira a lista parcialmente completa,
+     *                        sem inputstream
+     * @return todas as canecas
+     */
+    public List<Arquivo> findAllWithout64Base(Long canecaId) {
+	List<Arquivo> arquivos = repository.findAllHalfElements(canecaId);
+	arquivos.forEach(x -> setMiniature(x));
+//	arquivos.forEach(x -> x.setFileSize(ArquivosUtil.getReadableFileSize(x)));
+	arquivos.forEach(x -> x.setBase64(""));
+	arquivos.forEach(x -> x.setInputStream(null));
+	return arquivos;
+    }
 
     /**
      * Seta miniatura de acordo com seu tipo de arquivo caso nao seja uma imagem

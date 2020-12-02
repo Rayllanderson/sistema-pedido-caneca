@@ -45,7 +45,7 @@ public class CanecaServlet extends HttpServlet {
 	    if (action != null) {
 		if (action.equals("select")) {
 		    Long id = Long.valueOf(req.getParameter("id"));
-		    List<Arquivo> arquivos = arquivoService.findAll(id, false);
+		    List<Arquivo> arquivos = arquivoService.findAllWithout64Base(id);
 		    Caneca caneca = canecaRepository.findById(id);
 		    req.getSession().setAttribute("caneca", caneca);
 		    req.getSession().setAttribute("cliente", caneca.getCliente());
