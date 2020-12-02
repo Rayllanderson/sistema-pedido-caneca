@@ -77,10 +77,12 @@ public class FileServlet extends HttpServlet {
 	    this.caneca = (Caneca) request.getSession().getAttribute("caneca");
 	    List<Arquivo> arquivos = arquivoService.findAll(caneca.getId(), false);
 	    if (action != null) {
-		if (action.equals("load-miniature") && ArquivosUtil.thumbIsLoading(arquivos)) {
+		if (action.equals("load-miniature")) {
+		    if (ArquivosUtil.thumbIsLoading(arquivos)) {
 		    ArquivosUtil.loadThumb(arquivos, true, arquivoRepository);
 		    response.setStatus(200);
 		    return;
+		    }
 		} else if (action.equals("delete")) {
 		    Long id = Long.valueOf(request.getParameter("id"));
 		    if (arquivoService.deleteById(id)) {
@@ -89,7 +91,7 @@ public class FileServlet extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
 		    }
 		} else if (action.equals("download")) {
-		    Arquivo arquivo = arquivoRepository.findById(Long.valueOf(request.getParameter("id")));
+		    Arquivo arquivo = arquivoRepository.findByIdHalfElements(Long.valueOf(request.getParameter("id")));
 		    ArquivosUtil.downloadFile(response, arquivo);
 		    return;
 		}
