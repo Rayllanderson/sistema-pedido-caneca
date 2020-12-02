@@ -56,10 +56,13 @@
                             <li class="nav-item active">
                                <a class="nav-link" href="#"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
                             </li>
-                <li>
-                   <a href="temas"><i class="fas fa-palette"></i> Temas </a>
+                <li class="nav-item">
+                   <a href="temas" class="nav-link"><i class="fas fa-palette"></i> Temas </a>
                 </li>                
                 
+                  <li class="nav-item">
+			                   <a href="account" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
+              				</li> 
             </ul>
 
         </nav>

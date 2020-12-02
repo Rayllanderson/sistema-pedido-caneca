@@ -81,10 +81,13 @@ html, body{
                             <li class="nav-item">
                                <a class="nav-link" href="canecas"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
                             </li>
-                <li>
-                   <a href="temas"><i class="fas fa-palette"></i> Temas </a>
+                 <li class="nav-item">
+                   <a href="temas" class="nav-link"><i class="fas fa-palette"></i> Temas </a>
                 </li>                
                 
+                  <li class="nav-item">
+			                   <a href="account" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
+              		</li> 
             </ul>
 
         </nav>
@@ -98,7 +101,7 @@ html, body{
 
             <nav class="navbar navbar-dark bg-primary" id="navbar2" style="color:white">
 
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="home.jsp">
                      <?xml version="1.0" encoding="iso-8859-1"?>
                         <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -151,7 +154,7 @@ html, body{
 </g>
 <g>
  </g>
- <g></g></svg></a> </span>
+ <g></g></svg></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
@@ -222,7 +225,6 @@ html, body{
                                  data-toggle="table" 
                                  data-show-toggle="true"
                                  data-search="true"
-                                 data-pagination="true"
                                  data-show-columns="true"
                                  data-toolbar="#toolbar"
                                  data-search-accent-neutralise="true"
@@ -290,36 +292,9 @@ html, body{
 
    </div> <!-- fim col -->
 </div> <!-- fim row -->
-
+</div>
 
  
-                    <!-- Footer -->
-                    <footer class="footer pt-0">
-                        <div class="row align-items-center justify-content-lg-between">
-                            <div class="col-lg-6">
-                                <div class="copyright text-center  text-lg-left  text-muted">
-                                    &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                                    <li class="nav-item">
-                                        <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
             </div>
         </div>
         

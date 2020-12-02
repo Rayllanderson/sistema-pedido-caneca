@@ -197,17 +197,17 @@
                             <a href="canecas?action=all">Todas</a>
                         </li>
                         <li>
-                            <a href="canecas?action=today">Canecas para hoje</a>
-                        </li>
-                        <li>
-                            <a href="clientes?action=without-order">....</a>
+                            <a href="canecas?action=today">Entregas para hoje</a>
                         </li>
                     </ul>
                 </li>
                 
                 <li>
                    <a href="temas"><i class="fas fa-palette"></i> Temas </a>
-                </li>                
+                </li>     
+                 <li>
+                   <a href="account"><i class="fas fa-user-cog"></i> Conta </a>
+                </li>                   
                 
             </ul>
 
@@ -291,6 +291,15 @@
                             <li class="nav-item">
                                <a class="nav-link" href="canecas"><i class="fas fa-mug-hot fa-sm"></i> Canecas </a>
                             </li>
+                            
+                                                         <li class="nav-item">
+			                   <a href="temas" class="nav-link"><i class="fas fa-palette"></i> Temas </a>
+			                </li>    
+			                
+			                 <li class="nav-item">
+			                   <a href="account" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
+              				</li> 
+              				
                         </ul>
                     </div>
             </nav>
@@ -403,9 +412,9 @@
 
                 <!-- Page content -->
                 <div class="container mt-5" >
-                    <div class="row row-cols-1 row-cols-md-2">
-                  	    <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                    <div class="row row-cols-1 row-cols-md-2 pb-5">
+                  	    <div class="col-md-2"></div>
+                        <div class="col-md-8">
                         	<div class="card-deck">
                             	<div class="card" >
                             	<img src="https://image.flaticon.com/icons/png/512/33/33308.png" class="card-img-top p-5 mb-n5" >
@@ -430,18 +439,6 @@
     									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Canecas sem pedido </a></li>
     								</ul>
                             	</div> <!-- fim card -->
-                            	
-                            	<div class="card" >
-                            	<img src="https://www.flaticon.com/svg/static/icons/svg/64/64722.svg" class="card-img-top p-4" >
-                            		<div class="card-body">
-   										 <h4 class="card-title text-center">Configurações</h4>
-                            		</div>
-                            		 <ul class="list-group list-group-flush">
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Configurações da conta</a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Cadastrar novo login</a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%"> Informações Gerais </a></li>
-    								</ul>
-                            	</div> <!-- fim card -->															
 						</div> <!--  row -->
 		  			 </div> <!-- fim col -->
 				</div> <!-- fim row -->

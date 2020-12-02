@@ -1,4 +1,4 @@
-
+var queryString = window.location.search;
 var id1 = null;
 $('#exampleModalCenter').on('show.bs.modal', function(event) {
 	var button = $(event.relatedTarget)
@@ -14,7 +14,7 @@ $('#btn-delete-cliente').on('click', function() {
 		success: function() {
 			$('#exampleModalCenter').modal('hide')
 			alertBootstrap("Cliente Excluído", 'alert alert-success', "Sucesso")
-			$.get("clientes", function(responseXml) {
+			$.get("clientes" + queryString, function(responseXml) {
 				$("#start").html($(responseXml).find("data").html());
 			});
 		}, error: function() {
@@ -26,7 +26,7 @@ $('#btn-delete-cliente').on('click', function() {
 })
 
 
-var queryString = window.location.search;
+
 if (queryString == "?action=without-order"){
 	$('#deleteAll').show();
 }else{

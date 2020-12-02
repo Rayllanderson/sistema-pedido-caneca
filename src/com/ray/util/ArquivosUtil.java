@@ -96,14 +96,11 @@ public class ArquivosUtil implements Serializable {
     public static void downloadFile(HttpServletResponse response, Arquivo arquivo)
 	    throws IOException, PatternSyntaxException, NullPointerException {
 	if (arquivo != null) {
-	    // converte a base64 da img do BD para byte
 	    String[] contentType = null;
 	    contentType = arquivo.getContentType().split("/");
 	    response.setHeader("Content-Disposition",
 		    "attachment;filename=" + arquivo.getNome() + "." + contentType[1]);
-	    // coloca os bytes em um objeto de entrada pra processar
 	    InputStream inputStream = arquivo.getInputStream();
-	    // inicio da resposta pro navegador
 	    int read = 0;
 	    byte[] bytes = new byte[1024];
 	    OutputStream outputStream = response.getOutputStream();

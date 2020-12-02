@@ -94,6 +94,10 @@
                              <li>
 			                   <a href="temas"><i class="fas fa-palette"></i> Temas </a>
 			                </li>    
+			                
+			                 <li>
+			                   <a href="account"><i class="fas fa-user-cog"></i> Conta </a>
+              				</li> 
                         </ul>
                     </div>
                     </div>

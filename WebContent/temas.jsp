@@ -92,17 +92,20 @@ html, body {
 
             <ul class="list-unstyled components">
                 <p>SideBar</p>
-						<li class="nav-item"><a class="nav-link active" href="home.jsp">
+						<li class="nav-item"><a class="nav-link" href="home.jsp">
 								<i class="fas fa-home fa-sm"></i> Home
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="clientes"><i
 								class="fas fa-user fa-md"></i> Clientes </a></li>
 						<li class="nav-item"><a class="nav-link" href="canecas"><i
 								class="fas fa-mug-hot fa-sm"></i> Canecas </a></li>
-                
-                <li>
-                   <a href="temas"><i class="fas fa-palette"></i> Temas </a>
-                </li>                
+								
+                 <li class="nav-item active"><li>
+                   <a href="#" class="nav-link"><i class="fas fa-palette"></i> Temas </a>
+                </li>    
+                  <li class="nav-item">
+			                   <a href="account" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
+              				</li>             
                 
             </ul>
 
@@ -195,6 +198,14 @@ html, body {
 								class="fas fa-user fa-md"></i> Clientes </a></li>
 						<li class="nav-item"><a class="nav-link" href="canecas"><i
 								class="fas fa-mug-hot fa-sm"></i> Canecas </a></li>
+								                            
+                        <li class="nav-item active">
+			                   <a href="#" class="nav-link"><i class="fas fa-palette"></i> Temas </a>
+			            </li>    
+			                
+			            <li class="nav-item">
+			                   <a href="account" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
+              			</li>
 					</ul>
 				</div>
 			</nav>

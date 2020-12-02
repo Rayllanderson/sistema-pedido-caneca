@@ -1,10 +1,7 @@
 package com.ray.model.entities;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-
-import com.ray.util.ArquivosUtil;
 
 public class Arquivo implements Serializable {
 
@@ -59,7 +56,7 @@ public class Arquivo implements Serializable {
     }
 
     public String getMiniatura() {
-	return miniatura; // ainda tenho que dar um get correto aqui...
+	return miniatura; 
     }
 
     public void setMiniatura(String miniatura) {
