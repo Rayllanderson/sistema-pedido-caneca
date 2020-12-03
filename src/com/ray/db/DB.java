@@ -15,9 +15,9 @@ public class DB {
 
 	if (conn == null) {
 	    try {
-		String url = "jdbc:mysql:**e=UTC&autoReconnect=true";
-		String user = "**";
-		String password = "**";
+		String url = "*TC&autoReconnect=true";
+		String user = "*";
+		String password = "*";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		conn = DriverManager.getConnection(url, user, password);
 		System.out.println("The database has been successfully connected");

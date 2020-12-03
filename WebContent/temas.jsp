@@ -253,6 +253,10 @@ html, body {
 										<label for="themeName" class="col-form-label" >Adicionar Tema: </label>
 										 <input type="text" class="form-control" id="themeName" placeholder="Nome">
 										  <input type="text" class="form-control" id="themeId" style="display: none">
+										  <div id="infos" style="display: none">
+											  <p id="textTema"  style="display: inline;"></p> 
+											  <a style="display: inline; cursor: pointer" class="ml-3" id="clearValues"><i class="fas fa-times"></i></a>
+										  </div>
 									</div>
 									<button type="button" id="saveTheme" class="btn btn-primary mb-4">Savar
 									</button>
@@ -310,8 +314,8 @@ html, body {
 										</tbody>
 									</table>
 								</div>
-								<script>$('.fixed-table-toolbar').css('padding', '10px')</script>
 								<script> $('#themeTable').bootstrapTable();</script>
+								<script>$('.fixed-table-toolbar').css('padding', '10px')</script>
 								</data>
 							</div>
 						</div>
@@ -377,6 +381,7 @@ html, body {
 	function editar(element){
 			$('#themeName').removeClass('edit-animation')
 			$('#themeName').focus();
+			$('#infos').css('display', 'block')
 			
 			var temaId= $(element).attr("data-id");
 			var temaNome = $(element).attr("data-nome");
@@ -384,7 +389,9 @@ html, body {
 			$('#themeName').addClass('edit-animation')
 			$('#themeName').attr("auto-focus", true);
 			$('#themeId').val(temaId);
+			$('#textTema').html('Editando: ' + temaNome )
 		}
+	
 	</script>
 </body>
 

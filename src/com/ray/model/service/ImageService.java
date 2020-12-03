@@ -85,7 +85,7 @@ public class ImageService {
     public List<Arquivo> findAllWithout64Base(Long canecaId) {
 	List<Arquivo> arquivos = repository.findAllHalfElements(canecaId);
 	arquivos.forEach(x -> setMiniature(x));
-//	arquivos.forEach(x -> x.setFileSize(ArquivosUtil.getReadableFileSize(x)));
+//	arquivos.forEach(x -> x.setFileSize(ArquivosUtil.getReadableFileSize(x))); //tamanho dos arquivos. 
 	arquivos.forEach(x -> x.setBase64(""));
 	arquivos.forEach(x -> x.setInputStream(null));
 	return arquivos;

@@ -245,7 +245,7 @@ html, body{
                                             <th scope="col" class="text-center" data-sortable="true" >Nome</th>
                                             <th scope="col" data-sortable="true" >Telefone</th>
                                             <th scope="col" data-visible="false" >Editar</th>
-                                            <th scope="col" data-visible="false" >Excluir</th>
+                                            <th scope="col"  >Excluir</th>
                                         </tr>
                                     </thead>
 
