@@ -13,6 +13,7 @@ import java.util.List;
 import com.ray.db.DB;
 import com.ray.db.DbException;
 import com.ray.model.dao.ClienteRepository;
+import com.ray.model.dao.EntregaRepository;
 import com.ray.model.dao.PedidoRepository;
 import com.ray.model.dao.RepositoryFactory;
 import com.ray.model.entities.Pedido;
@@ -21,6 +22,7 @@ public class PedidoDaoJdbc implements PedidoRepository {
 
     private Connection conn;
     private ClienteRepository cliRepository = RepositoryFactory.createClienteDao();
+    private EntregaRepository entregaRepository = RepositoryFactory.createEntregaDao();
 
     public PedidoDaoJdbc(Connection conn) {
 	this.conn = conn;
@@ -30,7 +32,7 @@ public class PedidoDaoJdbc implements PedidoRepository {
     public boolean save(Pedido pedido) {
 	PreparedStatement st = null;
 	ResultSet rs = null;
-	String sql = "insert into pedidos (cliente_id, order_time) values (?, ?)";
+	String sql = "insert into pedidos (cliente_id, order_time, entrega_id) values (?, ?, ?)";
 	try {
 	    Calendar calendar = Calendar.getInstance();
 	    java.util.Date currentTime = calendar.getTime();
@@ -38,6 +40,7 @@ public class PedidoDaoJdbc implements PedidoRepository {
 	    st = conn.prepareStatement(sql);
 	    st.setLong(1, pedido.getCliente().getId());
 	    st.setTimestamp(2, new Timestamp(time));
+	    st.setLong(3, pedido.getEntrega().getId());
 	    if (st.executeUpdate() > 0) {
 		return true;
 	    };
@@ -151,7 +154,7 @@ public class PedidoDaoJdbc implements PedidoRepository {
     private Pedido insertCliente(ResultSet rs) throws SQLException {
 	Timestamp data =  rs.getTimestamp("order_time");
 	Date date = new Date(data.getTime());
-	Pedido p = new Pedido(Long.valueOf(rs.getString("id")), cliRepository.findById(rs.getLong("cliente_id")), date);
+	Pedido p = new Pedido(Long.valueOf(rs.getString("id")), cliRepository.findById(rs.getLong("cliente_id")), date, entregaRepository.findById(rs.getLong("entrega_id")));
 	return p;
     }
 
