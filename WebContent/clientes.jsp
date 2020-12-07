@@ -43,10 +43,10 @@
 	 background-color: #fff;}
 	
 
-html, body{
-    height: 100%;
-							
-}
+	html, body{
+	    height: 100%;
+								
+	}
 						
 
 </style>
@@ -240,6 +240,7 @@ html, body{
                                             <th scope="col" class="text-center" data-sortable="true" >Nome</th>
                                             <th scope="col" data-sortable="true" >Telefone</th>
                                             <th scope="col" data-sortable="true" >Data</th>
+                                            <th scope="col" >Entrega</th>
                                             <th scope="col" data-visible="false" >Editar</th>
                                             <th scope="col" data-visible="false" >Excluir</th>
                                         </tr>
@@ -254,8 +255,8 @@ html, body{
 												style="width: 100%; color: dodgerblue; border-radius: 1rem;">${pedido.cliente.nome}</a>
 												</td>
                                                 <td data-label="Telefone">${pedido.cliente.telefone}</td>
-                                                 <td data-label="Data">${pedido.getDataString()}</td>
-
+                                                <td data-label="Data">${pedido.getDataString()}</td>
+												<td data-label="Entrega">${pedido.entrega}</td>
                                                 <td data-label="Editar"><button
 												class="btn btn-outline-info"
 												data-toggle="modal" data-target="#edit-modal" 
