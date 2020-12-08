@@ -10,4 +10,10 @@ public interface EntregaRepository {
     Entrega findById(Long id);
 
     List<Entrega> findAll();
+
+    Entrega update(Entrega entrega);
+
+    Entrega save(Entrega entrega);
+
+    void deleteById(Long id);
 }

@@ -76,7 +76,6 @@ public class TemaDaoJdbc implements TemaRepository {
 	} finally {
 	    DB.closeStatement(st);
 	}
-
     }
 
     @Override

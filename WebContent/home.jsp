@@ -308,7 +308,7 @@
 
 
                   <!-- Header -->
-        <div class="header bg-primary pb-6">
+        <div class="header bg-primary" style="padding-bottom: 11.5em!important">
             <div class="container-fluid">
                 <div class="header-body">
                     <div class="row align-items-center py-4">
@@ -320,137 +320,85 @@
 
                     </div>
                     <!-- Card stats -->
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
+                    <div class="col" style="margin-top: 5em">
+                    <div class="card-deck">
+                        <div class="col-xl-4 col-md-6">
                             <div class="card card-stats">
                                 <!-- Card body -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-                                            <span class="h2 font-weight-bold mb-0">350,897</span>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Clientes</h5>
+                                            <span class="h2 font-weight-bold mb-0"> <a class="btn text-primary" href="clientes?action=all" style="width: 115%"> Todos </a></span>
+                                            <hr style="width: 120%">
+                                            <span class="h2 font-weight-bold mb-0"> <a class="btn text-primary" href="clientes" style="width: 115%"> Pedidos realizados </a></span>
+                                            <hr style="width: 120%">
+                                            <span class="h2 font-weight-bold mb-0"> <a class="btn text-primary" href="clientes?action=without-order" style="width: 115%"> Pedidos não realizados </a></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                                <i class="ni ni-active-40"></i>
+                                              <i class="fas fa-users"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="mt-3 mb-0 text-sm">
-                                    <span class="text-nowrap">Since last month</span>
-                                    </p>
+                                     <p class="mt-3 mb-0 text-sm">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-6">
                             <div class="card card-stats">
                                 <!-- Card body -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Canecas</h5>
+                                            <span class="h2 font-weight-bold mb-0">  <a class="btn text-primary" href="canecas?action=all" style="width: 115%">Todas </a></span>
+                                            <hr style="width: 120%">
+                                            <span class="h2 font-weight-bold mb-0">  <a class="btn text-primary" href="canecas?action=today" style="width: 115%">Entregar Hoje </a></span>
+                                             <hr style="width: 120%">
+                                            <span class="h2 font-weight-bold mb-0"> &nbsp; </span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                                                <i class="ni ni-chart-pie-35"></i>
+                                               <i class="fas fa-coffee"></i>
                                             </div>
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-                                    <span class="text-nowrap">Since last month</span>
-                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-6">
                             <div class="card card-stats">
                                 <!-- Card body -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                                            <span class="h2 font-weight-bold mb-0">924</span>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Ferramentas</h5>
+                                            <span class="h2 font-weight-bold mb-0"> <a class="btn text-primary" href="account" style="width: 115%"> Conta </a></span>
+                                            <hr style="width: 120%">
+                                            <span class="h2 font-weight-bold mb-0"> <a class="btn text-primary" href="temas" style="width: 115%"> Temas </a></span>
+                                            <hr style="width: 120%">
+                                            <span class="h2 font-weight-bold mb-0"> <a class="btn text-primary" href="entregas" style="width: 115%"> Entregas </a></span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                                                <i class="ni ni-money-coins"></i>
+                                               <i class="fas fa-cogs"></i>
                                             </div>
                                         </div>
+                                        <p class="mt-3 mb-0 text-sm">
                                     </div>
-                                    <p class="mt-3 mb-0 text-sm">
-                                    <span class="text-nowrap">Since last month</span>
-                                    </p>
                                 </div>
-                            </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card card-stats">
-                                <!-- Card body -->
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                                            <span class="h2 font-weight-bold mb-0">49,65%</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                                                <i class="ni ni-chart-bar-32"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-nowrap">Since last month</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
+</div>
 
-                <!-- Page content -->
-                <div class="container mt-5" >
-                    <div class="row row-cols-1 row-cols-md-2 pb-5">
-                  	    <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                        	<div class="card-deck">
-                            	<div class="card" >
-                            	<img src="https://image.flaticon.com/icons/png/512/33/33308.png" class="card-img-top p-5 mb-n5" >
-                            		<div class="card-body">
-   										 <h4 class="card-title text-center">Clientes</h4>
-                            		</div>
-                            		 <ul class="list-group list-group-flush ">
-    									<li class="list-group-item"> <a class="btn text-primary" href="clientes?action=all" style="width: 100%"> Todos </a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" href="clientes" style="width: 100%"> Pedidos realizados </a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" href="clientes?action=without-order" style="width: 100%"> Pedidos não realizados </a></li>
-    								</ul>
-                            	</div> <!-- fim card -->
-                            	
-                            	<div class="card" >
-                            	<img src="https://image.flaticon.com/icons/svg/3260/3260686.svg" class="card-img-top p-4" >
-                            		<div class="card-body">
-   										 <h4 class="card-title text-center">Canecas</h4>
-                            		</div>
-                            		 <ul class="list-group list-group-flush">
-    									<li class="list-group-item"> <a class="btn text-primary" href="canecas?action=all" style="width: 100%">Todas </a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" href="canecas?action=today" style="width: 100%">Entregar Hoje </a></li>
-    									<li class="list-group-item"> <a class="btn text-primary" style="width: 100%">Canecas sem pedido </a></li>
-    								</ul>
-                            	</div> <!-- fim card -->
-						</div> <!--  row -->
-		  			 </div> <!-- fim col -->
-				</div> <!-- fim row -->
-
-
-                </div> <!-- fim container -->
-        </div>
-        </div>
-        
-        </div>
-	<div class="mt-4 mb-4"></div>
-	
+</div>
+</div>
 
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>

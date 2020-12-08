@@ -251,7 +251,7 @@ html, body {
 								<div class="col mt-1" >
 									<div class="form-group" >
 										<label for="themeName" class="col-form-label" >Adicionar Forma de Entrega: </label>
-										 <input type="text" class="form-control" id="tentregaName" placeholder="Nome">
+										 <input type="text" class="form-control" id="entregaName" placeholder="Nome">
 										  <input type="text" class="form-control" id="entregaId" style="display: none">
 										  <div id="infos" style="display: none">
 											  <p id="textTema"  style="display: inline;"></p> 
@@ -369,7 +369,7 @@ html, body {
 	<script src="src/js/alert.js"></script>
 	<script src="src/js/ajax/edit.save.entrega.js"></script>
 	<script src="src/js/util/sidebar.js"></script>
-	<script src="src/js/ajax/excluirentrega.js"></script>
+	<script src="src/js/ajax/excluirEntrega.js"></script>
 
 	<script type="text/javascript">
 		$('.alert').hide();
@@ -379,17 +379,17 @@ html, body {
 	<script>
 		
 	function editar(element){
-			$('#themeName').removeClass('edit-animation')
-			$('#themeName').focus();
+			$('#entregaName').removeClass('edit-animation')
+			$('#entregaName').focus();
 			$('#infos').css('display', 'block')
 			
-			var temaId= $(element).attr("data-id");
-			var temaNome = $(element).attr("data-nome");
-			$('#themeName').val(temaNome);
-			$('#themeName').addClass('edit-animation')
-			$('#themeName').attr("auto-focus", true);
-			$('#themeId').val(temaId);
-			$('#textTema').html('Editando: ' + temaNome )
+			var entregaId= $(element).attr("data-id");
+			var entregaNome = $(element).attr("data-nome");
+			$('#entregaName').val(temaNome);
+			$('#entregaName').addClass('edit-animation')
+			$('#entregaName').attr("auto-focus", true);
+			$('#entregaId').val(entregaId);
+			$('#textTema').html('Editando: ' + entregaNome )
 		}
 	
 	</script>
