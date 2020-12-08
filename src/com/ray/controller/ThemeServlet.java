@@ -14,7 +14,6 @@ import com.ray.model.dao.TemaRepository;
 import com.ray.model.entities.Tema;
 import com.ray.model.exceptions.RequisicaoInvalidaException;
 
-
 @WebServlet("/temas")
 public class ThemeServlet extends HttpServlet {
 
@@ -38,16 +37,17 @@ public class ThemeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	try{String action = req.getParameter("action");
-	if (action != null) {
-	    if (action.equals("delete")) {
-		delete(req, resp);
+	try {
+	    String action = req.getParameter("action");
+	    if (action != null) {
+		if (action.equals("delete")) {
+		    delete(req, resp);
+		}
+	    } else {
+		req.getSession().setAttribute("temas", temaRepository.findAll());
+		req.getRequestDispatcher("temas.jsp").forward(req, resp);
 	    }
-	} else {
-	    req.getSession().setAttribute("temas", temaRepository.findAll());
-	    req.getRequestDispatcher("temas.jsp").forward(req, resp);
-	}
-	}catch (Exception e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    resp.getWriter().write("Ocorreu um erro.");
 	    resp.setStatus(500);
@@ -95,7 +95,7 @@ public class ThemeServlet extends HttpServlet {
 	    response.setCharacterEncoding("UTF-8");
 	    response.getWriter().write("Existem uma ou mais canecas utilizando o tema atual");
 	    response.setStatus(400);
-	}catch (Exception e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    response.setContentType("text/plain");
 	    response.setCharacterEncoding("UTF-8");

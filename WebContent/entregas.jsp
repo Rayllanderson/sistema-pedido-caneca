@@ -250,15 +250,15 @@ html, body {
 								<!-- Card header -->
 								<div class="col mt-1" >
 									<div class="form-group" >
-										<label for="themeName" class="col-form-label" >Adicionar Tema: </label>
-										 <input type="text" class="form-control" id="themeName" placeholder="Nome">
-										  <input type="text" class="form-control" id="themeId" style="display: none">
+										<label for="themeName" class="col-form-label" >Adicionar Forma de Entrega: </label>
+										 <input type="text" class="form-control" id="tentregaName" placeholder="Nome">
+										  <input type="text" class="form-control" id="entregaId" style="display: none">
 										  <div id="infos" style="display: none">
 											  <p id="textTema"  style="display: inline;"></p> 
 											  <a style="display: inline; cursor: pointer" class="ml-3" id="clearValues"><i class="fas fa-times"></i></a>
 										  </div>
 									</div>
-									<button type="button" id="saveTheme" class="btn btn-primary mb-4">Savar
+									<button type="button" id="saveEntrega" class="btn btn-primary mb-4">Savar
 									</button>
 								</div>
 								<data id="start"> <!--  INICIO TABELA  -->
@@ -278,14 +278,14 @@ html, body {
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${temas}" var="tema">
+											<c:forEach items="${entregas}" var="entrega">
 												<tr>
-													<td>${tema.nome}</td>
+													<td>${entrega.nome}</td>
 
 													<td data-label="Editar">
 														<button class="editar btn btn-outline-info"
-															data-id="${tema.id}"
-															data-nome="${tema.nome}"
+															data-id="${entrega.id}"
+															data-nome="${entrega.nome}"
 															style="box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);" onclick="editar(this)">
 															<svg width="1em" height="1em" viewBox="0 0 16 16"
 																class="bi bi-pen-fill" fill="currentColor"
@@ -298,7 +298,7 @@ html, body {
 
 													<td data-label="Excluir">
 														<button class="btn btn-outline-danger" data-toggle="modal"
-															data-target="#exampleModalCenter" data-id="${tema.id}">
+															data-target="#exampleModalCenter" data-id="${entrega.id}">
 															<svg width="1em" height="1em" viewBox="0 0 16 16"
 																class="bi bi-x-circle-fill" fill="currentColor"
 																xmlns="http://www.w3.org/2000/svg">
@@ -338,7 +338,7 @@ html, body {
         </button>
       </div>
       <div class="modal-body">
-       	Você tem certeza que deseja remover este tema?
+       	Você tem certeza que deseja remover esta forma de entrega?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -367,9 +367,9 @@ html, body {
 		src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
 	<script src="src/js/alert.js"></script>
-	<script src="src/js/ajax/edit.save.theme.js"></script>
+	<script src="src/js/ajax/edit.save.entrega.js"></script>
 	<script src="src/js/util/sidebar.js"></script>
-	<script src="src/js/ajax/excluirTema.js"></script>
+	<script src="src/js/ajax/excluirentrega.js"></script>
 
 	<script type="text/javascript">
 		$('.alert').hide();
