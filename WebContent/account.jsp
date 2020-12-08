@@ -86,6 +86,9 @@ html, body {
 			                 <li>
 			                   <a href="account"><i class="fas fa-user-cog"></i> Conta </a>
               				</li> 
+              				<li class="nav-item">
+			                   <a href="entregas" class="nav-link"><i class="fas fa-truck"></i> Entregas </a>
+              				</li> 
             </ul>
 
         </nav>
@@ -175,6 +178,9 @@ html, body {
 			                
 			                  <li class="nav-item  active">
 			                   <a href="#" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
+              				</li> 
+              				<li class="nav-item">
+			                   <a href="entregas" class="nav-link"><i class="fas fa-truck"></i> Entregas </a>
               				</li> 
                         </ul>
                     </div>

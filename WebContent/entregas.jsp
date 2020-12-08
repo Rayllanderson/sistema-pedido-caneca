@@ -100,12 +100,15 @@ html, body {
 						<li class="nav-item"><a class="nav-link" href="canecas"><i
 								class="fas fa-mug-hot fa-sm"></i> Canecas </a></li>
 								
-                 <li class="nav-item active"><li>
+                 <li class="nav-item"><li>
                    <a href="#" class="nav-link"><i class="fas fa-palette"></i> Temas </a>
                 </li>    
                   <li class="nav-item">
 			                   <a href="account" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
-              				</li>             
+              				</li>
+              	<li class="nav-item">
+			                   <a href="entregas" class="nav-link"><i class="fas fa-truck"></i> Entregas </a>
+              				</li>              
                 
             </ul>
 
@@ -199,13 +202,16 @@ html, body {
 						<li class="nav-item"><a class="nav-link" href="canecas"><i
 								class="fas fa-mug-hot fa-sm"></i> Canecas </a></li>
 								                            
-                        <li class="nav-item active">
+                        <li class="nav-item">
 			                   <a href="#" class="nav-link"><i class="fas fa-palette"></i> Temas </a>
 			            </li>    
 			                
 			            <li class="nav-item">
 			                   <a href="account" class="nav-link"><i class="fas fa-user-cog"></i> Conta </a>
               			</li>
+              			<li class="nav-item active">
+			                   <a href="entregas" class="nav-link"><i class="fas fa-truck"></i> Entregas </a>
+              				</li> 
 					</ul>
 				</div>
 			</nav>
@@ -385,7 +391,7 @@ html, body {
 			
 			var entregaId= $(element).attr("data-id");
 			var entregaNome = $(element).attr("data-nome");
-			$('#entregaName').val(temaNome);
+			$('#entregaName').val(entregaNome);
 			$('#entregaName').addClass('edit-animation')
 			$('#entregaName').attr("auto-focus", true);
 			$('#entregaId').val(entregaId);
