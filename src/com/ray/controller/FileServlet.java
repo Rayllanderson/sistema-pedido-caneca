@@ -92,6 +92,7 @@ public class FileServlet extends HttpServlet {
 		    }
 		} else if (action.equals("download")) {
 		    Arquivo arquivo = arquivoRepository.findByIdHalfElements(Long.valueOf(request.getParameter("id")));
+		    System.out.println(request.getParameter("id"));
 		    ArquivosUtil.downloadFile(response, arquivo);
 		    return;
 		}

@@ -1,0 +1,24 @@
+body {
+
+	background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+}
+
+.card {
+	padding: 10px;
+	border-radius: 0.5em !important;
+	background-color: #f8f9fa;	
+}
+
+.dropzone {
+	background: white;
+	border-radius: 5px;
+	border: 2px dashed rgb(0, 135, 247);
+	border-image: none;
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+a{
+	cursor: pointer;
+}
