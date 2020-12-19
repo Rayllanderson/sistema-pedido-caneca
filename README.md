@@ -5,10 +5,10 @@
 
 Sistema pedido de canecas é uma aplicação desenvolvida a pedido do meu irmão, para que o ajudasse a ter mais controle sobre os pedidos de canecas personalizadas.
 
-Este é um sistema que consiste em um gerenciamento de pedidos personalizados, em que os dados são coletados em
-<a href="https://github.com/Rayllanderson/pedido-de-caneca"> pedido de canecas</a> e, depois, após o cliente realizar
-o pedido, eles serão listados em uma aba de pedidos realizados. Dentro dela, mostrará todos os clientes que realizaram pedidos. Acessando 
-um dos clientes, você tem acesso às canecas que foram solicitadas na página de pedidos. acessando a caneca escolhida, terá acesso às 
+Este é um sistema que consiste no gerenciamento de pedidos personalizados, em que os dados são coletados em
+<a href="https://github.com/Rayllanderson/pedido-de-caneca"> pedido de canecas</a>. Esses pedidos serão listados em uma aba de pedidos realizados. 
+Dentro dela, mostrará todos os clientes que realizaram pedidos. Acessando 
+um dos clientes, você tem acesso às canecas que foram solicitadas na página de pedidos. Acessando a caneca escolhida, terá acesso às 
 informações descritas pelo cliente para a caneca específica, como também as fotos, podendo subir mais arquivos, caso necessário.
 
 A aplicação também possui filtros, upload de arquivos, controle dos temas e formas de entregas.
